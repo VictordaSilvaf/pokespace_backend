@@ -52,8 +52,15 @@ Health da API: `http://localhost:3000/api/v1/health`
 | Método | Rota | Descrição |
 | --- | --- | --- |
 | `GET` | `/api/v1/health` | Health check |
-| `POST` | `/api/v1/auth/register` | Registro `{ email, password }` |
-| `POST` | `/api/v1/auth/login` | Login `{ email, password }` |
+| `POST` | `/api/v1/auth/register` | Registro `{ email, phone, username, password }` |
+| `POST` | `/api/v1/auth/login` | Login `{ username, password }` |
+| `POST` | `/api/v1/auth/forgot-password` | Reset `{ username }` |
+| `POST` | `/api/v1/auth/reset-password` | Nova senha `{ token, newPassword }` |
+| `GET` | `/api/v1/auth/me` | Perfil (Bearer) |
+| `POST` | `/api/v1/auth/logout` | Logout (Bearer) |
+| `POST` | `/api/v1/auth/change-password` | Troca senha (Bearer) |
+
+Detalhes e rotas planejadas (`forgot-password`, `reset-password`): [docs/API_ROUTES.md](./docs/API_ROUTES.md).
 
 ## Estrutura
 
@@ -93,7 +100,9 @@ cp .env.example .env
 | `OBSERVE_APP_KEY` | — | Credencial NestJS Observe |
 | `OBSERVE_APP_SECRET` | — | Credencial NestJS Observe |
 | `AUTH_TOKEN_SECRET` | `dev-only-change-me` | Segredo do token HMAC |
-| `AUTH_TOKEN_TTL` | `3600` | TTL do token (s) |
+| `AUTH_TOKEN_TTL` | `3600` | TTL do access token (s) |
+| `AUTH_RESET_TOKEN_TTL` | `900` | TTL do token de reset (s) |
+| `AUTH_EXPOSE_RESET_TOKEN` | `false` | Expõe `resetToken` na resposta (dev) |
 | `DATABASE_URL` | `postgresql://pokespace:pokespace@localhost:5432/pokespace` | Postgres |
 | `REDIS_URL` | `redis://localhost:6379` | Redis |
 | `RABBITMQ_URL` | `amqp://pokespace:pokespace@localhost:5672` | RabbitMQ |

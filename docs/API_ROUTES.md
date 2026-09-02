@@ -4,23 +4,28 @@ Base URL (local): `http://localhost:3000`
 
 Prefixo global: `/api/v1`
 
+Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
+
 ---
 
 ## Visão geral
 
-| Método | Rota | Módulo | Auth | Descrição |
-| --- | --- | --- | --- | --- |
-| `GET` | `/api/v1/health` | Health | Não | Health check do serviço |
-| `POST` | `/api/v1/auth/register` | Identity | Não | Registra um novo usuário |
-| `POST` | `/api/v1/auth/login` | Identity | Não | Autentica e retorna access token |
+| Método | Rota | Auth | Descrição |
+| --- | --- | --- | --- |
+| `GET` | `/api/v1/health` | Não | Health check do serviço |
+| `POST` | `/api/v1/auth/register` | Não | Registra uma nova conta |
+| `POST` | `/api/v1/auth/login` | Não | Login por **username** + senha |
+| `POST` | `/api/v1/auth/forgot-password` | Não | Solicita reset de senha |
+| `POST` | `/api/v1/auth/reset-password` | Não | Confirma nova senha com token |
+| `GET` | `/api/v1/auth/me` | Bearer | Perfil da conta autenticada |
+| `POST` | `/api/v1/auth/logout` | Bearer | Revoga o access token atual |
+| `POST` | `/api/v1/auth/change-password` | Bearer | Troca senha (senha atual + nova) |
 
 ---
 
 ## Health
 
 ### `GET /api/v1/health`
-
-Verifica se a API está no ar.
 
 **Response `200`**
 
@@ -35,23 +40,26 @@ Verifica se a API está no ar.
 
 ## Auth (Identity)
 
-### `POST /api/v1/auth/register`
+### Regras de negócio
 
-Cria um usuário e retorna um access token.
+- **Máximo 4 contas** por mesmo `email` e por mesmo `phone`.
+- Cada conta tem um **`username` único**.
+- **Login é por `username`**, não por email.
+
+---
+
+### `POST /api/v1/auth/register`
 
 **Body**
 
 ```json
 {
   "email": "ash@poke.space",
+  "phone": "11999998888",
+  "username": "ash_ketchum",
   "password": "pikachu123"
 }
 ```
-
-| Campo | Tipo | Regras |
-| --- | --- | --- |
-| `email` | `string` | Obrigatório, formato de e-mail válido |
-| `password` | `string` | Obrigatório, mínimo 8 caracteres |
 
 **Response `201`**
 
@@ -59,36 +67,83 @@ Cria um usuário e retorna um access token.
 {
   "userId": "uuid",
   "email": "ash@poke.space",
+  "phone": "11999998888",
+  "username": "ash_ketchum",
   "accessToken": "..."
 }
 ```
 
-**Erros**
-
-| Status | Quando |
-| --- | --- |
-| `400` | Body incompleto, e-mail inválido ou senha fraca |
-| `409` | E-mail já registrado |
+**Erros:** `400` inválido · `409` username em uso ou limite de contas
 
 ---
 
 ### `POST /api/v1/auth/login`
 
-Autentica um usuário existente.
+**Body**
+
+```json
+{
+  "username": "ash_ketchum",
+  "password": "pikachu123"
+}
+```
+
+**Response `200`** — mesmo shape do register (com `accessToken`)
+
+**Erros:** `400` · `401` credenciais inválidas
+
+---
+
+### `POST /api/v1/auth/forgot-password`
+
+Solicita reset para uma conta (`username`). Resposta **sempre genérica** (sem enumeration).
 
 **Body**
 
 ```json
 {
-  "email": "ash@poke.space",
-  "password": "pikachu123"
+  "username": "ash_ketchum"
 }
 ```
 
-| Campo | Tipo | Regras |
-| --- | --- | --- |
-| `email` | `string` | Obrigatório |
-| `password` | `string` | Obrigatório |
+**Response `200`**
+
+```json
+{
+  "message": "If the account exists, reset instructions were sent"
+}
+```
+
+Com `AUTH_EXPOSE_RESET_TOKEN=true` (dev), inclui `resetToken` para testes/Postman.
+
+---
+
+### `POST /api/v1/auth/reset-password`
+
+**Body**
+
+```json
+{
+  "token": "...",
+  "newPassword": "novaSenha123"
+}
+```
+
+**Response `200`**
+
+```json
+{
+  "message": "Password updated"
+}
+```
+
+**Erros:** `400` · `401` token inválido/expirado
+
+---
+
+### `GET /api/v1/auth/me`
+
+**Headers:** `Authorization: Bearer <accessToken>`
 
 **Response `200`**
 
@@ -96,32 +151,81 @@ Autentica um usuário existente.
 {
   "userId": "uuid",
   "email": "ash@poke.space",
-  "accessToken": "..."
+  "phone": "11999998888",
+  "username": "ash_ketchum"
 }
 ```
 
-**Erros**
-
-| Status | Quando |
-| --- | --- |
-| `400` | Body incompleto ou e-mail inválido |
-| `401` | Credenciais inválidas |
+**Erros:** `401` token inválido/revogado
 
 ---
 
-## Exemplos rápidos (curl)
+### `POST /api/v1/auth/logout`
+
+**Headers:** `Authorization: Bearer <accessToken>`
+
+**Response `204`** (sem body)
+
+---
+
+### `POST /api/v1/auth/change-password`
+
+**Headers:** `Authorization: Bearer <accessToken>`
+
+**Body**
+
+```json
+{
+  "currentPassword": "pikachu123",
+  "newPassword": "novaSenha123"
+}
+```
+
+**Response `200`**
+
+```json
+{
+  "message": "Password updated"
+}
+```
+
+**Erros:** `400` · `401` senha atual incorreta ou token inválido
+
+---
+
+## Exemplos (curl)
 
 ```bash
-# Health
-curl http://localhost:3000/api/v1/health
-
 # Register
 curl -X POST http://localhost:3000/api/v1/auth/register \
   -H 'Content-Type: application/json' \
-  -d '{"email":"ash@poke.space","password":"pikachu123"}'
+  -d '{"email":"ash@poke.space","phone":"11999998888","username":"ash_ketchum","password":"pikachu123"}'
 
 # Login
 curl -X POST http://localhost:3000/api/v1/auth/login \
   -H 'Content-Type: application/json' \
-  -d '{"email":"ash@poke.space","password":"pikachu123"}'
+  -d '{"username":"ash_ketchum","password":"pikachu123"}'
+
+# Me
+curl http://localhost:3000/api/v1/auth/me \
+  -H 'Authorization: Bearer <accessToken>'
+
+# Forgot / reset (dev com AUTH_EXPOSE_RESET_TOKEN=true)
+curl -X POST http://localhost:3000/api/v1/auth/forgot-password \
+  -H 'Content-Type: application/json' \
+  -d '{"username":"ash_ketchum"}'
+
+curl -X POST http://localhost:3000/api/v1/auth/reset-password \
+  -H 'Content-Type: application/json' \
+  -d '{"token":"<resetToken>","newPassword":"novaSenha123"}'
+
+# Change password
+curl -X POST http://localhost:3000/api/v1/auth/change-password \
+  -H 'Authorization: Bearer <accessToken>' \
+  -H 'Content-Type: application/json' \
+  -d '{"currentPassword":"pikachu123","newPassword":"novaSenha123"}'
+
+# Logout
+curl -X POST http://localhost:3000/api/v1/auth/logout \
+  -H 'Authorization: Bearer <accessToken>'
 ```

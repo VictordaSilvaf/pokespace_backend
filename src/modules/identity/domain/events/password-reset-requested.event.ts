@@ -1,12 +1,11 @@
 import { DomainEvent } from '../../../../shared/domain/domain-event.js';
 
-export class UserRegisteredEvent extends DomainEvent {
+export class PasswordResetRequestedEvent extends DomainEvent {
   constructor(
     readonly userId: string,
     readonly email: string,
-    readonly phone: string,
     readonly username: string,
   ) {
-    super('identity.user.registered');
+    super('identity.password.reset_requested');
   }
 }

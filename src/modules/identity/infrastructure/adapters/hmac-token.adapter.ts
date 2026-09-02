@@ -48,7 +48,7 @@ export class HmacTokenService implements TokenService {
       throw new Error('Token expired');
     }
 
-    return { sub: payload.sub, email: payload.email };
+    return { sub: payload.sub, email: payload.email, username: payload.username };
   }
 
   private signRaw(encoded: string): string {

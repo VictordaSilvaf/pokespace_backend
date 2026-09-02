@@ -1,0 +1,1 @@
+export const MAX_ACCOUNTS_PER_CONTACT = 4;

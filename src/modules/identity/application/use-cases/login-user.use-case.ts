@@ -17,7 +17,7 @@ import {
   USER_REPOSITORY,
   type UserRepository,
 } from '../../domain/repositories/user.repository.js';
-import { Email } from '../../domain/value-objects/email.vo.js';
+import { Username } from '../../domain/value-objects/username.vo.js';
 import { InvalidCredentialsError } from '../../domain/errors/identity.errors.js';
 
 @Injectable()
@@ -34,8 +34,14 @@ export class LoginUserUseCase implements UseCase<LoginUserCommand, AuthResult> {
   ) {}
 
   async execute(command: LoginUserCommand): Promise<AuthResult> {
-    const email = Email.create(command.email);
-    const user = await this.users.findByEmail(email);
+    let username: Username;
+    try {
+      username = Username.create(command.username);
+    } catch {
+      throw new InvalidCredentialsError();
+    }
+
+    const user = await this.users.findByUsername(username);
 
     if (!user) {
       throw new InvalidCredentialsError();
@@ -56,11 +62,14 @@ export class LoginUserUseCase implements UseCase<LoginUserCommand, AuthResult> {
     const accessToken = await this.tokens.sign({
       sub: user.id,
       email: user.email.value,
+      username: user.username.value,
     });
 
     return {
       userId: user.id,
       email: user.email.value,
+      phone: user.phone.value,
+      username: user.username.value,
       accessToken,
     };
   }

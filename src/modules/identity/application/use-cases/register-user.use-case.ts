@@ -17,10 +17,16 @@ import {
   USER_REPOSITORY,
   type UserRepository,
 } from '../../domain/repositories/user.repository.js';
+import { MAX_ACCOUNTS_PER_CONTACT } from '../../domain/account-limits.js';
 import { Email } from '../../domain/value-objects/email.vo.js';
+import { PhoneNumber } from '../../domain/value-objects/phone-number.vo.js';
+import { Username } from '../../domain/value-objects/username.vo.js';
 import { HashedPassword } from '../../domain/value-objects/hashed-password.vo.js';
 import { User } from '../../domain/entities/user.entity.js';
-import { EmailAlreadyRegisteredError } from '../../domain/errors/identity.errors.js';
+import {
+  AccountLimitReachedError,
+  UsernameAlreadyTakenError,
+} from '../../domain/errors/identity.errors.js';
 
 @Injectable()
 export class RegisterUserUseCase
@@ -39,15 +45,32 @@ export class RegisterUserUseCase
 
   async execute(command: RegisterUserCommand): Promise<AuthResult> {
     const email = Email.create(command.email);
+    const phone = PhoneNumber.create(command.phone);
+    const username = Username.create(command.username);
     HashedPassword.assertPlainPasswordStrength(command.password);
 
-    const existing = await this.users.findByEmail(email);
-    if (existing) {
-      throw new EmailAlreadyRegisteredError(email.value);
+    const existingUsername = await this.users.findByUsername(username);
+    if (existingUsername) {
+      throw new UsernameAlreadyTakenError(username.value);
+    }
+
+    const emailCount = await this.users.countByEmail(email);
+    if (emailCount >= MAX_ACCOUNTS_PER_CONTACT) {
+      throw new AccountLimitReachedError('email', email.value);
+    }
+
+    const phoneCount = await this.users.countByPhone(phone);
+    if (phoneCount >= MAX_ACCOUNTS_PER_CONTACT) {
+      throw new AccountLimitReachedError('phone', phone.value);
     }
 
     const hash = await this.hasher.hash(command.password);
-    const user = User.register(email, HashedPassword.fromHash(hash));
+    const user = User.register(
+      email,
+      phone,
+      username,
+      HashedPassword.fromHash(hash),
+    );
 
     await this.users.save(user);
     await this.events.publish(user.pullDomainEvents());
@@ -55,11 +78,14 @@ export class RegisterUserUseCase
     const accessToken = await this.tokens.sign({
       sub: user.id,
       email: user.email.value,
+      username: user.username.value,
     });
 
     return {
       userId: user.id,
       email: user.email.value,
+      phone: user.phone.value,
+      username: user.username.value,
       accessToken,
     };
   }

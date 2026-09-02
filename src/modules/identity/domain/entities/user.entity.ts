@@ -1,37 +1,80 @@
 import { randomUUID } from 'node:crypto';
 import { AggregateRoot } from '../../../../shared/domain/aggregate-root.js';
 import { Email } from '../value-objects/email.vo.js';
+import { PhoneNumber } from '../value-objects/phone-number.vo.js';
+import { Username } from '../value-objects/username.vo.js';
 import { HashedPassword } from '../value-objects/hashed-password.vo.js';
 import { UserRegisteredEvent } from '../events/user-registered.event.js';
 import { UserLoggedInEvent } from '../events/user-logged-in.event.js';
+import { PasswordChangedEvent } from '../events/password-changed.event.js';
+import { PasswordResetCompletedEvent } from '../events/password-reset-completed.event.js';
+import { UserLoggedOutEvent } from '../events/user-logged-out.event.js';
 
 export class User extends AggregateRoot<string> {
   private constructor(
     id: string,
     private readonly _email: Email,
+    private readonly _phone: PhoneNumber,
+    private readonly _username: Username,
     private _password: HashedPassword,
     private readonly _createdAt: Date,
   ) {
     super(id);
   }
 
-  static register(email: Email, password: HashedPassword): User {
-    const user = new User(randomUUID(), email, password, new Date());
-    user.addDomainEvent(new UserRegisteredEvent(user.id, email.value));
+  static register(
+    email: Email,
+    phone: PhoneNumber,
+    username: Username,
+    password: HashedPassword,
+  ): User {
+    const user = new User(
+      randomUUID(),
+      email,
+      phone,
+      username,
+      password,
+      new Date(),
+    );
+    user.addDomainEvent(
+      new UserRegisteredEvent(
+        user.id,
+        email.value,
+        phone.value,
+        username.value,
+      ),
+    );
     return user;
   }
 
   static rehydrate(props: {
     id: string;
     email: Email;
+    phone: PhoneNumber;
+    username: Username;
     password: HashedPassword;
     createdAt: Date;
   }): User {
-    return new User(props.id, props.email, props.password, props.createdAt);
+    return new User(
+      props.id,
+      props.email,
+      props.phone,
+      props.username,
+      props.password,
+      props.createdAt,
+    );
   }
 
   get email(): Email {
     return this._email;
+  }
+
+  get phone(): PhoneNumber {
+    return this._phone;
+  }
+
+  get username(): Username {
+    return this._username;
   }
 
   get passwordHash(): string {
@@ -44,5 +87,19 @@ export class User extends AggregateRoot<string> {
 
   markLoggedIn(): void {
     this.addDomainEvent(new UserLoggedInEvent(this.id));
+  }
+
+  changePassword(password: HashedPassword): void {
+    this._password = password;
+    this.addDomainEvent(new PasswordChangedEvent(this.id));
+  }
+
+  completePasswordReset(password: HashedPassword): void {
+    this._password = password;
+    this.addDomainEvent(new PasswordResetCompletedEvent(this.id));
+  }
+
+  markLoggedOut(): void {
+    this.addDomainEvent(new UserLoggedOutEvent(this.id));
   }
 }
