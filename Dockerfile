@@ -23,6 +23,7 @@ RUN addgroup -S nestjs && adduser -S nestjs -G nestjs
 
 COPY --from=deps --chown=nestjs:nestjs /app/node_modules ./node_modules
 COPY --from=build --chown=nestjs:nestjs /app/dist ./dist
+COPY --from=build --chown=nestjs:nestjs /app/migrations ./migrations
 COPY --chown=nestjs:nestjs package.json ./
 
 USER nestjs

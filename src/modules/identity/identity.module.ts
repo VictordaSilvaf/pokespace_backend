@@ -1,4 +1,6 @@
 import { Module } from '@nestjs/common';
+import type { Pool } from 'pg';
+import { DATABASE_POOL, useInMemoryUserRepository } from '../../shared/infrastructure/database/database.pool.port.js';
 import { USER_REPOSITORY } from './domain/repositories/user.repository.js';
 import { PASSWORD_HASHER } from './application/ports/password-hasher.port.js';
 import { TOKEN_SERVICE } from './application/ports/token-service.port.js';
@@ -15,6 +17,7 @@ import { ChangePasswordUseCase } from './application/use-cases/change-password.u
 import { AuthController } from './infrastructure/http/auth.controller.js';
 import { AuthGuard } from './infrastructure/http/auth.guard.js';
 import { InMemoryUserRepository } from './infrastructure/persistence/in-memory-user.repository.js';
+import { PostgresUserRepository } from './infrastructure/persistence/postgres-user.repository.js';
 import { ScryptPasswordHasher } from './infrastructure/adapters/scrypt-password-hasher.adapter.js';
 import { HmacTokenService } from './infrastructure/adapters/hmac-token.adapter.js';
 import { InMemoryPasswordResetStore } from './infrastructure/adapters/in-memory-password-reset.store.js';
@@ -34,7 +37,14 @@ import { ConsoleMailerAdapter } from './infrastructure/adapters/console-mailer.a
     AuthGuard,
     {
       provide: USER_REPOSITORY,
-      useClass: InMemoryUserRepository,
+      useFactory: (pool: Pool | null) => {
+        if (useInMemoryUserRepository() || !pool) {
+          return new InMemoryUserRepository();
+        }
+
+        return new PostgresUserRepository(pool);
+      },
+      inject: [DATABASE_POOL],
     },
     {
       provide: PASSWORD_HASHER,
