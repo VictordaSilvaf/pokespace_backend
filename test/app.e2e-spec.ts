@@ -13,7 +13,7 @@ describe('API (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    app.setGlobalPrefix('api');
+    app.setGlobalPrefix('api/v1');
     await app.init();
   });
 
@@ -21,25 +21,25 @@ describe('API (e2e)', () => {
     await app.close();
   });
 
-  it('GET /api/health', () => {
+  it('GET /api/v1/health', () => {
     return request(app.getHttpServer())
-      .get('/api/health')
+      .get('/api/v1/health')
       .expect(200)
       .expect(({ body }) => {
         expect(body.status).toBe('ok');
       });
   });
 
-  it('POST /api/auth/register → login', async () => {
+  it('POST /api/v1/auth/register → login', async () => {
     const register = await request(app.getHttpServer())
-      .post('/api/auth/register')
+      .post('/api/v1/auth/register')
       .send({ email: 'misty@poke.space', password: 'staryu123' })
       .expect(201);
 
     expect(register.body.accessToken).toBeTruthy();
 
     const login = await request(app.getHttpServer())
-      .post('/api/auth/login')
+      .post('/api/v1/auth/login')
       .send({ email: 'misty@poke.space', password: 'staryu123' })
       .expect(200);
 

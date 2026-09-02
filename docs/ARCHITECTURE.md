@@ -119,6 +119,8 @@ Eventos locais podem começar in-memory. Depois:
 
 Controllers e gateways **não** guardam regra de negócio; apenas adaptam I/O.
 
+Infra local via Docker Compose: `postgres`, `redis`, `rabbitmq`, `kafka` (+ `api`). Ver README.
+
 ---
 
 ## 7. Entradas e saídas
