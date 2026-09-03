@@ -6,12 +6,12 @@ RUN corepack enable && corepack prepare pnpm@${PNPM_VERSION} --activate
 WORKDIR /app
 
 FROM base AS deps
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile --prod
+COPY package.json pnpm-lock.yaml .npmrc ./
+RUN pnpm config set strict-dep-builds false && pnpm install --frozen-lockfile --prod
 
 FROM base AS build
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY package.json pnpm-lock.yaml .npmrc ./
+RUN pnpm config set strict-dep-builds false && pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm build
 

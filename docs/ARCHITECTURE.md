@@ -191,3 +191,4 @@ A estrutura de pastas e ports existe exatamente para tornar essa extração bara
 - Imports ESM com extensão `.js` (padrão do projeto)
 - Controllers finos: validam input HTTP e delegam ao use case
 - Erros de domínio tipados em `domain/errors`
+- **Novo módulo do zero:** ver [docs/CREATING_A_MODULE.md](./CREATING_A_MODULE.md)

@@ -79,6 +79,8 @@ src/
 └── main.ts
 ```
 
+**Como criar um novo módulo:** [docs/CREATING_A_MODULE.md](./docs/CREATING_A_MODULE.md)
+
 ## Scripts
 
 ```bash
