@@ -13,6 +13,7 @@ import {
   type RedisClient,
 } from './shared/infrastructure/redis/redis.client.port.js';
 import { RedisThrottlerStorage } from './shared/infrastructure/redis/redis-throttler.storage.js';
+import { WorldModule } from './modules/world/world.module.js';
 
 loadEnv();
 
@@ -42,6 +43,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     }),
     SharedModule,
     IdentityModule,
+    WorldModule,
   ],
   controllers: [HealthController],
   providers: [
