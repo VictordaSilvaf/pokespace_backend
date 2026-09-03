@@ -1,12 +1,19 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { config as loadEnv } from 'dotenv';
 import { createObserveModule } from '@nestjs/observe';
 import { SharedModule } from './shared/shared.module.js';
 import { IdentityModule } from './modules/identity/identity.module.js';
 import { HealthController } from './health/health.controller.js';
+import {
+  REDIS_CLIENT,
+  useInMemoryRedis,
+  type RedisClient,
+} from './shared/infrastructure/redis/redis.client.port.js';
+import { RedisThrottlerStorage } from './shared/infrastructure/redis/redis-throttler.storage.js';
 
-// Carrega .env antes do ObserveModule.forRoot ler process.env
 loadEnv();
 
 export const { ObserveModule, ObserveInstrument } = createObserveModule();
@@ -17,6 +24,17 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       isGlobal: true,
       envFilePath: '.env',
     }),
+    ThrottlerModule.forRootAsync({
+      imports: [SharedModule],
+      inject: [REDIS_CLIENT],
+      useFactory: (redis: RedisClient) => ({
+        throttlers: [{ name: 'default', ttl: 60_000, limit: 100 }],
+        storage:
+          redis && !useInMemoryRedis()
+            ? new RedisThrottlerStorage(redis)
+            : undefined,
+      }),
+    }),
     ObserveModule.forRoot({
       appKey: process.env.OBSERVE_APP_KEY ?? 'YOUR_APP_KEY',
       appSecret: process.env.OBSERVE_APP_SECRET ?? 'YOUR_APP_SECRET',
@@ -26,5 +44,11 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     IdentityModule,
   ],
   controllers: [HealthController],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}

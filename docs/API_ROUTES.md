@@ -4,6 +4,8 @@ Base URL (local): `http://localhost:3000`
 
 Prefixo global: `/api/v1`
 
+Documentação interativa: `http://localhost:3000/api/docs`
+
 Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
 
 ---
@@ -12,56 +14,45 @@ Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
 
 | Método | Rota | Auth | Descrição |
 | --- | --- | --- | --- |
-| `GET` | `/api/v1/health` | Não | Health check do serviço |
-| `POST` | `/api/v1/auth/register` | Não | Registra uma nova conta |
-| `POST` | `/api/v1/auth/login` | Não | Login por **username** + senha |
+| `GET` | `/api/v1/health` | Não | Health check |
+| `POST` | `/api/v1/auth/register` | Não | Registra conta |
+| `POST` | `/api/v1/auth/login` | Não | Login por **username** ou **email** |
+| `POST` | `/api/v1/auth/refresh` | Não | Renova tokens (body ou cookie) |
+| `POST` | `/api/v1/auth/verify-email` | Não | Confirma e-mail |
+| `POST` | `/api/v1/auth/resend-verification` | Bearer | Reenvia e-mail de verificação |
+| `POST` | `/api/v1/auth/send-phone-otp` | Bearer | Envia OTP de telefone (e-mail em dev) |
+| `POST` | `/api/v1/auth/verify-phone` | Bearer | Confirma telefone com OTP |
+| `POST` | `/api/v1/auth/2fa/setup` | Bearer | Inicia configuração 2FA |
+| `POST` | `/api/v1/auth/2fa/confirm` | Bearer | Ativa 2FA |
+| `POST` | `/api/v1/auth/2fa/disable` | Bearer | Desativa 2FA |
+| `POST` | `/api/v1/auth/2fa/verify` | Não | Completa login com 2FA |
+| `GET` | `/api/v1/auth/sessions` | Bearer | Lista sessões ativas |
+| `DELETE` | `/api/v1/auth/sessions/:sessionId` | Bearer | Revoga sessão específica |
+| `POST` | `/api/v1/auth/logout-all` | Bearer | Revoga todas as sessões |
 | `POST` | `/api/v1/auth/forgot-password` | Não | Solicita reset de senha |
-| `POST` | `/api/v1/auth/reset-password` | Não | Confirma nova senha com token |
-| `GET` | `/api/v1/auth/me` | Bearer | Perfil da conta autenticada |
-| `POST` | `/api/v1/auth/logout` | Bearer | Revoga o access token atual |
-| `POST` | `/api/v1/auth/change-password` | Bearer | Troca senha (senha atual + nova) |
+| `POST` | `/api/v1/auth/reset-password` | Não | Confirma nova senha |
+| `GET` | `/api/v1/auth/me` | Bearer | Perfil autenticado |
+| `PATCH` | `/api/v1/auth/me` | Bearer | Atualiza e-mail/telefone |
+| `POST` | `/api/v1/auth/logout` | Bearer | Revoga sessão atual |
+| `POST` | `/api/v1/auth/change-password` | Bearer | Troca senha |
+| `POST` | `/api/v1/auth/deactivate` | Bearer | Desativa conta |
+| `DELETE` | `/api/v1/auth/account` | Bearer | Exclui conta |
 
 ---
 
-## Health
+## Auth
 
-### `GET /api/v1/health`
+### Regras
 
-**Response `200`**
+- Máximo **4 contas** por `email` e por `phone`
+- `username` único
+- Login por `identifier` (username ou email)
+- Access token JWT (default 15 min) + refresh token (default 7 dias)
+- Refresh token **rotacionado** a cada `/refresh`
+- Troca/reset de senha **invalida todas as sessões**
+- Rate limit em login, forgot-password, refresh e 2FA
 
-```json
-{
-  "status": "ok",
-  "service": "pokespace-backend"
-}
-```
-
----
-
-## Auth (Identity)
-
-### Regras de negócio
-
-- **Máximo 4 contas** por mesmo `email` e por mesmo `phone`.
-- Cada conta tem um **`username` único**.
-- **Login é por `username`**, não por email.
-
----
-
-### `POST /api/v1/auth/register`
-
-**Body**
-
-```json
-{
-  "email": "ash@poke.space",
-  "phone": "11999998888",
-  "username": "ash_ketchum",
-  "password": "pikachu123"
-}
-```
-
-**Response `201`**
+### Register / Login response
 
 ```json
 {
@@ -69,131 +60,45 @@ Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
   "email": "ash@poke.space",
   "phone": "11999998888",
   "username": "ash_ketchum",
-  "accessToken": "..."
+  "accessToken": "...",
+  "refreshToken": "...",
+  "sessionId": "uuid"
 }
 ```
 
-**Erros:** `400` inválido · `409` username em uso ou limite de contas
+Login com 2FA ativo:
+
+```json
+{
+  "requires2fa": true,
+  "tempToken": "..."
+}
+```
+
+### `GET /auth/me`
+
+Inclui: `emailVerified`, `phoneVerified`, `twoFactorEnabled`, `status`
+
+### Cookies (web)
+
+Com `AUTH_REFRESH_COOKIE=true`, login/register/refresh definem cookie `httpOnly` em `/api/v1/auth`.
+
+### Dev helpers
+
+| Env | Efeito |
+| --- | --- |
+| `AUTH_EXPOSE_RESET_TOKEN=true` | expõe `resetToken` no forgot-password |
+| `AUTH_EXPOSE_VERIFY_EMAIL_TOKEN=true` | expõe `verifyToken` no register/resend |
+| `AUTH_EXPOSE_PHONE_OTP=true` | expõe `otp` no send-phone-otp |
+
+### Mailpit (local)
+
+- UI: `http://localhost:8025`
+- SMTP: `localhost:1025`
 
 ---
 
-### `POST /api/v1/auth/login`
-
-**Body**
-
-```json
-{
-  "username": "ash_ketchum",
-  "password": "pikachu123"
-}
-```
-
-**Response `200`** — mesmo shape do register (com `accessToken`)
-
-**Erros:** `400` · `401` credenciais inválidas
-
----
-
-### `POST /api/v1/auth/forgot-password`
-
-Solicita reset para uma conta (`username`). Resposta **sempre genérica** (sem enumeration).
-
-**Body**
-
-```json
-{
-  "username": "ash_ketchum"
-}
-```
-
-**Response `200`**
-
-```json
-{
-  "message": "If the account exists, reset instructions were sent"
-}
-```
-
-Com `AUTH_EXPOSE_RESET_TOKEN=true` (dev), inclui `resetToken` para testes/Postman.
-
----
-
-### `POST /api/v1/auth/reset-password`
-
-**Body**
-
-```json
-{
-  "token": "...",
-  "newPassword": "novaSenha123"
-}
-```
-
-**Response `200`**
-
-```json
-{
-  "message": "Password updated"
-}
-```
-
-**Erros:** `400` · `401` token inválido/expirado
-
----
-
-### `GET /api/v1/auth/me`
-
-**Headers:** `Authorization: Bearer <accessToken>`
-
-**Response `200`**
-
-```json
-{
-  "userId": "uuid",
-  "email": "ash@poke.space",
-  "phone": "11999998888",
-  "username": "ash_ketchum"
-}
-```
-
-**Erros:** `401` token inválido/revogado
-
----
-
-### `POST /api/v1/auth/logout`
-
-**Headers:** `Authorization: Bearer <accessToken>`
-
-**Response `204`** (sem body)
-
----
-
-### `POST /api/v1/auth/change-password`
-
-**Headers:** `Authorization: Bearer <accessToken>`
-
-**Body**
-
-```json
-{
-  "currentPassword": "pikachu123",
-  "newPassword": "novaSenha123"
-}
-```
-
-**Response `200`**
-
-```json
-{
-  "message": "Password updated"
-}
-```
-
-**Erros:** `400` · `401` senha atual incorreta ou token inválido
-
----
-
-## Exemplos (curl)
+## Exemplos
 
 ```bash
 # Register
@@ -201,31 +106,27 @@ curl -X POST http://localhost:3000/api/v1/auth/register \
   -H 'Content-Type: application/json' \
   -d '{"email":"ash@poke.space","phone":"11999998888","username":"ash_ketchum","password":"pikachu123"}'
 
-# Login
+# Login (username ou email)
 curl -X POST http://localhost:3000/api/v1/auth/login \
   -H 'Content-Type: application/json' \
-  -d '{"username":"ash_ketchum","password":"pikachu123"}'
+  -d '{"identifier":"ash_ketchum","password":"pikachu123"}'
 
-# Me
-curl http://localhost:3000/api/v1/auth/me \
-  -H 'Authorization: Bearer <accessToken>'
-
-# Forgot / reset (dev com AUTH_EXPOSE_RESET_TOKEN=true)
-curl -X POST http://localhost:3000/api/v1/auth/forgot-password \
+# Refresh
+curl -X POST http://localhost:3000/api/v1/auth/refresh \
   -H 'Content-Type: application/json' \
-  -d '{"username":"ash_ketchum"}'
+  -d '{"refreshToken":"<refreshToken>"}'
 
-curl -X POST http://localhost:3000/api/v1/auth/reset-password \
+# Verify email
+curl -X POST http://localhost:3000/api/v1/auth/verify-email \
   -H 'Content-Type: application/json' \
-  -d '{"token":"<resetToken>","newPassword":"novaSenha123"}'
+  -d '{"token":"<verifyToken>"}'
 
-# Change password
-curl -X POST http://localhost:3000/api/v1/auth/change-password \
+# Sessions
+curl http://localhost:3000/api/v1/auth/sessions \
   -H 'Authorization: Bearer <accessToken>' \
-  -H 'Content-Type: application/json' \
-  -d '{"currentPassword":"pikachu123","newPassword":"novaSenha123"}'
+  -H 'X-Session-Id: <sessionId>'
 
-# Logout
-curl -X POST http://localhost:3000/api/v1/auth/logout \
+# Logout all
+curl -X POST http://localhost:3000/api/v1/auth/logout-all \
   -H 'Authorization: Bearer <accessToken>'
 ```

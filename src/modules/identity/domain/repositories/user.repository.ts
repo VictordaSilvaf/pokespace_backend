@@ -8,6 +8,7 @@ export const USER_REPOSITORY = Symbol('USER_REPOSITORY');
 export interface UserRepository {
   findById(id: string): Promise<User | null>;
   findByUsername(username: Username): Promise<User | null>;
+  findByEmail(email: Email): Promise<User | null>;
   countByEmail(email: Email): Promise<number>;
   countByPhone(phone: PhoneNumber): Promise<number>;
   save(user: User): Promise<void>;

@@ -26,6 +26,7 @@ import {
   InvalidResetTokenError,
   UserNotFoundError,
 } from '../../domain/errors/identity.errors.js';
+import { SessionRevoker } from '../services/session-revoker.service.js';
 
 @Injectable()
 export class ResetPasswordUseCase
@@ -38,6 +39,7 @@ export class ResetPasswordUseCase
     private readonly resetStore: PasswordResetStore,
     @Inject(PASSWORD_HASHER)
     private readonly hasher: PasswordHasher,
+    private readonly sessions: SessionRevoker,
     @Inject(EVENT_PUBLISHER)
     private readonly events: EventPublisher,
   ) {}
@@ -58,6 +60,7 @@ export class ResetPasswordUseCase
     const hash = await this.hasher.hash(command.newPassword);
     user.completePasswordReset(HashedPassword.fromHash(hash));
     await this.users.updatePassword(user.id, hash);
+    await this.sessions.revokeAllForUser(user.id);
     await this.events.publish(user.pullDomainEvents());
 
     return { message: PASSWORD_UPDATED_MESSAGE };

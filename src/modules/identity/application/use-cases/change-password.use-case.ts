@@ -22,6 +22,7 @@ import {
   InvalidCredentialsError,
   UserNotFoundError,
 } from '../../domain/errors/identity.errors.js';
+import { SessionRevoker } from '../services/session-revoker.service.js';
 
 @Injectable()
 export class ChangePasswordUseCase
@@ -32,6 +33,7 @@ export class ChangePasswordUseCase
     private readonly users: UserRepository,
     @Inject(PASSWORD_HASHER)
     private readonly hasher: PasswordHasher,
+    private readonly sessions: SessionRevoker,
     @Inject(EVENT_PUBLISHER)
     private readonly events: EventPublisher,
   ) {}
@@ -55,6 +57,7 @@ export class ChangePasswordUseCase
     const hash = await this.hasher.hash(command.newPassword);
     user.changePassword(HashedPassword.fromHash(hash));
     await this.users.updatePassword(user.id, hash);
+    await this.sessions.revokeAllForUser(user.id, command.accessToken);
     await this.events.publish(user.pullDomainEvents());
 
     return { message: PASSWORD_UPDATED_MESSAGE };

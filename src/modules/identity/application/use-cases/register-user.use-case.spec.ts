@@ -2,7 +2,13 @@ import { describe, expect, it, beforeEach } from 'vitest';
 import { RegisterUserUseCase } from './register-user.use-case.js';
 import { InMemoryUserRepository } from '../../infrastructure/persistence/in-memory-user.repository.js';
 import { ScryptPasswordHasher } from '../../infrastructure/adapters/scrypt-password-hasher.adapter.js';
-import { HmacTokenService } from '../../infrastructure/adapters/hmac-token.adapter.js';
+import { InMemoryRefreshTokenStore } from '../../infrastructure/adapters/in-memory-refresh-token.store.js';
+import { InMemoryEmailVerificationStore } from '../../infrastructure/adapters/in-memory-email-verification.store.js';
+import { ConsoleMailerAdapter } from '../../infrastructure/adapters/console-mailer.adapter.js';
+import { AuthTokenIssuer } from '../services/auth-token-issuer.service.js';
+import { JwtTokenService } from '../../infrastructure/adapters/jwt-token.adapter.js';
+import { JwtModule } from '@nestjs/jwt';
+import { Test } from '@nestjs/testing';
 import type { DomainEvent } from '../../../../shared/domain/domain-event.js';
 import type { EventPublisher } from '../../../../shared/application/ports/event-publisher.port.js';
 import {
@@ -26,31 +32,46 @@ const base = {
 
 describe('RegisterUserUseCase', () => {
   let useCase: RegisterUserUseCase;
-  let users: InMemoryUserRepository;
   let events: SilentEventPublisher;
+  let jwt: JwtTokenService;
 
-  beforeEach(() => {
-    users = new InMemoryUserRepository();
+  beforeEach(async () => {
+    const moduleRef = await Test.createTestingModule({
+      imports: [
+        JwtModule.register({
+          secret: 'test-secret',
+        }),
+      ],
+      providers: [JwtTokenService],
+    }).compile();
+
+    jwt = moduleRef.get(JwtTokenService);
     events = new SilentEventPublisher();
+    const tokenIssuer = new AuthTokenIssuer(
+      jwt,
+      new InMemoryRefreshTokenStore(),
+    );
     useCase = new RegisterUserUseCase(
-      users,
+      new InMemoryUserRepository(),
       new ScryptPasswordHasher(),
-      new HmacTokenService(),
+      tokenIssuer,
+      new InMemoryEmailVerificationStore(),
+      new ConsoleMailerAdapter(),
       events,
     );
   });
 
-  it('registers a user and returns an access token', async () => {
+  it('registers a user and returns tokens', async () => {
     const result = await useCase.execute({
       ...base,
       username: 'ash_ketchum',
     });
 
     expect(result.email).toBe('ash@poke.space');
-    expect(result.phone).toBe('11999998888');
     expect(result.username).toBe('ash_ketchum');
-    expect(result.userId).toBeTruthy();
-    expect(result.accessToken).toContain('.');
+    expect(result.accessToken).toBeTruthy();
+    expect(result.refreshToken).toBeTruthy();
+    expect(result.sessionId).toBeTruthy();
     expect(events.published).toHaveLength(1);
   });
 

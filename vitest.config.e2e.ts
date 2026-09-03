@@ -9,6 +9,7 @@ export default defineConfig({
     include: ['**/*.e2e-spec.ts'],
     env: {
       USER_REPOSITORY_DRIVER: 'memory',
+      REDIS_DRIVER: 'memory',
     },
   },
 });

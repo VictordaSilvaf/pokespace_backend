@@ -1,4 +1,6 @@
 import { describe, expect, it, beforeEach } from 'vitest';
+import { Test } from '@nestjs/testing';
+import { JwtModule } from '@nestjs/jwt';
 import { RequestPasswordResetUseCase } from './request-password-reset.use-case.js';
 import { ResetPasswordUseCase } from './reset-password.use-case.js';
 import { InMemoryUserRepository } from '../../infrastructure/persistence/in-memory-user.repository.js';
@@ -6,7 +8,12 @@ import { InMemoryPasswordResetStore } from '../../infrastructure/adapters/in-mem
 import { ConsoleMailerAdapter } from '../../infrastructure/adapters/console-mailer.adapter.js';
 import { ScryptPasswordHasher } from '../../infrastructure/adapters/scrypt-password-hasher.adapter.js';
 import { RegisterUserUseCase } from './register-user.use-case.js';
-import { HmacTokenService } from '../../infrastructure/adapters/hmac-token.adapter.js';
+import { InMemoryRefreshTokenStore } from '../../infrastructure/adapters/in-memory-refresh-token.store.js';
+import { InMemoryEmailVerificationStore } from '../../infrastructure/adapters/in-memory-email-verification.store.js';
+import { InMemoryTokenDenylist } from '../../infrastructure/adapters/in-memory-token-denylist.js';
+import { AuthTokenIssuer } from '../services/auth-token-issuer.service.js';
+import { SessionRevoker } from '../services/session-revoker.service.js';
+import { JwtTokenService } from '../../infrastructure/adapters/jwt-token.adapter.js';
 import type { DomainEvent } from '../../../../shared/domain/domain-event.js';
 import type { EventPublisher } from '../../../../shared/application/ports/event-publisher.port.js';
 import { FORGOT_PASSWORD_MESSAGE } from '../auth.config.js';
@@ -34,10 +41,27 @@ describe('Password reset flow', () => {
     events = new SilentEventPublisher();
     const hasher = new ScryptPasswordHasher();
 
+    const moduleRef = await Test.createTestingModule({
+      imports: [JwtModule.register({ secret: 'test-secret' })],
+      providers: [JwtTokenService],
+    }).compile();
+    const jwt = moduleRef.get(JwtTokenService);
+
+    const tokenIssuer = new AuthTokenIssuer(
+      jwt,
+      new InMemoryRefreshTokenStore(),
+    );
+    const sessions = new SessionRevoker(
+      new InMemoryTokenDenylist(),
+      new InMemoryRefreshTokenStore(),
+    );
+
     const register = new RegisterUserUseCase(
       users,
       hasher,
-      new HmacTokenService(),
+      tokenIssuer,
+      new InMemoryEmailVerificationStore(),
+      new ConsoleMailerAdapter(),
       events,
     );
     await register.execute({
@@ -57,6 +81,7 @@ describe('Password reset flow', () => {
       users,
       resetStore,
       hasher,
+      sessions,
       events,
     );
   });

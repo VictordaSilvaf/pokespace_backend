@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import type { UseCase } from '../../../../shared/application/use-case.js';
-import type { GetCurrentUserQuery, UserProfile } from '../dto/auth.dto.js';
+import type { UserProfile, GetCurrentUserQuery } from '../dto/auth.dto.js';
 import {
   USER_REPOSITORY,
   type UserRepository,
@@ -27,6 +27,10 @@ export class GetCurrentUserUseCase
       email: user.email.value,
       phone: user.phone.value,
       username: user.username.value,
+      emailVerified: Boolean(user.emailVerifiedAt),
+      phoneVerified: Boolean(user.phoneVerifiedAt),
+      twoFactorEnabled: user.twoFactorEnabled,
+      status: user.status,
     };
   }
 }

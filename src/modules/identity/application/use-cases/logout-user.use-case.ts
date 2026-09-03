@@ -5,24 +5,26 @@ import {
   type EventPublisher,
 } from '../../../../shared/application/ports/event-publisher.port.js';
 import type { LogoutCommand } from '../dto/auth.dto.js';
-import { getAuthTokenTtlSeconds } from '../auth.config.js';
-import {
-  TOKEN_DENYLIST,
-  type TokenDenylist,
-} from '../ports/token-denylist.port.js';
+import { SessionRevoker } from '../services/session-revoker.service.js';
 import { UserLoggedOutEvent } from '../../domain/events/user-logged-out.event.js';
 
 @Injectable()
 export class LogoutUserUseCase implements UseCase<LogoutCommand, void> {
   constructor(
-    @Inject(TOKEN_DENYLIST)
-    private readonly denylist: TokenDenylist,
+    private readonly sessions: SessionRevoker,
     @Inject(EVENT_PUBLISHER)
     private readonly events: EventPublisher,
   ) {}
 
   async execute(command: LogoutCommand): Promise<void> {
-    await this.denylist.revoke(command.accessToken, getAuthTokenTtlSeconds());
+    await this.sessions.revokeAccessToken(command.accessToken);
+
+    if (command.refreshToken) {
+      await this.sessions.revokeRefreshToken(command.refreshToken);
+    } else if (command.sessionId) {
+      await this.sessions.revokeSession(command.sessionId, command.userId);
+    }
+
     await this.events.publish([new UserLoggedOutEvent(command.userId)]);
   }
 }

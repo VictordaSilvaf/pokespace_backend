@@ -16,11 +16,16 @@ services:
       REDIS_URL: redis://redis:6379
       RABBITMQ_URL: amqp://${RABBITMQ_USER:-pokespace}:${RABBITMQ_PASSWORD:-pokespace}@rabbitmq:5672
       KAFKA_BROKERS: kafka:29092
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+      SMTP_FROM: noreply@poke.space
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
+      mailpit:
+        condition: service_started
       rabbitmq:
         condition: service_healthy
       kafka:
@@ -102,6 +107,16 @@ services:
       timeout: 5s
       retries: 5
       start_period: 20s
+    networks:
+      - pokespace
+
+  mailpit:
+    image: axllent/mailpit:latest
+    container_name: pokespace-mailpit
+    restart: unless-stopped
+    ports:
+      - '${MAILPIT_SMTP_PORT:-1025}:1025'
+      - '${MAILPIT_UI_PORT:-8025}:8025'
     networks:
       - pokespace
 

@@ -1,0 +1,9 @@
+ALTER TABLE identity_users
+  ADD COLUMN IF NOT EXISTS email_verified_at TIMESTAMPTZ,
+  ADD COLUMN IF NOT EXISTS phone_verified_at TIMESTAMPTZ,
+  ADD COLUMN IF NOT EXISTS totp_secret TEXT,
+  ADD COLUMN IF NOT EXISTS two_factor_enabled BOOLEAN NOT NULL DEFAULT false,
+  ADD COLUMN IF NOT EXISTS status VARCHAR(20) NOT NULL DEFAULT 'active',
+  ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
+
+CREATE INDEX IF NOT EXISTS idx_identity_users_status ON identity_users (status);

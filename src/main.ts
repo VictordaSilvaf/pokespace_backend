@@ -1,11 +1,12 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import cookieParser from 'cookie-parser';
 import { AppModule, ObserveInstrument } from './app.module.js';
 import { MigrationRunner } from './shared/infrastructure/database/migration.runner.js';
 import { useInMemoryUserRepository } from './shared/infrastructure/database/database.pool.port.js';
 
 async function bootstrap() {
-  // ObserveInstrument breaks pg Pool.query (Promise patching). HTTP telemetry
-  // still works via ObserveModule when Postgres persistence is enabled.
   const app = await NestFactory.create(
     AppModule,
     useInMemoryUserRepository() ? { instrument: ObserveInstrument } : {},
@@ -15,6 +16,24 @@ async function bootstrap() {
     const migrationRunner = app.get(MigrationRunner);
     await migrationRunner.run();
   }
+
+  app.use(cookieParser());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      transform: true,
+      forbidNonWhitelisted: true,
+    }),
+  );
+
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('PokeSpace API')
+    .setDescription('PokeSpace backend REST API')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('api/docs', app, document);
 
   app.setGlobalPrefix('api/v1');
 

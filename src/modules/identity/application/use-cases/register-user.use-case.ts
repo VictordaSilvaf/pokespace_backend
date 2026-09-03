@@ -1,18 +1,24 @@
+import { randomBytes } from 'node:crypto';
 import { Inject, Injectable } from '@nestjs/common';
 import type { UseCase } from '../../../../shared/application/use-case.js';
 import {
   EVENT_PUBLISHER,
   type EventPublisher,
 } from '../../../../shared/application/ports/event-publisher.port.js';
-import type { AuthResult, RegisterUserCommand } from '../dto/auth.dto.js';
+import type { AuthResult, RegisterResult, RegisterUserCommand } from '../dto/auth.dto.js';
+import {
+  getVerifyEmailTtlSeconds,
+  shouldExposeVerifyEmailToken,
+} from '../auth.config.js';
+import {
+  EMAIL_VERIFICATION_STORE,
+  type EmailVerificationStore,
+} from '../ports/email-verification-store.port.js';
 import {
   PASSWORD_HASHER,
   type PasswordHasher,
 } from '../ports/password-hasher.port.js';
-import {
-  TOKEN_SERVICE,
-  type TokenService,
-} from '../ports/token-service.port.js';
+import { MAILER, type Mailer } from '../ports/mailer.port.js';
 import {
   USER_REPOSITORY,
   type UserRepository,
@@ -27,23 +33,27 @@ import {
   AccountLimitReachedError,
   UsernameAlreadyTakenError,
 } from '../../domain/errors/identity.errors.js';
+import { AuthTokenIssuer } from '../services/auth-token-issuer.service.js';
 
 @Injectable()
 export class RegisterUserUseCase
-  implements UseCase<RegisterUserCommand, AuthResult>
+  implements UseCase<RegisterUserCommand, RegisterResult>
 {
   constructor(
     @Inject(USER_REPOSITORY)
     private readonly users: UserRepository,
     @Inject(PASSWORD_HASHER)
     private readonly hasher: PasswordHasher,
-    @Inject(TOKEN_SERVICE)
-    private readonly tokens: TokenService,
+    private readonly tokenIssuer: AuthTokenIssuer,
+    @Inject(EMAIL_VERIFICATION_STORE)
+    private readonly emailVerification: EmailVerificationStore,
+    @Inject(MAILER)
+    private readonly mailer: Mailer,
     @Inject(EVENT_PUBLISHER)
     private readonly events: EventPublisher,
   ) {}
 
-  async execute(command: RegisterUserCommand): Promise<AuthResult> {
+  async execute(command: RegisterUserCommand): Promise<RegisterResult> {
     const email = Email.create(command.email);
     const phone = PhoneNumber.create(command.phone);
     const username = Username.create(command.username);
@@ -75,18 +85,35 @@ export class RegisterUserUseCase
     await this.users.save(user);
     await this.events.publish(user.pullDomainEvents());
 
-    const accessToken = await this.tokens.sign({
-      sub: user.id,
+    const verifyToken = randomBytes(32).toString('hex');
+    await this.emailVerification.save(
+      verifyToken,
+      user.id,
+      getVerifyEmailTtlSeconds(),
+    );
+    await this.mailer.sendEmailVerification({
       email: user.email.value,
       username: user.username.value,
+      token: verifyToken,
     });
 
-    return {
+    if (shouldExposeVerifyEmailToken()) {
+      return {
+        ...(await this.tokenIssuer.issueForUser({
+          userId: user.id,
+          email: user.email.value,
+          phone: user.phone.value,
+          username: user.username.value,
+        })),
+        verifyToken,
+      };
+    }
+
+    return this.tokenIssuer.issueForUser({
       userId: user.id,
       email: user.email.value,
       phone: user.phone.value,
       username: user.username.value,
-      accessToken,
-    };
+    });
   }
 }

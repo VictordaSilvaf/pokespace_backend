@@ -4,47 +4,89 @@ import {
   EVENT_PUBLISHER,
   type EventPublisher,
 } from '../../../../shared/application/ports/event-publisher.port.js';
-import type { AuthResult, LoginUserCommand } from '../dto/auth.dto.js';
+import type { LoginResult, LoginUserCommand } from '../dto/auth.dto.js';
+import {
+  getLockoutTtlSeconds,
+  shouldRequireEmailVerified,
+} from '../auth.config.js';
+import {
+  LOGIN_ATTEMPT_STORE,
+  type LoginAttemptStore,
+} from '../ports/login-attempt-store.port.js';
 import {
   PASSWORD_HASHER,
   type PasswordHasher,
 } from '../ports/password-hasher.port.js';
 import {
-  TOKEN_SERVICE,
-  type TokenService,
-} from '../ports/token-service.port.js';
+  TEMP_AUTH_STORE,
+  type TempAuthStore,
+} from '../ports/temp-auth-store.port.js';
 import {
   USER_REPOSITORY,
   type UserRepository,
 } from '../../domain/repositories/user.repository.js';
+import { Email } from '../../domain/value-objects/email.vo.js';
 import { Username } from '../../domain/value-objects/username.vo.js';
-import { InvalidCredentialsError } from '../../domain/errors/identity.errors.js';
+import {
+  AccountDeactivatedError,
+  AccountLockedError,
+  EmailNotVerifiedError,
+  InvalidCredentialsError,
+} from '../../domain/errors/identity.errors.js';
+import {
+  AuthTokenIssuer,
+  generateTempToken,
+} from '../services/auth-token-issuer.service.js';
+import { getTempAuthTtlSeconds } from '../auth.config.js';
 
 @Injectable()
-export class LoginUserUseCase implements UseCase<LoginUserCommand, AuthResult> {
+export class LoginUserUseCase implements UseCase<LoginUserCommand, LoginResult> {
   constructor(
     @Inject(USER_REPOSITORY)
     private readonly users: UserRepository,
     @Inject(PASSWORD_HASHER)
     private readonly hasher: PasswordHasher,
-    @Inject(TOKEN_SERVICE)
-    private readonly tokens: TokenService,
+    private readonly tokenIssuer: AuthTokenIssuer,
+    @Inject(LOGIN_ATTEMPT_STORE)
+    private readonly loginAttempts: LoginAttemptStore,
+    @Inject(TEMP_AUTH_STORE)
+    private readonly tempAuth: TempAuthStore,
     @Inject(EVENT_PUBLISHER)
     private readonly events: EventPublisher,
   ) {}
 
-  async execute(command: LoginUserCommand): Promise<AuthResult> {
-    let username: Username;
+  async execute(command: LoginUserCommand): Promise<LoginResult> {
+    const identifier = command.identifier.trim().toLowerCase();
+
+    if (await this.loginAttempts.isLocked(identifier)) {
+      throw new AccountLockedError();
+    }
+
+    let user;
     try {
-      username = Username.create(command.username);
+      user = identifier.includes('@')
+        ? await this.users.findByEmail(Email.create(identifier))
+        : await this.users.findByUsername(Username.create(identifier));
     } catch {
+      await this.loginAttempts.recordFailure(
+        identifier,
+        getLockoutTtlSeconds(),
+      );
       throw new InvalidCredentialsError();
     }
 
-    const user = await this.users.findByUsername(username);
-
     if (!user) {
+      await this.loginAttempts.recordFailure(
+        identifier,
+        getLockoutTtlSeconds(),
+      );
       throw new InvalidCredentialsError();
+    }
+
+    user.assertActive();
+
+    if (shouldRequireEmailVerified() && !user.emailVerifiedAt) {
+      throw new EmailNotVerifiedError();
     }
 
     const matches = await this.hasher.compare(
@@ -53,24 +95,35 @@ export class LoginUserUseCase implements UseCase<LoginUserCommand, AuthResult> {
     );
 
     if (!matches) {
+      await this.loginAttempts.recordFailure(
+        identifier,
+        getLockoutTtlSeconds(),
+      );
       throw new InvalidCredentialsError();
     }
 
+    await this.loginAttempts.clearFailures(identifier);
     user.markLoggedIn();
     await this.events.publish(user.pullDomainEvents());
 
-    const accessToken = await this.tokens.sign({
-      sub: user.id,
-      email: user.email.value,
-      username: user.username.value,
-    });
+    if (user.twoFactorEnabled && user.totpSecret) {
+      const tempToken = generateTempToken();
+      await this.tempAuth.save(
+        tempToken,
+        user.id,
+        getTempAuthTtlSeconds(),
+      );
+      return { requires2fa: true, tempToken };
+    }
 
-    return {
-      userId: user.id,
-      email: user.email.value,
-      phone: user.phone.value,
-      username: user.username.value,
-      accessToken,
-    };
+    return this.tokenIssuer.issueForUser(
+      {
+        userId: user.id,
+        email: user.email.value,
+        phone: user.phone.value,
+        username: user.username.value,
+      },
+      { metadata: command.metadata },
+    );
   }
 }

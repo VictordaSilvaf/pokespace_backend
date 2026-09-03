@@ -55,8 +55,56 @@ export class InvalidResetTokenError extends IdentityDomainError {
   }
 }
 
+export class InvalidRefreshTokenError extends IdentityDomainError {
+  constructor() {
+    super('Invalid or expired refresh token');
+  }
+}
+
 export class UserNotFoundError extends IdentityDomainError {
   constructor(userId: string) {
     super(`User not found: ${userId}`);
+  }
+}
+
+export class AccountLockedError extends IdentityDomainError {
+  constructor() {
+    super('Account temporarily locked due to too many failed login attempts');
+  }
+}
+
+export class AccountDeactivatedError extends IdentityDomainError {
+  constructor() {
+    super('Account is deactivated');
+  }
+}
+
+export class EmailNotVerifiedError extends IdentityDomainError {
+  constructor() {
+    super('Email address is not verified');
+  }
+}
+
+export class InvalidOtpError extends IdentityDomainError {
+  constructor() {
+    super('Invalid or expired verification code');
+  }
+}
+
+export class InvalidTwoFactorCodeError extends IdentityDomainError {
+  constructor() {
+    super('Invalid two-factor authentication code');
+  }
+}
+
+export class TwoFactorNotEnabledError extends IdentityDomainError {
+  constructor() {
+    super('Two-factor authentication is not enabled');
+  }
+}
+
+export class TwoFactorAlreadyEnabledError extends IdentityDomainError {
+  constructor() {
+    super('Two-factor authentication is already enabled');
   }
 }
