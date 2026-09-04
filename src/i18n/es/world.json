@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "WORLD_NOT_FOUND": "Mundo no encontrado: {worldId}",
+    "INVALID_WORLD_STATUS": "Estado de mundo inválido: {status}",
+    "INVALID_WORLD_NAME": "El nombre del mundo debe tener entre 3 y 50 caracteres",
+    "INVALID_MAX_PLAYERS": "maxPlayers debe ser >= 1",
+    "INVALID_REGION": "region debe tener entre 2 y 50 caracteres"
+  }
+}

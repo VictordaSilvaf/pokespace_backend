@@ -1,0 +1,46 @@
+{
+  "errors": {
+    "INVALID_EMAIL": "Email inválido: {email}",
+    "INVALID_PHONE": "Número de teléfono inválido: {phone}",
+    "INVALID_USERNAME": "Nombre de usuario inválido",
+    "INVALID_USERNAME_FORMAT": "El nombre de usuario debe tener 3–20 caracteres: letras, números o guion bajo",
+    "INVALID_PASSWORD": "La contraseña no cumple los requisitos de seguridad",
+    "INVALID_PASSWORD_HASH": "Hash de contraseña inválido",
+    "PASSWORD_TOO_SHORT": "La contraseña debe tener al menos 8 caracteres",
+    "ACCOUNT_LIMIT_REACHED": "Máximo de 4 cuentas alcanzado para {channel}: {value}",
+    "USERNAME_TAKEN": "Nombre de usuario ya en uso: {username}",
+    "INVALID_CREDENTIALS": "Credenciales inválidas",
+    "INVALID_RESET_TOKEN": "Token de restablecimiento inválido o expirado",
+    "INVALID_REFRESH_TOKEN": "Refresh token inválido o expirado",
+    "USER_NOT_FOUND": "Usuario no encontrado: {userId}",
+    "ACCOUNT_LOCKED": "Cuenta bloqueada temporalmente por demasiados intentos de inicio de sesión",
+    "ACCOUNT_DEACTIVATED": "Cuenta desactivada",
+    "EMAIL_NOT_VERIFIED": "La dirección de email no está verificada",
+    "INVALID_OTP": "Código de verificación inválido o expirado",
+    "INVALID_TWO_FACTOR_CODE": "Código de autenticación en dos factores inválido",
+    "TWO_FACTOR_NOT_ENABLED": "La autenticación en dos factores no está activada",
+    "TWO_FACTOR_ALREADY_ENABLED": "La autenticación en dos factores ya está activada"
+  },
+  "success": {
+    "FORGOT_PASSWORD": "Si la cuenta existe, se enviaron las instrucciones de restablecimiento",
+    "PASSWORD_UPDATED": "Contraseña actualizada",
+    "EMAIL_VERIFIED": "Email verificado con éxito",
+    "PHONE_VERIFIED": "Teléfono verificado con éxito",
+    "ACCOUNT_DEACTIVATED": "Cuenta desactivada",
+    "ACCOUNT_DELETED": "Cuenta eliminada",
+    "VERIFICATION_CODE_SENT": "Código de verificación enviado",
+    "EMAIL_ALREADY_VERIFIED": "Email ya verificado",
+    "VERIFICATION_EMAIL_SENT": "Email de verificación enviado",
+    "TWO_FACTOR_ENABLED": "Autenticación en dos factores activada",
+    "TWO_FACTOR_DISABLED": "Autenticación en dos factores desactivada",
+    "PROFILE_UPDATED": "Perfil actualizado"
+  },
+  "mail": {
+    "PASSWORD_RESET_SUBJECT": "PokeSpace — Restablecimiento de contraseña",
+    "PASSWORD_RESET_BODY": "Hola {username},\n\nUsa este token para restablecer tu contraseña: {token}",
+    "VERIFY_EMAIL_SUBJECT": "PokeSpace — Verifica tu email",
+    "VERIFY_EMAIL_BODY": "Hola {username},\n\nUsa este token para verificar tu email: {token}",
+    "PHONE_OTP_SUBJECT": "PokeSpace — Código de verificación del teléfono",
+    "PHONE_OTP_BODY": "Hola {username},\n\nTu código de verificación del teléfono: {code}"
+  }
+}

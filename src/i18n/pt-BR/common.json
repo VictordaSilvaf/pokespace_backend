@@ -1,0 +1,21 @@
+{
+  "errors": {
+    "MISSING_AUTH_HEADER": "Cabeçalho de autorização ausente ou inválido",
+    "TOKEN_REVOKED": "Token foi revogado",
+    "INVALID_OR_EXPIRED_TOKEN": "Token inválido ou expirado",
+    "UNEXPECTED": "Erro inesperado"
+  },
+  "http": {
+    "IDENTIFIER_PASSWORD_REQUIRED": "identificador e senha são obrigatórios",
+    "REFRESH_TOKEN_REQUIRED": "refreshToken é obrigatório",
+    "EMAIL_OR_PHONE_REQUIRED": "email ou telefone é obrigatório"
+  },
+  "validation": {
+    "IS_EMAIL": "{property} deve ser um email válido",
+    "IS_NOT_EMPTY": "{property} não deve estar vazio",
+    "IS_STRING": "{property} deve ser um texto",
+    "MIN_LENGTH": "{property} deve ter no mínimo {constraints.0} caracteres",
+    "MAX_LENGTH": "{property} deve ter no máximo {constraints.0} caracteres",
+    "WHITELIST_VALIDATION": "a propriedade {property} não deve existir"
+  }
+}

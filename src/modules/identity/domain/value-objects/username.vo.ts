@@ -17,9 +17,7 @@ export class Username extends ValueObject<UsernameProps> {
     const value = raw.trim().toLowerCase();
 
     if (!/^[a-z0-9_]{3,20}$/.test(value)) {
-      throw new InvalidUsernameError(
-        'Username must be 3–20 chars: letters, numbers or underscore',
-      );
+      throw new InvalidUsernameError('INVALID_USERNAME_FORMAT');
     }
 
     return new Username({ value });

@@ -1,0 +1,46 @@
+{
+  "errors": {
+    "INVALID_EMAIL": "Email inválido: {email}",
+    "INVALID_PHONE": "Número de telefone inválido: {phone}",
+    "INVALID_USERNAME": "Nome de usuário inválido",
+    "INVALID_USERNAME_FORMAT": "O nome de usuário deve ter 3–20 caracteres: letras, números ou underscore",
+    "INVALID_PASSWORD": "A senha não atende aos requisitos de segurança",
+    "INVALID_PASSWORD_HASH": "Hash de senha inválido",
+    "PASSWORD_TOO_SHORT": "A senha deve ter pelo menos 8 caracteres",
+    "ACCOUNT_LIMIT_REACHED": "Máximo de 4 contas atingido para {channel}: {value}",
+    "USERNAME_TAKEN": "Nome de usuário já em uso: {username}",
+    "INVALID_CREDENTIALS": "Credenciais inválidas",
+    "INVALID_RESET_TOKEN": "Token de redefinição inválido ou expirado",
+    "INVALID_REFRESH_TOKEN": "Refresh token inválido ou expirado",
+    "USER_NOT_FOUND": "Usuário não encontrado: {userId}",
+    "ACCOUNT_LOCKED": "Conta temporariamente bloqueada por excesso de tentativas de login",
+    "ACCOUNT_DEACTIVATED": "Conta desativada",
+    "EMAIL_NOT_VERIFIED": "Endereço de email não verificado",
+    "INVALID_OTP": "Código de verificação inválido ou expirado",
+    "INVALID_TWO_FACTOR_CODE": "Código de autenticação em dois fatores inválido",
+    "TWO_FACTOR_NOT_ENABLED": "Autenticação em dois fatores não está ativada",
+    "TWO_FACTOR_ALREADY_ENABLED": "Autenticação em dois fatores já está ativada"
+  },
+  "success": {
+    "FORGOT_PASSWORD": "Se a conta existir, as instruções de redefinição foram enviadas",
+    "PASSWORD_UPDATED": "Senha atualizada",
+    "EMAIL_VERIFIED": "Email verificado com sucesso",
+    "PHONE_VERIFIED": "Telefone verificado com sucesso",
+    "ACCOUNT_DEACTIVATED": "Conta desativada",
+    "ACCOUNT_DELETED": "Conta excluída",
+    "VERIFICATION_CODE_SENT": "Código de verificação enviado",
+    "EMAIL_ALREADY_VERIFIED": "Email já verificado",
+    "VERIFICATION_EMAIL_SENT": "Email de verificação enviado",
+    "TWO_FACTOR_ENABLED": "Autenticação em dois fatores ativada",
+    "TWO_FACTOR_DISABLED": "Autenticação em dois fatores desativada",
+    "PROFILE_UPDATED": "Perfil atualizado"
+  },
+  "mail": {
+    "PASSWORD_RESET_SUBJECT": "PokeSpace — Redefinição de senha",
+    "PASSWORD_RESET_BODY": "Olá {username},\n\nUse este token para redefinir sua senha: {token}",
+    "VERIFY_EMAIL_SUBJECT": "PokeSpace — Verifique seu email",
+    "VERIFY_EMAIL_BODY": "Olá {username},\n\nUse este token para verificar seu email: {token}",
+    "PHONE_OTP_SUBJECT": "PokeSpace — Código de verificação do telefone",
+    "PHONE_OTP_BODY": "Olá {username},\n\nSeu código de verificação do telefone: {code}"
+  }
+}

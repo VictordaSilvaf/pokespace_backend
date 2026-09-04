@@ -1,4 +1,4 @@
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { GetWorldUseCase } from '../../application/use-cases/get-world.use-case.js';
 import { ListWorldsUseCase } from '../../application/use-cases/list-worlds.use-case.js';
 import {
@@ -9,11 +9,11 @@ import {
   Param,
   ParseUUIDPipe,
 } from '@nestjs/common';
-import { toWorldResult } from '../../application/dto/world.dto.js';
 import {
   WorldDomainError,
   WorldNotFoundError,
 } from '../../domain/errors/world.errors.js';
+import { translateDomainError } from '../../../../shared/infrastructure/i18n/translate.js';
 
 @ApiTags('worlds')
 @Controller('worlds')
@@ -41,10 +41,10 @@ export class WorldController {
 
   private mapDomainError(error: unknown): never {
     if (error instanceof WorldNotFoundError) {
-      throw new NotFoundException(error.message);
+      throw new NotFoundException(translateDomainError(error, 'world'));
     }
     if (error instanceof WorldDomainError) {
-      throw new BadRequestException(error.message);
+      throw new BadRequestException(translateDomainError(error, 'world'));
     }
     throw error;
   }

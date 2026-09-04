@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { I18nService } from 'nestjs-i18n';
 import type { Pool } from 'pg';
 import { DATABASE_POOL, useInMemoryUserRepository } from '../../shared/infrastructure/database/database.pool.port.js';
 import {
@@ -183,8 +184,11 @@ import { useSmtpMailer } from './application/auth.config.js';
     },
     {
       provide: MAILER,
-      useFactory: () =>
-        useSmtpMailer() ? new SmtpMailerAdapter() : new ConsoleMailerAdapter(),
+      useFactory: (i18n: I18nService) =>
+        useSmtpMailer()
+          ? new SmtpMailerAdapter(i18n)
+          : new ConsoleMailerAdapter(),
+      inject: [I18nService],
     },
   ],
   exports: [
