@@ -14,6 +14,7 @@ import {
 } from './shared/infrastructure/redis/redis.client.port.js';
 import { RedisThrottlerStorage } from './shared/infrastructure/redis/redis-throttler.storage.js';
 import { WorldModule } from './modules/world/world.module.js';
+import { CharacterModule } from './modules/character/character.module.js';
 import { AppI18nModule } from './shared/infrastructure/i18n/app-i18n.module.js';
 import { LocalizedMessageInterceptor } from './shared/infrastructure/i18n/localized-message.interceptor.js';
 
@@ -47,6 +48,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     SharedModule,
     IdentityModule,
     WorldModule,
+    CharacterModule,
   ],
   controllers: [HealthController],
   providers: [

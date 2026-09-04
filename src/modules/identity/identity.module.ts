@@ -195,6 +195,7 @@ import { useSmtpMailer } from './application/auth.config.js';
     RegisterUserUseCase,
     LoginUserUseCase,
     TOKEN_SERVICE,
+    TOKEN_DENYLIST,
     AuthGuard,
   ],
 })

@@ -39,6 +39,10 @@ Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
 | `DELETE` | `/api/v1/auth/account` | Bearer | Exclui conta |
 | `GET` | `/api/v1/worlds` | Não | Lista mundos (servidores) |
 | `GET` | `/api/v1/worlds/:id` | Não | Detalhe de um mundo |
+| `GET` | `/api/v1/characters` | Bearer | Lista personagens da conta |
+| `GET` | `/api/v1/characters/creation-options` | Bearer | Mundos online + skins iniciais |
+| `POST` | `/api/v1/characters` | Bearer | Cria personagem (`worldId` imutável) |
+| `GET` | `/api/v1/characters/:id` | Bearer | Detalhe (somente dono) |
 
 ---
 
@@ -165,4 +169,29 @@ curl http://localhost:3000/api/v1/auth/sessions \
 # Logout all
 curl -X POST http://localhost:3000/api/v1/auth/logout-all \
   -H 'Authorization: Bearer <accessToken>'
+
+# Characters (empty after register)
+curl http://localhost:3000/api/v1/characters \
+  -H 'Authorization: Bearer <accessToken>'
+
+# Creation options (online worlds + starter skins)
+curl http://localhost:3000/api/v1/characters/creation-options \
+  -H 'Authorization: Bearer <accessToken>'
+
+# Create character (world is immutable afterwards)
+curl -X POST http://localhost:3000/api/v1/characters \
+  -H 'Authorization: Bearer <accessToken>' \
+  -H 'Content-Type: application/json' \
+  -d '{"worldId":"11111111-1111-4111-8111-111111111111","skinId":"starter-boy-01","displayName":"Ash"}'
 ```
+
+---
+
+## Characters
+
+- Máximo **4** personagens por conta (`CHARACTER_MAX_PER_ACCOUNT`, default 4)
+- `worldId` escolhido na criação e **imutável**
+- Vários personagens no mesmo mundo são permitidos (política A)
+- `displayName` único por conta (case-insensitive)
+- Criação só em mundos `online` (`world.isJoinable()`)
+- Skins iniciais: `starter-boy-01`, `starter-girl-01`, `starter-boy-02`, `starter-girl-02`

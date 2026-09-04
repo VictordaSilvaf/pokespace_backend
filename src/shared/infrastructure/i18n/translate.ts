@@ -27,7 +27,7 @@ export type TranslableDomainError = {
 /** Resolve a domain error into a localized HTTP message. */
 export function translateDomainError(
   error: TranslableDomainError,
-  namespace: 'identity' | 'world' | 'common',
+  namespace: 'identity' | 'world' | 'common' | 'character',
 ): string {
   if (error.code) {
     return translate(`${namespace}.errors.${error.code}`, error.args);
