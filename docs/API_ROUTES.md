@@ -37,8 +37,11 @@ Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
 | `POST` | `/api/v1/auth/change-password` | Bearer | Troca senha |
 | `POST` | `/api/v1/auth/deactivate` | Bearer | Desativa conta |
 | `DELETE` | `/api/v1/auth/account` | Bearer | Exclui conta |
-| `GET` | `/api/v1/worlds` | Não | Lista mundos (servidores) |
-| `GET` | `/api/v1/worlds/:id` | Não | Detalhe de um mundo |
+| `GET` | `/api/v1/servers` | Não | Lista servidores |
+| `GET` | `/api/v1/servers/:id` | Não | Detalhe de um servidor |
+| `POST` | `/api/v1/characters` | Bearer | Cria personagem + spawn do laboratório |
+| `GET` | `/api/v1/characters` | Bearer | Lista personagens da conta |
+| `GET` | `/api/v1/characters/:id` | Bearer | Detalhe de personagem |
 
 ---
 
@@ -100,11 +103,11 @@ Com `AUTH_REFRESH_COOKIE=true`, login/register/refresh definem cookie `httpOnly`
 
 ---
 
-## World
+## Servers
 
-Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.sql` (9 mundos: Mercury…Pluto; Earth em `maintenance`).
+Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.sql` (9 servidors: Mercury…Pluto; Earth em `maintenance`).
 
-### `GET /api/v1/worlds`
+### `GET /api/v1/servers`
 
 **Auth:** não
 
@@ -112,7 +115,7 @@ Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.
 
 ```json
 {
-  "worldId": "11111111-1111-4111-8111-111111111111",
+  "serverId": "11111111-1111-4111-8111-111111111111",
   "name": "Mercury",
   "region": "mercury",
   "status": "online",
@@ -122,7 +125,7 @@ Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.
 
 `status`: `online` | `maintenance` | `offline`.
 
-### `GET /api/v1/worlds/:id`
+### `GET /api/v1/servers/:id`
 
 **Auth:** não
 
@@ -130,7 +133,7 @@ Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.
 
 **Response `400`:** `:id` não é UUID v4.
 
-**Response `404`:** mundo inexistente.
+**Response `404`:** servidor inexistente.
 
 ---
 
@@ -166,3 +169,58 @@ curl http://localhost:3000/api/v1/auth/sessions \
 curl -X POST http://localhost:3000/api/v1/auth/logout-all \
   -H 'Authorization: Bearer <accessToken>'
 ```
+
+---
+
+## Characters
+
+### `POST /characters`
+
+Auth: Bearer.
+
+```json
+{ "name": "Ash", "serverId": "<uuid>" }
+```
+
+Response `201`:
+
+```json
+{
+  "character": { "id": "uuid", "name": "Ash", "serverId": "uuid" },
+  "spawn": {
+    "mapId": "laboratory",
+    "instanceId": "laboratory-01",
+    "position": { "x": 10, "y": 8, "z": 0 }
+  }
+}
+```
+
+Personagem só pode ser criado em servidor `online` (joinable). Nome único por servidor. Máximo 5 por conta.
+
+---
+
+## World Engine (WebSocket)
+
+Namespace: `/world`
+
+Auth no handshake: `auth.token` = access JWT (ou `Authorization: Bearer`).
+
+### Client → Server
+
+| Evento | Payload |
+| --- | --- |
+| `WORLD_ENTER` | `{ "characterId": "uuid", "mapId?": "laboratory" }` |
+| `MOVE` | `{ "direction": "UP\|DOWN\|LEFT\|RIGHT", "sequence": 1 }` |
+| `WORLD_LEAVE` | `{}` |
+
+### Server → Client
+
+| Evento | Descrição |
+| --- | --- |
+| `WORLD_SNAPSHOT` | Estado da instância ao entrar |
+| `ENTITY_SPAWNED` | Outro jogador entrou |
+| `ENTITY_MOVED` | Movimento validado pelo servidor |
+| `ENTITY_DESPAWNED` | Jogador saiu / desconectou |
+| `WORLD_ERROR` | Erro de auth / movimento / sessão |
+
+Movimento é **server-authoritative**: o cliente envia intenção, o servidor valida colisão/sequência e faz broadcast.

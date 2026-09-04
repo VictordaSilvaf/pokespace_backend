@@ -1,34 +1,37 @@
 import { Module } from '@nestjs/common';
-import { WorldController } from './infrastructure/http/world.controller.js';
-import { GetWorldUseCase } from './application/use-cases/get-world.use-case.js';
-import { ListWorldsUseCase } from './application/use-cases/list-worlds.use-case.js';
-import { WORLD_REPOSITORY } from './domain/repositories/world.repository.js';
-import { Pool } from 'pg';
-import { DATABASE_POOL, useInMemoryUserRepository } from '../../shared/infrastructure/database/database.pool.port.js';
-import { PostgresWorldRepository } from './infrastructure/persistence/postgres-world.repository.js';
-import { InMemoryWorldRepository } from './infrastructure/persistence/in-memory-world.repository.js';
+import { WORLD_MAP_REPOSITORY } from './domain/repositories/world-map.repository.js';
+import { FileWorldMapRepository } from './infrastructure/maps/file-world-map.repository.js';
+import { InstanceManager } from './application/services/instance-manager.service.js';
+import { SessionManager } from './application/services/session-manager.service.js';
+import { EnterWorldUseCase } from './application/use-cases/enter-world.use-case.js';
+import { LeaveWorldUseCase } from './application/use-cases/leave-world.use-case.js';
+import { MoveEntityUseCase } from './application/use-cases/move-entity.use-case.js';
+import { GetWorldSnapshotUseCase } from './application/use-cases/get-world-snapshot.use-case.js';
+import { ResolveLaboratorySpawnUseCase } from './application/use-cases/resolve-laboratory-spawn.use-case.js';
 
 @Module({
-  imports: [
-  ],
-  controllers: [
-    WorldController,
-  ],
   providers: [
-    ListWorldsUseCase,
-    GetWorldUseCase,
     {
-      provide: WORLD_REPOSITORY,
-      useFactory: (pool: Pool | null) => {
-        if (useInMemoryUserRepository() || !pool) {
-          return new InMemoryWorldRepository();
-        }
-        return new PostgresWorldRepository(pool);
-      },
-      inject: [DATABASE_POOL],
-    }
+      provide: WORLD_MAP_REPOSITORY,
+      useClass: FileWorldMapRepository,
+    },
+    InstanceManager,
+    SessionManager,
+    EnterWorldUseCase,
+    LeaveWorldUseCase,
+    MoveEntityUseCase,
+    GetWorldSnapshotUseCase,
+    ResolveLaboratorySpawnUseCase,
   ],
   exports: [
+    WORLD_MAP_REPOSITORY,
+    InstanceManager,
+    SessionManager,
+    EnterWorldUseCase,
+    LeaveWorldUseCase,
+    MoveEntityUseCase,
+    GetWorldSnapshotUseCase,
+    ResolveLaboratorySpawnUseCase,
   ],
 })
 export class WorldModule {}

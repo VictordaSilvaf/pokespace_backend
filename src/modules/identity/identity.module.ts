@@ -78,7 +78,6 @@ import { useSmtpMailer } from './application/auth.config.js';
 @Module({
   imports: [
     JwtModule.register({
-      global: true,
       secret: process.env.AUTH_TOKEN_SECRET ?? 'dev-only-change-me',
     }),
   ],
@@ -191,6 +190,7 @@ import { useSmtpMailer } from './application/auth.config.js';
     RegisterUserUseCase,
     LoginUserUseCase,
     TOKEN_SERVICE,
+    TOKEN_DENYLIST,
     AuthGuard,
   ],
 })

@@ -7,6 +7,7 @@ export default defineConfig({
     globals: true,
     root: './',
     include: ['**/*.e2e-spec.ts'],
+    fileParallelism: false,
     env: {
       USER_REPOSITORY_DRIVER: 'memory',
       REDIS_DRIVER: 'memory',

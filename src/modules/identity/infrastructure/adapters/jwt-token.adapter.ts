@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import type {
@@ -15,6 +16,7 @@ export class JwtTokenService implements TokenService {
       {
         email: payload.email,
         username: payload.username,
+        jti: randomUUID(),
       },
       {
         subject: payload.sub,
