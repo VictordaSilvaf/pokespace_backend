@@ -22,7 +22,7 @@ conta (identity)
 
 - Listar mundos
 - Buscar um mundo por id
-- Persistir tabela `worlds` + seed de 3 mundos
+- Persistir tabela `worlds` + seed de 9 mundos (planetas)
 - Expor o port `WORLD_REPOSITORY` e `GetWorldUseCase` para o módulo `character` usar depois
 
 
@@ -53,10 +53,10 @@ Body de cada item:
 ```json
 {
   "worldId": "11111111-1111-4111-8111-111111111111",
-  "name": "Kanto Prime",
-  "region": "Kanto",
+  "name": "Mercury",
+  "region": "mercury",
   "status": "online",
-  "maxPlayers": 1000
+  "maxPlayers": 1100
 }
 ```
 
@@ -367,7 +367,7 @@ export class WorldStatus extends ValueObject<WorldStatusProps> {
 }
 ```
 
-`region` pode ficar como `string` no aggregate nesta v1 (catálogo interno). Se quiser VO depois (`Kanto`, `Johto`, …), extraia sem mudar o HTTP.
+`region` pode ficar como `string` no aggregate nesta v1 (catálogo interno). Se quiser VO depois (`mercury`, `venus`, …), extraia sem mudar o HTTP.
 
 ---
 
@@ -499,44 +499,29 @@ import { WorldName } from '../../domain/value-objects/world-name.vo.js';
 import { WorldStatus } from '../../domain/value-objects/world-status.vo.js';
 
 export const SEEDED_WORLD_IDS = {
-  kantoPrime: '11111111-1111-4111-8111-111111111111',
-  johtoEcho: '22222222-2222-4222-8222-222222222222',
-  hoennDrift: '33333333-3333-4333-8333-333333333333',
+  mercury: '11111111-1111-4111-8111-111111111111',
+  venus: '22222222-2222-4222-8222-222222222222',
+  earth: '33333333-3333-4333-8333-333333333333',
+  mars: '44444444-4444-4444-8444-444444444444',
+  jupiter: '55555555-5555-5555-8555-555555555555',
+  saturn: '66666666-6666-6666-8666-666666666666',
+  uranus: '77777777-7777-7777-8777-777777777777',
+  neptune: '88888888-8888-8888-8888-888888888888',
+  pluto: '99999999-9999-9999-8999-999999999999',
 } as const;
 
 export function createSeedWorlds(): World[] {
   const createdAt = new Date('2026-01-01T00:00:00.000Z');
 
+  // 9 mundos: Mercury…Pluto (Earth em maintenance; demais online)
+  // maxPlayers: 1100; region = slug do planeta (ex.: 'earth')
   return [
-    World.rehydrate({
-      id: SEEDED_WORLD_IDS.kantoPrime,
-      name: WorldName.create('Kanto Prime'),
-      region: 'Kanto',
-      status: WorldStatus.create('online'),
-      maxPlayers: 1000,
-      createdAt,
-    }),
-    World.rehydrate({
-      id: SEEDED_WORLD_IDS.johtoEcho,
-      name: WorldName.create('Johto Echo'),
-      region: 'Johto',
-      status: WorldStatus.create('online'),
-      maxPlayers: 1000,
-      createdAt,
-    }),
-    World.rehydrate({
-      id: SEEDED_WORLD_IDS.hoennDrift,
-      name: WorldName.create('Hoenn Drift'),
-      region: 'Hoenn',
-      status: WorldStatus.create('maintenance'),
-      maxPlayers: 800,
-      createdAt,
-    }),
+    /* …World.rehydrate para cada entrada de SEEDED_WORLD_IDS… */
   ];
 }
 ```
 
-O in-memory **deve** nascer com esses 3 mundos. Sem seed, o e2e em memory retorna `[]` e o Postgres retorna 3 linhas — testes quebram conforme o driver.
+O in-memory **deve** nascer com esses 9 mundos (espelhando o `INSERT` da migration). Sem seed, o e2e em memory retorna `[]` e o Postgres retorna 9 linhas — testes quebram conforme o driver.
 
 ---
 
@@ -672,13 +657,23 @@ describe('ListWorldsUseCase', () => {
     const useCase = new ListWorldsUseCase(new InMemoryWorldRepository());
     const result = await useCase.execute();
 
-    expect(result).toHaveLength(3);
+    expect(result).toHaveLength(9);
+    // list() ordena por name ASC nos dois adapters
     expect(result.map((w) => w.worldId)).toEqual([
-      SEEDED_WORLD_IDS.kantoPrime,
-      SEEDED_WORLD_IDS.johtoEcho,
-      SEEDED_WORLD_IDS.hoennDrift,
+      SEEDED_WORLD_IDS.earth,
+      SEEDED_WORLD_IDS.jupiter,
+      SEEDED_WORLD_IDS.mars,
+      SEEDED_WORLD_IDS.mercury,
+      SEEDED_WORLD_IDS.neptune,
+      SEEDED_WORLD_IDS.pluto,
+      SEEDED_WORLD_IDS.saturn,
+      SEEDED_WORLD_IDS.uranus,
+      SEEDED_WORLD_IDS.venus,
     ]);
-    expect(result[2]?.status).toBe('maintenance');
+
+    const earth = result.find((w) => w.name === 'Earth');
+    expect(earth).toBeDefined();
+    expect(earth?.status).toBe('maintenance');
   });
 });
 ```
@@ -696,11 +691,11 @@ describe('GetWorldUseCase', () => {
   it('returns a seeded world by id', async () => {
     const useCase = new GetWorldUseCase(new InMemoryWorldRepository());
     const result = await useCase.execute({
-      worldId: SEEDED_WORLD_IDS.kantoPrime,
+      worldId: SEEDED_WORLD_IDS.earth,
     });
 
-    expect(result.name).toBe('Kanto Prime');
-    expect(result.status).toBe('online');
+    expect(result.name).toBe('Earth');
+    expect(result.status).toBe('maintenance');
   });
 
   it('throws WorldNotFoundError for unknown id', async () => {
@@ -740,7 +735,7 @@ import { World } from '../../domain/entities/world.entity.js';
 import { WorldName } from '../../domain/value-objects/world-name.vo.js';
 import { WorldStatus } from '../../domain/value-objects/world-status.vo.js';
 
-export const WORLD_SELECT_COLUMNS =
+export const WORLD_SELECTED_COLUMNS =
   'id, name, region, status, max_players, created_at';
 
 export interface WorldRow {
@@ -810,7 +805,7 @@ import type { WorldRepository } from '../../domain/repositories/world.repository
 import type { World } from '../../domain/entities/world.entity.js';
 import {
   mapRowToWorld,
-  WORLD_SELECT_COLUMNS,
+  WORLD_SELECTED_COLUMNS,
   type WorldRow,
 } from './world-row.mapper.js';
 
@@ -823,7 +818,7 @@ export class PostgresWorldRepository implements WorldRepository {
 
   async findById(id: string): Promise<World | null> {
     const result = await this.pool.query<WorldRow>(
-      `SELECT ${WORLD_SELECT_COLUMNS} FROM worlds WHERE id = $1`,
+      `SELECT ${WORLD_SELECTED_COLUMNS} FROM worlds WHERE id = $1`,
       [id],
     );
     const row = result.rows[0];
@@ -832,14 +827,14 @@ export class PostgresWorldRepository implements WorldRepository {
 
   async list(): Promise<World[]> {
     const result = await this.pool.query<WorldRow>(
-      `SELECT ${WORLD_SELECT_COLUMNS} FROM worlds ORDER BY name ASC`,
+      `SELECT ${WORLD_SELECTED_COLUMNS} FROM worlds ORDER BY name ASC`,
     );
     return result.rows.map(mapRowToWorld);
   }
 }
 ```
 
-Ordenação: Postgres `ORDER BY name`. O in-memory segue a ordem de inserção do seed (Kanto, Johto, Hoenn). Se quiser e2e estável nos dois drivers, ordene também no in-memory por `name`. Recomendado:
+Ordenação: Postgres e in-memory **ambos** ordenam por `name ASC`, para e2e e unitários estáveis entre drivers.
 
 ```typescript
 async list(): Promise<World[]> {
@@ -849,7 +844,7 @@ async list(): Promise<World[]> {
 }
 ```
 
-E ajuste o spec de listagem para não depender da ordem de inserção, ou espere ordem alfabética: Hoenn Drift, Johto Echo, Kanto Prime.
+No spec de listagem, espere ordem alfabética: Earth, Jupiter, Mars, Mercury, Neptune, Pluto, Saturn, Uranus, Venus.
 
 ---
 
@@ -886,26 +881,74 @@ INSERT INTO worlds (id, name, region, status, max_players, created_at)
 VALUES
   (
     '11111111-1111-4111-8111-111111111111',
-    'Kanto Prime',
-    'Kanto',
+    'Mercury',
+    'mercury',
     'online',
-    1000,
+    1100,
     '2026-01-01T00:00:00Z'
   ),
   (
     '22222222-2222-4222-8222-222222222222',
-    'Johto Echo',
-    'Johto',
+    'Venus',
+    'venus',
     'online',
-    1000,
+    1100,
     '2026-01-01T00:00:00Z'
   ),
   (
     '33333333-3333-4333-8333-333333333333',
-    'Hoenn Drift',
-    'Hoenn',
+    'Earth',
+    'earth',
     'maintenance',
-    800,
+    1100,
+    '2026-01-01T00:00:00Z'
+  ),
+  (
+    '44444444-4444-4444-8444-444444444444',
+    'Mars',
+    'mars',
+    'online',
+    1100,
+    '2026-01-01T00:00:00Z'
+  ),
+  (
+    '55555555-5555-5555-8555-555555555555',
+    'Jupiter',
+    'jupiter',
+    'online',
+    1100,
+    '2026-01-01T00:00:00Z'
+  ),
+  (
+    '66666666-6666-6666-8666-666666666666',
+    'Saturn',
+    'saturn',
+    'online',
+    1100,
+    '2026-01-01T00:00:00Z'
+  ),
+  (
+    '77777777-7777-7777-8777-777777777777',
+    'Uranus',
+    'uranus',
+    'online',
+    1100,
+    '2026-01-01T00:00:00Z'
+  ),
+  (
+    '88888888-8888-8888-8888-888888888888',
+    'Neptune',
+    'neptune',
+    'online',
+    1100,
+    '2026-01-01T00:00:00Z'
+  ),
+  (
+    '99999999-9999-9999-8999-999999999999',
+    'Pluto',
+    'pluto',
+    'online',
+    1100,
     '2026-01-01T00:00:00Z'
   )
 ON CONFLICT (id) DO NOTHING;
@@ -1124,7 +1167,7 @@ describe('World (e2e)', () => {
       .expect(200);
 
     expect(Array.isArray(res.body)).toBe(true);
-    expect(res.body).toHaveLength(3);
+    expect(res.body).toHaveLength(9);
     expect(res.body[0]).toEqual(
       expect.objectContaining({
         worldId: expect.any(String),
@@ -1138,11 +1181,11 @@ describe('World (e2e)', () => {
 
   it('GET /api/v1/worlds/:id returns one world', async () => {
     await request(app.getHttpServer())
-      .get(`/api/v1/worlds/${SEEDED_WORLD_IDS.kantoPrime}`)
+      .get(`/api/v1/worlds/${SEEDED_WORLD_IDS.earth}`)
       .expect(200)
       .expect(({ body }) => {
-        expect(body.name).toBe('Kanto Prime');
-        expect(body.status).toBe('online');
+        expect(body.name).toBe('Earth');
+        expect(body.status).toBe('maintenance');
       });
   });
 
@@ -1185,21 +1228,21 @@ Texto sugerido:
 
 ## World
 
-Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.sql`.
+Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.sql` (9 mundos: Mercury…Pluto).
 
 ### `GET /api/v1/worlds`
 
 **Auth:** não
 
-**Response `200`:** array de
+**Response `200`:** array ordenado por `name` ASC
 
 ```json
 {
   "worldId": "uuid",
-  "name": "Kanto Prime",
-  "region": "Kanto",
+  "name": "Mercury",
+  "region": "mercury",
   "status": "online",
-  "maxPlayers": 1000
+  "maxPlayers": 1100
 }
 ```
 
@@ -1226,7 +1269,7 @@ Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.
 [ ] Árvore domain / application / infrastructure criada
 [ ] world.errors.ts + VOs + World.rehydrate + isJoinable()
 [ ] WORLD_REPOSITORY (Symbol + interface read-only)
-[ ] seed-worlds.ts com 3 UUIDs fixos
+[ ] seed-worlds.ts com 9 UUIDs fixos (planetas)
 [ ] InMemoryWorldRepository já nasce com o seed
 [ ] PostgresWorldRepository + mapper
 [ ] ListWorldsUseCase + GetWorldUseCase

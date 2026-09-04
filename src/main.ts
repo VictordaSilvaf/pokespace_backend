@@ -26,6 +26,10 @@ async function bootstrap() {
     }),
   );
 
+  app.setGlobalPrefix('api/v1', {
+    exclude: ['api/docs', 'api/docs-json', 'api/docs-yaml'],
+  });
+
   const swaggerConfig = new DocumentBuilder()
     .setTitle('PokeSpace API')
     .setDescription('PokeSpace backend REST API')
@@ -34,8 +38,6 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api/docs', app, document);
-
-  app.setGlobalPrefix('api/v1');
 
   await app.listen(process.env.PORT ?? 3000);
 }

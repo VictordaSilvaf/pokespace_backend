@@ -18,6 +18,8 @@ export class InMemoryWorldRepository implements WorldRepository {
   }
 
   async list(): Promise<World[]> {
-    return [...this.byId.values()];
+    return [...this.byId.values()].sort((a, b) =>
+      a.name.value.localeCompare(b.name.value),
+    );
   }
 }

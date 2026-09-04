@@ -37,6 +37,8 @@ Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
 | `POST` | `/api/v1/auth/change-password` | Bearer | Troca senha |
 | `POST` | `/api/v1/auth/deactivate` | Bearer | Desativa conta |
 | `DELETE` | `/api/v1/auth/account` | Bearer | Exclui conta |
+| `GET` | `/api/v1/worlds` | Não | Lista mundos (servidores) |
+| `GET` | `/api/v1/worlds/:id` | Não | Detalhe de um mundo |
 
 ---
 
@@ -95,6 +97,40 @@ Com `AUTH_REFRESH_COOKIE=true`, login/register/refresh definem cookie `httpOnly`
 
 - UI: `http://localhost:8025`
 - SMTP: `localhost:1025`
+
+---
+
+## World
+
+Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.sql` (9 mundos: Mercury…Pluto; Earth em `maintenance`).
+
+### `GET /api/v1/worlds`
+
+**Auth:** não
+
+**Response `200`:** array ordenado por `name` ASC
+
+```json
+{
+  "worldId": "11111111-1111-4111-8111-111111111111",
+  "name": "Mercury",
+  "region": "mercury",
+  "status": "online",
+  "maxPlayers": 1100
+}
+```
+
+`status`: `online` | `maintenance` | `offline`.
+
+### `GET /api/v1/worlds/:id`
+
+**Auth:** não
+
+**Response `200`:** mesmo objeto.
+
+**Response `400`:** `:id` não é UUID v4.
+
+**Response `404`:** mundo inexistente.
 
 ---
 

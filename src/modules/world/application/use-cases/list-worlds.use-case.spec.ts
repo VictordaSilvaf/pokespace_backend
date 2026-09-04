@@ -10,17 +10,19 @@ describe('ListWorldsUseCase', () => {
 
     expect(result).toHaveLength(9);
     expect(result.map((w) => w.worldId)).toEqual([
-      SEEDED_WORLD_IDS.mercury,
-      SEEDED_WORLD_IDS.venus,
       SEEDED_WORLD_IDS.earth,
-      SEEDED_WORLD_IDS.mars,
       SEEDED_WORLD_IDS.jupiter,
-      SEEDED_WORLD_IDS.saturn,
-      SEEDED_WORLD_IDS.uranus,
+      SEEDED_WORLD_IDS.mars,
+      SEEDED_WORLD_IDS.mercury,
       SEEDED_WORLD_IDS.neptune,
       SEEDED_WORLD_IDS.pluto,
+      SEEDED_WORLD_IDS.saturn,
+      SEEDED_WORLD_IDS.uranus,
+      SEEDED_WORLD_IDS.venus,
     ]);
-    expect(result[2]?.name).toBe('Earth');
-    expect(result[2]?.status).toBe('maintenance');
+
+    const earth = result.find((w) => w.name === 'Earth');
+    expect(earth).toBeDefined();
+    expect(earth?.status).toBe('maintenance');
   });
 });
