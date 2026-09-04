@@ -27,7 +27,15 @@ export class PostgresWorldRepository implements WorldRepository {
 
   async list(): Promise<World[]> {
     const result = await this.pool.query<WorldRow>(
-      `SELECT ${WORLD_SELECTED_COLUMNS} FROM worlds ORDER BY name ASC`,
+      `SELECT ${WORLD_SELECTED_COLUMNS} FROM worlds
+       ORDER BY
+         CASE status
+           WHEN 'online' THEN 0
+           WHEN 'maintenance' THEN 1
+           WHEN 'offline' THEN 2
+           ELSE 3
+         END ASC,
+         name ASC`,
     );
     return result.rows.map(mapRowToWorld);
   }

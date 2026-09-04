@@ -658,9 +658,8 @@ describe('ListWorldsUseCase', () => {
     const result = await useCase.execute();
 
     expect(result).toHaveLength(9);
-    // list() ordena por name ASC nos dois adapters
+    // list() ordena por status (online primeiro), depois name ASC
     expect(result.map((w) => w.worldId)).toEqual([
-      SEEDED_WORLD_IDS.earth,
       SEEDED_WORLD_IDS.jupiter,
       SEEDED_WORLD_IDS.mars,
       SEEDED_WORLD_IDS.mercury,
@@ -669,6 +668,7 @@ describe('ListWorldsUseCase', () => {
       SEEDED_WORLD_IDS.saturn,
       SEEDED_WORLD_IDS.uranus,
       SEEDED_WORLD_IDS.venus,
+      SEEDED_WORLD_IDS.earth,
     ]);
 
     const earth = result.find((w) => w.name === 'Earth');
@@ -827,24 +827,43 @@ export class PostgresWorldRepository implements WorldRepository {
 
   async list(): Promise<World[]> {
     const result = await this.pool.query<WorldRow>(
-      `SELECT ${WORLD_SELECTED_COLUMNS} FROM worlds ORDER BY name ASC`,
+      `SELECT ${WORLD_SELECTED_COLUMNS} FROM worlds
+       ORDER BY
+         CASE status
+           WHEN 'online' THEN 0
+           WHEN 'maintenance' THEN 1
+           WHEN 'offline' THEN 2
+           ELSE 3
+         END ASC,
+         name ASC`,
     );
     return result.rows.map(mapRowToWorld);
   }
 }
 ```
 
-Ordenação: Postgres e in-memory **ambos** ordenam por `name ASC`, para e2e e unitários estáveis entre drivers.
+Ordenação: Postgres e in-memory **ambos** ordenam por status (`online` → `maintenance` → `offline`) e, em empate, por `name ASC`.
 
 ```typescript
 async list(): Promise<World[]> {
-  return [...this.byId.values()].sort((a, b) =>
-    a.name.value.localeCompare(b.name.value),
-  );
+  const statusRank: Record<string, number> = {
+    online: 0,
+    maintenance: 1,
+    offline: 2,
+  };
+
+  return [...this.byId.values()].sort((a, b) => {
+    const byStatus =
+      (statusRank[a.status.value] ?? 99) - (statusRank[b.status.value] ?? 99);
+    if (byStatus !== 0) {
+      return byStatus;
+    }
+    return a.name.value.localeCompare(b.name.value);
+  });
 }
 ```
 
-No spec de listagem, espere ordem alfabética: Earth, Jupiter, Mars, Mercury, Neptune, Pluto, Saturn, Uranus, Venus.
+No spec de listagem, os online vêm primeiro (Jupiter…Venus) e Earth (`maintenance`) por último.
 
 ---
 
@@ -1234,7 +1253,7 @@ Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.
 
 **Auth:** não
 
-**Response `200`:** array ordenado por `name` ASC
+**Response `200`:** array ordenado por status (`online` → `maintenance` → `offline`), depois `name` ASC
 
 ```json
 {

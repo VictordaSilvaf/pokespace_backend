@@ -108,7 +108,7 @@ Catálogo de servidores. Somente leitura. Seed via migration `003_create_worlds.
 
 **Auth:** não
 
-**Response `200`:** array ordenado por `name` ASC
+**Response `200`:** array ordenado por status (`online` → `maintenance` → `offline`), depois `name` ASC
 
 ```json
 {

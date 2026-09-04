@@ -9,8 +9,8 @@ describe('ListWorldsUseCase', () => {
     const result = await useCase.execute();
 
     expect(result).toHaveLength(9);
+    // online first (name ASC), then maintenance (Earth)
     expect(result.map((w) => w.worldId)).toEqual([
-      SEEDED_WORLD_IDS.earth,
       SEEDED_WORLD_IDS.jupiter,
       SEEDED_WORLD_IDS.mars,
       SEEDED_WORLD_IDS.mercury,
@@ -19,10 +19,9 @@ describe('ListWorldsUseCase', () => {
       SEEDED_WORLD_IDS.saturn,
       SEEDED_WORLD_IDS.uranus,
       SEEDED_WORLD_IDS.venus,
+      SEEDED_WORLD_IDS.earth,
     ]);
-
-    const earth = result.find((w) => w.name === 'Earth');
-    expect(earth).toBeDefined();
-    expect(earth?.status).toBe('maintenance');
+    expect(result.at(-1)?.name).toBe('Earth');
+    expect(result.at(-1)?.status).toBe('maintenance');
   });
 });
