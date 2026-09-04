@@ -19,11 +19,13 @@ FROM node:${NODE_VERSION} AS production
 ENV NODE_ENV=production
 WORKDIR /app
 
-RUN addgroup -S nestjs && adduser -S nestjs -G nestjs
+RUN apk add --no-cache wget \
+  && addgroup -S nestjs && adduser -S nestjs -G nestjs
 
 COPY --from=deps --chown=nestjs:nestjs /app/node_modules ./node_modules
 COPY --from=build --chown=nestjs:nestjs /app/dist ./dist
 COPY --from=build --chown=nestjs:nestjs /app/migrations ./migrations
+COPY --from=build --chown=nestjs:nestjs /app/maps ./maps
 COPY --chown=nestjs:nestjs package.json ./
 
 USER nestjs

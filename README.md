@@ -22,10 +22,12 @@ API base: `http://localhost:3000/api/v1`
 
 ## Docker
 
+### Desenvolvimento
+
 Requer `.env` na raiz (veja `.env.example`).
 
 ```bash
-# stack completa (api + postgres + redis + rabbitmq + kafka)
+# stack completa (api + postgres + redis + rabbitmq + kafka + mailpit)
 docker compose up --build -d
 
 # só infra (para rodar a API com pnpm start:dev)
@@ -47,9 +49,30 @@ docker compose down
 | Mailpit UI | `http://localhost:8025` | E-mails de dev (verificação, reset, OTP) |
 | Mailpit SMTP | `localhost:1025` | SMTP local |
 
-Health da API: `http://localhost:3000/api/v1/health`
+### Produção (Docker)
 
-Swagger: `http://localhost:3000/api/docs`
+Stack isolada (`pokespace-prod`): API + Postgres + Redis + RabbitMQ + Kafka.  
+**Só a porta da API** é publicada; banco/filas/cache ficam na rede interna. Sem Mailpit — use SMTP real.
+
+```bash
+cp .env.production.example .env.production
+# edite .env.production (AUTH_TOKEN_SECRET, senhas, SMTP_*)
+
+docker compose -f docker-compose.prod.yml --env-file .env.production up --build -d
+
+docker compose -f docker-compose.prod.yml --env-file .env.production ps
+docker compose -f docker-compose.prod.yml --env-file .env.production logs -f api
+docker compose -f docker-compose.prod.yml --env-file .env.production down
+```
+
+Health: `http://localhost:${API_PORT:-3000}/api/v1/health`  
+Swagger: `http://localhost:${API_PORT:-3000}/api/docs`
+
+Arquivos: [`docker-compose.prod.yml`](./docker-compose.prod.yml), [`.env.production.example`](./.env.production.example).
+
+Health da API (dev): `http://localhost:3000/api/v1/health`
+
+Swagger (dev): `http://localhost:3000/api/docs`
 
 ## Endpoints iniciais
 
@@ -87,10 +110,13 @@ maps/
 ## Scripts
 
 ```bash
-pnpm start:dev   # watch
-pnpm test        # unitários
-pnpm test:e2e    # e2e
+pnpm start:dev       # watch
+pnpm test            # unitários
+pnpm test:e2e        # e2e
 pnpm lint
+pnpm docker:prod:up  # stack produção
+pnpm docker:prod:down
+pnpm docker:prod:logs
 ```
 
 ## Variáveis de ambiente

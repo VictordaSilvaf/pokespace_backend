@@ -1,0 +1,205 @@
+# Produção self-hosted — só a API é publicada no host.
+# Infra (postgres, redis, rabbitmq, kafka) fica na rede interna.
+#
+# Uso:
+#   cp .env.production.example .env.production
+#   # preencha segredos em .env.production
+#   docker compose -f docker-compose.prod.yml --env-file .env.production up --build -d
+
+name: pokespace-prod
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    image: pokespace-api:prod
+    container_name: pokespace-prod-api
+    restart: unless-stopped
+    ports:
+      - '${API_PORT:-3000}:3000'
+    env_file:
+      - ${COMPOSE_ENV_FILE:-.env.production}
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379
+      RABBITMQ_URL: amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@rabbitmq:5672${RABBITMQ_VHOST:-/}
+      KAFKA_BROKERS: kafka:29092
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM}
+      AUTH_TOKEN_SECRET: ${AUTH_TOKEN_SECRET}
+      AUTH_EXPOSE_RESET_TOKEN: 'false'
+      AUTH_EXPOSE_VERIFY_EMAIL_TOKEN: 'false'
+      AUTH_EXPOSE_PHONE_OTP: 'false'
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      test:
+        [
+          'CMD',
+          'wget',
+          '-qO-',
+          'http://127.0.0.1:3000/api/v1/health',
+        ]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
+    networks:
+      - pokespace-prod
+    logging:
+      driver: json-file
+      options:
+        max-size: '20m'
+        max-file: '5'
+
+  postgres:
+    image: postgres:17-alpine
+    container_name: pokespace-prod-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - postgres_prod_data:/var/lib/postgresql/data
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - pokespace-prod
+    logging:
+      driver: json-file
+      options:
+        max-size: '20m'
+        max-file: '5'
+
+  redis:
+    image: redis:7-alpine
+    container_name: pokespace-prod-redis
+    restart: unless-stopped
+    command:
+      [
+        'redis-server',
+        '--appendonly',
+        'yes',
+        '--requirepass',
+        '${REDIS_PASSWORD}',
+      ]
+    volumes:
+      - redis_prod_data:/data
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'REDISCLI_AUTH="$$REDIS_PASSWORD" redis-cli ping | grep -q PONG',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    networks:
+      - pokespace-prod
+    logging:
+      driver: json-file
+      options:
+        max-size: '20m'
+        max-file: '5'
+
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    container_name: pokespace-prod-rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST:-/}
+    volumes:
+      - rabbitmq_prod_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ['CMD', 'rabbitmq-diagnostics', '-q', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 40s
+    networks:
+      - pokespace-prod
+    logging:
+      driver: json-file
+      options:
+        max-size: '20m'
+        max-file: '5'
+
+  kafka:
+    image: apache/kafka:3.9.0
+    hostname: kafka
+    container_name: pokespace-prod-kafka
+    restart: unless-stopped
+    environment:
+      CLUSTER_ID: ${KAFKA_CLUSTER_ID}
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:29092,CONTROLLER://:29093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:29093
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
+      KAFKA_LOG_RETENTION_HOURS: ${KAFKA_LOG_RETENTION_HOURS:-168}
+    volumes:
+      - kafka_prod_data:/var/lib/kafka/data
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          '/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:29092 --list >/dev/null 2>&1',
+        ]
+      interval: 15s
+      timeout: 10s
+      retries: 12
+      start_period: 60s
+    networks:
+      - pokespace-prod
+    logging:
+      driver: json-file
+      options:
+        max-size: '20m'
+        max-file: '5'
+
+networks:
+  pokespace-prod:
+    driver: bridge
+
+volumes:
+  postgres_prod_data:
+  redis_prod_data:
+  rabbitmq_prod_data:
+  kafka_prod_data:
