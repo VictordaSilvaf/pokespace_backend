@@ -28,10 +28,11 @@ O projeto começa como **monólito modular**: baixo acoplamento e fronteiras exp
 │       │            │            │               │           │
 │       └────────────┴───── events / ports ───────┘           │
 │                                                             │
-│  Adapters: REST · WebSocket · Postgres · Redis · RabbitMQ · Kafka │
+│  Adapters: REST · WebSocket · Postgres · Redis · DynamoDB · RabbitMQ · Kafka │
 └─────────────────────────────────────────────────────────────┘
 ```
 
+**DynamoDB** é um datastore especializado (idempotência, histórico de atividade por chave). Não substitui o PostgreSQL nem o Redis.
 ---
 
 ## 2. Objetivos arquiteturais
@@ -113,18 +114,23 @@ Eventos locais podem começar in-memory. Depois:
 
 ## 6. Estado do servidor vs estado temporário
 
-| Tipo | Exemplos | Onde vive |
+| Tipo | Exemplos | Onde vive (source of truth) |
 | --- | --- | --- |
-| **Persistente** | usuário, inventário, progresso | DB (Postgres, etc.) via repositórios |
-| **Temporário / sessão** | refresh tokens ativos, rate limit | Redis / store de sessão |
-| **Realtime** | presença, sala de batalha ao vivo | memória do processo / Redis + WebSocket |
+| **Persistente (domínio)** | account, character, inventory, quests, world config | PostgreSQL via repositórios |
+| **Temporário / sessão** | refresh tokens, rate limit, cache | Redis |
+| **Realtime** | presença, posição no mapa ao vivo | Redis + WebSocket (World Engine) |
+| **Idempotência** | webhooks / comandos críticos / retries | DynamoDB (`game-*-idempotency`) |
+| **Histórico de atividade** | `battle.completed`, `pokemon.captured`, … | DynamoDB (`game-*-player-history`) — Fase 3 |
+| **Eventos / jobs** | side-effects, streaming | RabbitMQ / Kafka |
 
 Controllers e gateways **não** guardam regra de negócio; apenas adaptam I/O.
 
-Infra local via Docker Compose: `postgres`, `redis`, `rabbitmq`, `kafka`, `mailpit` (+ `api`). Ver README.
+Infra local via Docker Compose: `postgres`, `redis`, `rabbitmq`, `kafka`, `mailpit`, `localstack` (+ `api`). Ver README e [`infra/`](../infra/).
+
+**Anti-padrões DynamoDB:** Scan em fluxos críticos; duplicar entidades Postgres; usar DynamoDB como cache (Redis já cobre); persistir cada movimento do jogador; `dynamodb:*` no IAM.
 
 **Fase 2 (planejado):** OAuth (Google/Apple), SMS real (Twilio).
-
+**Player State em DynamoDB:** só avaliar com métricas (não migrar automaticamente do Redis).
 ---
 
 ## 7. Entradas e saídas

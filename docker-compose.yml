@@ -19,6 +19,13 @@ services:
       SMTP_HOST: mailpit
       SMTP_PORT: 1025
       SMTP_FROM: noreply@poke.space
+      AWS_REGION: ${AWS_REGION:-sa-east-1}
+      DYNAMODB_DRIVER: ${DYNAMODB_DRIVER:-dynamodb}
+      DYNAMODB_ENDPOINT: http://localstack:4566
+      DYNAMODB_TABLE_IDEMPOTENCY: ${DYNAMODB_TABLE_IDEMPOTENCY:-game-dev-idempotency}
+      DYNAMODB_TABLE_PLAYER_HISTORY: ${DYNAMODB_TABLE_PLAYER_HISTORY:-game-dev-player-history}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-test}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-test}
     depends_on:
       postgres:
         condition: service_healthy
@@ -29,6 +36,8 @@ services:
       rabbitmq:
         condition: service_healthy
       kafka:
+        condition: service_healthy
+      localstack:
         condition: service_healthy
     healthcheck:
       test:
@@ -155,6 +164,33 @@ services:
     networks:
       - pokespace
 
+  localstack:
+    image: localstack/localstack:4.3
+    container_name: pokespace-localstack
+    restart: unless-stopped
+    ports:
+      - '${LOCALSTACK_PORT:-4566}:4566'
+    environment:
+      SERVICES: dynamodb
+      AWS_DEFAULT_REGION: ${AWS_REGION:-sa-east-1}
+      DYNAMODB_TABLE_IDEMPOTENCY: ${DYNAMODB_TABLE_IDEMPOTENCY:-game-dev-idempotency}
+      DYNAMODB_TABLE_PLAYER_HISTORY: ${DYNAMODB_TABLE_PLAYER_HISTORY:-game-dev-player-history}
+    volumes:
+      - localstack_data:/var/lib/localstack
+      - ./scripts/localstack/ready.d:/etc/localstack/init/ready.d
+    healthcheck:
+      test:
+        [
+          'CMD-SHELL',
+          'curl -sf http://localhost:4566/_localstack/health | grep -q ''"dynamodb": "available"'' || curl -sf http://localhost:4566/_localstack/health | grep -q ''"dynamodb": "running"'',
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - pokespace
+
 networks:
   pokespace:
     driver: bridge
@@ -163,3 +199,4 @@ volumes:
   postgres_data:
   redis_data:
   rabbitmq_data:
+  localstack_data:

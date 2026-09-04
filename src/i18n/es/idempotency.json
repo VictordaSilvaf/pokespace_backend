@@ -1,0 +1,8 @@
+{
+  "errors": {
+    "IDEMPOTENCY_KEY_MISMATCH": "Idempotency-Key se reutilizó con un payload diferente",
+    "IDEMPOTENCY_IN_PROGRESS": "Una solicitud con esta Idempotency-Key ya está en proceso",
+    "IDEMPOTENCY_INVALID_KEY": "Idempotency-Key debe tener 1–128 caracteres ASCII imprimibles",
+    "IDEMPOTENCY_FAILED_REPLAY": "Una solicitud anterior con esta Idempotency-Key falló: {originalCode}"
+  }
+}

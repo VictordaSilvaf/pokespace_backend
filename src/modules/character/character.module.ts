@@ -7,6 +7,7 @@ import {
 import { IdentityModule } from '../identity/identity.module.js';
 import { ServersModule } from '../servers/servers.module.js';
 import { WorldModule } from '../world/world.module.js';
+import { IdempotencyModule } from '../idempotency/idempotency.module.js';
 import { CHARACTER_REPOSITORY } from './domain/repositories/character.repository.js';
 import { InMemoryCharacterRepository } from './infrastructure/persistence/in-memory-character.repository.js';
 import { PostgresCharacterRepository } from './infrastructure/persistence/postgres-character.repository.js';
@@ -15,7 +16,7 @@ import { GetCharacterForAccountUseCase } from './application/use-cases/get-chara
 import { CharacterController } from './infrastructure/http/character.controller.js';
 
 @Module({
-  imports: [IdentityModule, ServersModule, WorldModule],
+  imports: [IdentityModule, ServersModule, WorldModule, IdempotencyModule],
   controllers: [CharacterController],
   providers: [
     CreateCharacterUseCase,

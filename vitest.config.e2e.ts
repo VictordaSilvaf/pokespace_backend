@@ -11,6 +11,7 @@ export default defineConfig({
     env: {
       USER_REPOSITORY_DRIVER: 'memory',
       REDIS_DRIVER: 'memory',
+      DYNAMODB_DRIVER: 'memory',
     },
   },
 });

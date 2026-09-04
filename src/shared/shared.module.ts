@@ -17,6 +17,12 @@ import {
   useInMemoryRedis,
   type RedisClient,
 } from './infrastructure/redis/redis.client.port.js';
+import {
+  DYNAMODB_CLIENT,
+  useInMemoryDynamoDb,
+  type DynamoDbClient,
+} from './infrastructure/aws/dynamodb/dynamodb.client.port.js';
+import { createDynamoDbDocumentClient } from './infrastructure/aws/dynamodb/dynamodb.document-client.js';
 
 const databasePoolProvider: Provider = {
   provide: DATABASE_POOL,
@@ -48,6 +54,16 @@ const redisClientProvider: Provider = {
   },
 };
 
+const dynamoDbClientProvider: Provider = {
+  provide: DYNAMODB_CLIENT,
+  useFactory: (): DynamoDbClient => {
+    if (useInMemoryDynamoDb()) {
+      return null;
+    }
+    return createDynamoDbDocumentClient();
+  },
+};
+
 @Injectable()
 class DatabaseLifecycle implements OnModuleDestroy {
   constructor(
@@ -55,11 +71,14 @@ class DatabaseLifecycle implements OnModuleDestroy {
     private readonly pool: Pool | null,
     @Inject(REDIS_CLIENT)
     private readonly redis: RedisClient,
+    @Inject(DYNAMODB_CLIENT)
+    private readonly dynamo: DynamoDbClient,
   ) {}
 
   async onModuleDestroy(): Promise<void> {
     await this.pool?.end();
     await this.redis?.quit();
+    this.dynamo?.destroy();
   }
 }
 
@@ -72,6 +91,7 @@ class DatabaseLifecycle implements OnModuleDestroy {
     },
     databasePoolProvider,
     redisClientProvider,
+    dynamoDbClientProvider,
     {
       provide: MigrationRunner,
       useFactory: (pool: Pool | null) => (pool ? new MigrationRunner(pool) : null),
@@ -79,6 +99,12 @@ class DatabaseLifecycle implements OnModuleDestroy {
     },
     DatabaseLifecycle,
   ],
-  exports: [EVENT_PUBLISHER, DATABASE_POOL, REDIS_CLIENT, MigrationRunner],
+  exports: [
+    EVENT_PUBLISHER,
+    DATABASE_POOL,
+    REDIS_CLIENT,
+    DYNAMODB_CLIENT,
+    MigrationRunner,
+  ],
 })
 export class SharedModule {}
