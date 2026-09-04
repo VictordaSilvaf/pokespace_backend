@@ -29,6 +29,9 @@ import { InMemoryWorldRepository } from './infrastructure/persistence/in-memory-
     }
   ],
   exports: [
+    WORLD_REPOSITORY,
+    ListWorldsUseCase,
+    GetWorldUseCase,
   ],
 })
 export class WorldModule {}

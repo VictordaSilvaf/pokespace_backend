@@ -8,7 +8,7 @@ import { map, type Observable } from 'rxjs';
 import { translate } from './translate.js';
 
 function isI18nKey(value: string): boolean {
-  return /^(common|identity|world)\./.test(value);
+  return /^(common|identity|world|character)\./.test(value);
 }
 
 @Injectable()
