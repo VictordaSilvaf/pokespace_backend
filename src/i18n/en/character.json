@@ -1,0 +1,17 @@
+{
+  "errors": {
+    "INVALID_DISPLAY_NAME": "Invalid display name",
+    "INVALID_DISPLAY_NAME_FORMAT": "Display name must be 3–16 characters: letters, numbers, spaces or underscore",
+    "INVALID_STARTER_SKIN": "Invalid starter skin: {skinId}",
+    "CHARACTER_LIMIT_REACHED": "Maximum of {limit} characters reached for this account",
+    "DISPLAY_NAME_TAKEN": "Display name already taken on this account: {displayName}",
+    "WORLD_NOT_AVAILABLE": "World is not available for character creation: {worldId}",
+    "CHARACTER_NOT_FOUND": "Character not found: {characterId}"
+  },
+  "skins": {
+    "STARTER_BOY_01": "Starter Trainer (Boy A)",
+    "STARTER_GIRL_01": "Starter Trainer (Girl A)",
+    "STARTER_BOY_02": "Starter Trainer (Boy B)",
+    "STARTER_GIRL_02": "Starter Trainer (Girl B)"
+  }
+}

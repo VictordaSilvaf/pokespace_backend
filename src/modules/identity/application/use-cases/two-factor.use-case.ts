@@ -9,6 +9,10 @@ import type {
   AuthResult,
 } from '../dto/auth.dto.js';
 import {
+  TWO_FACTOR_DISABLED_MESSAGE,
+  TWO_FACTOR_ENABLED_MESSAGE,
+} from '../auth.config.js';
+import {
   USER_REPOSITORY,
   type UserRepository,
 } from '../../domain/repositories/user.repository.js';
@@ -84,7 +88,7 @@ export class ConfirmTwoFactorUseCase
     user.enableTwoFactor();
     await this.users.update(user);
 
-    return { message: 'Two-factor authentication enabled' };
+    return { message: TWO_FACTOR_ENABLED_MESSAGE };
   }
 }
 
@@ -111,7 +115,7 @@ export class DisableTwoFactorUseCase
     user.disableTwoFactor();
     await this.users.update(user);
 
-    return { message: 'Two-factor authentication disabled' };
+    return { message: TWO_FACTOR_DISABLED_MESSAGE };
   }
 }
 

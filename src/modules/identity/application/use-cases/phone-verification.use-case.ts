@@ -10,6 +10,7 @@ import {
   getPhoneOtpTtlSeconds,
   PHONE_VERIFIED_MESSAGE,
   shouldExposePhoneOtp,
+  VERIFICATION_CODE_SENT_MESSAGE,
 } from '../auth.config.js';
 import { MAILER, type Mailer } from '../ports/mailer.port.js';
 import {
@@ -52,7 +53,9 @@ export class SendPhoneOtpUseCase
       code,
     });
 
-    const result: SendPhoneOtpResult = { message: 'Verification code sent' };
+    const result: SendPhoneOtpResult = {
+      message: VERIFICATION_CODE_SENT_MESSAGE,
+    };
     if (shouldExposePhoneOtp()) {
       result.otp = code;
     }

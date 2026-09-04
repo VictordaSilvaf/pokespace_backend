@@ -14,6 +14,7 @@ import {
   TOKEN_SERVICE,
   type TokenService,
 } from '../../application/ports/token-service.port.js';
+import { translate } from '../../../../shared/infrastructure/i18n/translate.js';
 
 export const REQUEST_USER_KEY = 'user';
 export const REQUEST_ACCESS_TOKEN_KEY = 'accessToken';
@@ -36,16 +37,20 @@ export class AuthGuard implements CanActivate {
 
     const authorization = request.headers.authorization;
     if (!authorization?.startsWith('Bearer ')) {
-      throw new UnauthorizedException('Missing or invalid authorization header');
+      throw new UnauthorizedException(
+        translate('common.errors.MISSING_AUTH_HEADER'),
+      );
     }
 
     const token = authorization.slice('Bearer '.length).trim();
     if (!token) {
-      throw new UnauthorizedException('Missing or invalid authorization header');
+      throw new UnauthorizedException(
+        translate('common.errors.MISSING_AUTH_HEADER'),
+      );
     }
 
     if (await this.denylist.isRevoked(token)) {
-      throw new UnauthorizedException('Token has been revoked');
+      throw new UnauthorizedException(translate('common.errors.TOKEN_REVOKED'));
     }
 
     try {
@@ -58,7 +63,9 @@ export class AuthGuard implements CanActivate {
       request[REQUEST_ACCESS_TOKEN_KEY] = token;
       return true;
     } catch {
-      throw new UnauthorizedException('Invalid or expired token');
+      throw new UnauthorizedException(
+        translate('common.errors.INVALID_OR_EXPIRED_TOKEN'),
+      );
     }
   }
 }

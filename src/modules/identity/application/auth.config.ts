@@ -1,15 +1,30 @@
-export const FORGOT_PASSWORD_MESSAGE =
-  'If the account exists, reset instructions were sent';
+export const FORGOT_PASSWORD_MESSAGE = 'identity.success.FORGOT_PASSWORD';
 
-export const PASSWORD_UPDATED_MESSAGE = 'Password updated';
+export const PASSWORD_UPDATED_MESSAGE = 'identity.success.PASSWORD_UPDATED';
 
-export const EMAIL_VERIFIED_MESSAGE = 'Email verified successfully';
+export const EMAIL_VERIFIED_MESSAGE = 'identity.success.EMAIL_VERIFIED';
 
-export const PHONE_VERIFIED_MESSAGE = 'Phone verified successfully';
+export const PHONE_VERIFIED_MESSAGE = 'identity.success.PHONE_VERIFIED';
 
-export const ACCOUNT_DEACTIVATED_MESSAGE = 'Account deactivated';
+export const ACCOUNT_DEACTIVATED_MESSAGE = 'identity.success.ACCOUNT_DEACTIVATED';
 
-export const ACCOUNT_DELETED_MESSAGE = 'Account deleted';
+export const ACCOUNT_DELETED_MESSAGE = 'identity.success.ACCOUNT_DELETED';
+
+export const VERIFICATION_CODE_SENT_MESSAGE =
+  'identity.success.VERIFICATION_CODE_SENT';
+
+export const EMAIL_ALREADY_VERIFIED_MESSAGE =
+  'identity.success.EMAIL_ALREADY_VERIFIED';
+
+export const VERIFICATION_EMAIL_SENT_MESSAGE =
+  'identity.success.VERIFICATION_EMAIL_SENT';
+
+export const TWO_FACTOR_ENABLED_MESSAGE = 'identity.success.TWO_FACTOR_ENABLED';
+
+export const TWO_FACTOR_DISABLED_MESSAGE =
+  'identity.success.TWO_FACTOR_DISABLED';
+
+export const PROFILE_UPDATED_MESSAGE = 'identity.success.PROFILE_UPDATED';
 
 export function getAuthTokenTtlSeconds(): number {
   return Number(process.env.AUTH_TOKEN_TTL ?? 900);

@@ -26,12 +26,18 @@ export class World extends AggregateRoot<string> {
 
   static rehydrate(props: WorldProps): World {
     if (props.maxPlayers < 1) {
-      throw new WorldDomainError('maxPlayers must be >= 1');
+      throw new WorldDomainError(
+        'INVALID_MAX_PLAYERS',
+        'maxPlayers must be >= 1',
+      );
     }
 
     const region = props.region.trim();
     if (region.length < 2 || region.length > 50) {
-      throw new WorldDomainError('region must be 2–50 characters');
+      throw new WorldDomainError(
+        'INVALID_REGION',
+        'region must be 2–50 characters',
+      );
     }
 
     return new World(

@@ -89,6 +89,10 @@ import {
   getRefreshTokenFromCookie,
   setRefreshTokenCookie,
 } from './auth-cookie.helper.js';
+import {
+  translate,
+  translateDomainError,
+} from '../../../../shared/infrastructure/i18n/translate.js';
 
 function sessionMetadata(req: Request) {
   return {
@@ -148,7 +152,9 @@ export class AuthController {
   ) {
     const identifier = body.identifier ?? body.username;
     if (!identifier || !body.password) {
-      throw new BadRequestException('identifier and password are required');
+      throw new BadRequestException(
+        translate('common.http.IDENTIFIER_PASSWORD_REQUIRED'),
+      );
     }
 
     try {
@@ -197,7 +203,9 @@ export class AuthController {
     const refreshToken =
       body.refreshToken ?? getRefreshTokenFromCookie(req.cookies ?? {});
     if (!refreshToken) {
-      throw new BadRequestException('refreshToken is required');
+      throw new BadRequestException(
+        translate('common.http.REFRESH_TOKEN_REQUIRED'),
+      );
     }
 
     try {
@@ -371,7 +379,9 @@ export class AuthController {
     @Body() body: UpdateProfileRequestDto,
   ) {
     if (!body.email && !body.phone) {
-      throw new BadRequestException('email or phone is required');
+      throw new BadRequestException(
+        translate('common.http.EMAIL_OR_PHONE_REQUIRED'),
+      );
     }
 
     try {
@@ -473,16 +483,23 @@ export class AuthController {
   }
 
   private mapDomainError(error: unknown): never {
+    const message =
+      error instanceof IdentityDomainError
+        ? translateDomainError(error, 'identity')
+        : error instanceof Error
+          ? error.message
+          : translate('common.errors.UNEXPECTED');
+
     if (
       error instanceof AccountLimitReachedError ||
       error instanceof UsernameAlreadyTakenError ||
       error instanceof TwoFactorAlreadyEnabledError
     ) {
-      throw new ConflictException(error.message);
+      throw new ConflictException(message);
     }
 
     if (error instanceof AccountLockedError) {
-      throw new HttpException(error.message, HttpStatus.TOO_MANY_REQUESTS);
+      throw new HttpException(message, HttpStatus.TOO_MANY_REQUESTS);
     }
 
     if (
@@ -496,11 +513,11 @@ export class AuthController {
       error instanceof AccountDeactivatedError ||
       error instanceof UserNotFoundError
     ) {
-      throw new UnauthorizedException(error.message);
+      throw new UnauthorizedException(message);
     }
 
     if (error instanceof IdentityDomainError) {
-      throw new BadRequestException(error.message);
+      throw new BadRequestException(message);
     }
 
     throw error;

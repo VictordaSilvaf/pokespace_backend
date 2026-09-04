@@ -16,7 +16,7 @@ export class HashedPassword extends ValueObject<HashedPasswordProps> {
 
   static fromHash(hash: string): HashedPassword {
     if (!hash || hash.length < 16) {
-      throw new InvalidPasswordError('Invalid password hash');
+      throw new InvalidPasswordError('INVALID_PASSWORD_HASH');
     }
 
     return new HashedPassword({ hash });
@@ -24,7 +24,7 @@ export class HashedPassword extends ValueObject<HashedPasswordProps> {
 
   static assertPlainPasswordStrength(plain: string): void {
     if (plain.length < 8) {
-      throw new InvalidPasswordError('Password must be at least 8 characters');
+      throw new InvalidPasswordError('PASSWORD_TOO_SHORT');
     }
   }
 

@@ -9,6 +9,7 @@ import type {
 import {
   ACCOUNT_DEACTIVATED_MESSAGE,
   ACCOUNT_DELETED_MESSAGE,
+  PROFILE_UPDATED_MESSAGE,
 } from '../auth.config.js';
 import {
   USER_REPOSITORY,
@@ -54,7 +55,7 @@ export class UpdateProfileUseCase
     }
 
     await this.users.update(user);
-    return { message: 'Profile updated' };
+    return { message: PROFILE_UPDATED_MESSAGE };
   }
 }
 

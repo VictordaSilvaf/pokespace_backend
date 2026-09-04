@@ -1,0 +1,46 @@
+{
+  "errors": {
+    "INVALID_EMAIL": "Invalid email: {email}",
+    "INVALID_PHONE": "Invalid phone number: {phone}",
+    "INVALID_USERNAME": "Invalid username",
+    "INVALID_USERNAME_FORMAT": "Username must be 3–20 chars: letters, numbers or underscore",
+    "INVALID_PASSWORD": "Password does not meet security requirements",
+    "INVALID_PASSWORD_HASH": "Invalid password hash",
+    "PASSWORD_TOO_SHORT": "Password must be at least 8 characters",
+    "ACCOUNT_LIMIT_REACHED": "Maximum of 4 accounts reached for {channel}: {value}",
+    "USERNAME_TAKEN": "Username already taken: {username}",
+    "INVALID_CREDENTIALS": "Invalid credentials",
+    "INVALID_RESET_TOKEN": "Invalid or expired reset token",
+    "INVALID_REFRESH_TOKEN": "Invalid or expired refresh token",
+    "USER_NOT_FOUND": "User not found: {userId}",
+    "ACCOUNT_LOCKED": "Account temporarily locked due to too many failed login attempts",
+    "ACCOUNT_DEACTIVATED": "Account is deactivated",
+    "EMAIL_NOT_VERIFIED": "Email address is not verified",
+    "INVALID_OTP": "Invalid or expired verification code",
+    "INVALID_TWO_FACTOR_CODE": "Invalid two-factor authentication code",
+    "TWO_FACTOR_NOT_ENABLED": "Two-factor authentication is not enabled",
+    "TWO_FACTOR_ALREADY_ENABLED": "Two-factor authentication is already enabled"
+  },
+  "success": {
+    "FORGOT_PASSWORD": "If the account exists, reset instructions were sent",
+    "PASSWORD_UPDATED": "Password updated",
+    "EMAIL_VERIFIED": "Email verified successfully",
+    "PHONE_VERIFIED": "Phone verified successfully",
+    "ACCOUNT_DEACTIVATED": "Account deactivated",
+    "ACCOUNT_DELETED": "Account deleted",
+    "VERIFICATION_CODE_SENT": "Verification code sent",
+    "EMAIL_ALREADY_VERIFIED": "Email already verified",
+    "VERIFICATION_EMAIL_SENT": "Verification email sent",
+    "TWO_FACTOR_ENABLED": "Two-factor authentication enabled",
+    "TWO_FACTOR_DISABLED": "Two-factor authentication disabled",
+    "PROFILE_UPDATED": "Profile updated"
+  },
+  "mail": {
+    "PASSWORD_RESET_SUBJECT": "PokeSpace — Password reset",
+    "PASSWORD_RESET_BODY": "Hi {username},\n\nUse this token to reset your password: {token}",
+    "VERIFY_EMAIL_SUBJECT": "PokeSpace — Verify your email",
+    "VERIFY_EMAIL_BODY": "Hi {username},\n\nUse this token to verify your email: {token}",
+    "PHONE_OTP_SUBJECT": "PokeSpace — Phone verification code",
+    "PHONE_OTP_BODY": "Hi {username},\n\nYour phone verification code: {code}"
+  }
+}

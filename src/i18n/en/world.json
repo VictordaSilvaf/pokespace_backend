@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "WORLD_NOT_FOUND": "World not found: {worldId}",
+    "INVALID_WORLD_STATUS": "Invalid world status: {status}",
+    "INVALID_WORLD_NAME": "World name must be between 3 and 50 characters",
+    "INVALID_MAX_PLAYERS": "maxPlayers must be >= 1",
+    "INVALID_REGION": "region must be 2–50 characters"
+  }
+}

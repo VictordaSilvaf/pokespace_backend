@@ -15,7 +15,10 @@ export class WorldName extends ValueObject<WorldNameProps> {
         const value = raw.trim();
 
         if (value.length < 3 || value.length > 50) {
-            throw new WorldDomainError('world name must be between 3 and 50 characters');
+            throw new WorldDomainError(
+                'INVALID_WORLD_NAME',
+                'World name must be between 3 and 50 characters',
+            );
         }
 
         return new WorldName({ value });

@@ -16,11 +16,12 @@ Playbook específico do catálogo de servidores: [`WORLD_MODULE.md`](./WORLD_MOD
 3. Domain (regras puras)
 4. Application (casos de uso)
 5. Infrastructure (HTTP, DB, adapters)
-6. NestJS Module (wiring)
-7. Registrar no AppModule
-8. Migration SQL (se persistir no Postgres)
-9. Testes
-10. Documentar rotas
+6. Traduções i18n (obrigatório) — en, pt-BR, es
+7. NestJS Module (wiring)
+8. Registrar no AppModule
+9. Migration SQL (se persistir no Postgres)
+10. Testes + `pnpm check:i18n`
+11. Documentar rotas
 ```
 
 Regra de ouro: **dependências sempre apontam para dentro**.
@@ -97,26 +98,45 @@ Erros tipados permitem ao controller mapear HTTP sem `if (message.includes(...))
 // src/modules/player/domain/errors/player.errors.ts
 
 export class PlayerDomainError extends Error {
-  constructor(message: string) {
+  readonly code: string;
+  readonly args?: Record<string, string | number | boolean>;
+
+  constructor(
+    code: string,
+    message: string,
+    args?: Record<string, string | number | boolean>,
+  ) {
     super(message);
     this.name = new.target.name;
+    this.code = code;
+    this.args = args;
   }
 }
 
 export class PlayerProfileNotFoundError extends PlayerDomainError {
   constructor(userId: string) {
-    super(`Player profile not found for user: ${userId}`);
+    super(
+      'PLAYER_PROFILE_NOT_FOUND',
+      `Player profile not found for user: ${userId}`,
+      { userId },
+    );
   }
 }
 
 export class DisplayNameAlreadyTakenError extends PlayerDomainError {
   constructor(displayName: string) {
-    super(`Display name already taken: ${displayName}`);
+    super(
+      'DISPLAY_NAME_TAKEN',
+      `Display name already taken: ${displayName}`,
+      { displayName },
+    );
   }
 }
 ```
 
 Padrão igual a [`identity.errors.ts`](../src/modules/identity/domain/errors/identity.errors.ts).
+
+> **Obrigatório:** toda mensagem de domínio/HTTP/sucesso do módulo deve ter chave estável (`code`) e tradução em `en`, `pt-BR` e `es`. Ver [Passo 6 — i18n](#passo-6--traduções-i18n-obrigatório).
 
 ---
 
@@ -612,14 +632,21 @@ export class PlayerController {
   }
 
   private mapDomainError(error: unknown): never {
+    const message =
+      error instanceof PlayerDomainError
+        ? translateDomainError(error, 'player')
+        : error instanceof Error
+          ? error.message
+          : translate('common.errors.UNEXPECTED');
+
     if (error instanceof DisplayNameAlreadyTakenError) {
-      throw new ConflictException(error.message);
+      throw new ConflictException(message);
     }
     if (error instanceof PlayerProfileNotFoundError) {
-      throw new NotFoundException(error.message);
+      throw new NotFoundException(message);
     }
     if (error instanceof PlayerDomainError) {
-      throw new ConflictException(error.message);
+      throw new BadRequestException(message);
     }
     throw error;
   }
@@ -627,6 +654,53 @@ export class PlayerController {
 ```
 
 > **Auth cross-module:** importar `AuthGuard` e `@CurrentUser()` do módulo `identity` é aceitável para rotas protegidas. Não importe repositórios ou use cases internos de outro módulo.
+
+---
+
+## Passo 9.5 — Traduções i18n (obrigatório)
+
+**Todo módulo com erros de domínio e/ou HTTP deve ter catálogos em `en`, `pt-BR` e `es`.** Sem isso o PR não está completo.
+
+### Regras
+
+1. Domínio usa **código estável** (`code`) + `args` opcionais; a string em inglês fica só como fallback de log.
+2. Controllers traduzem com `translateDomainError(error, '<módulo>')`.
+3. Mensagens de sucesso retornam chave (`identity.success.PASSWORD_UPDATED`); o `LocalizedMessageInterceptor` resolve o texto.
+4. Arquivos obrigatórios:
+
+```
+src/i18n/en/<módulo>.json
+src/i18n/pt-BR/<módulo>.json
+src/i18n/es/<módulo>.json
+```
+
+5. As chaves de `errors` (e demais seções usadas) devem ser **idênticas** nos três idiomas.
+6. Validação automática: `pnpm check:i18n`.
+
+### Exemplo `src/i18n/en/player.json`
+
+```json
+{
+  "errors": {
+    "PLAYER_PROFILE_NOT_FOUND": "Player profile not found for user: {userId}",
+    "DISPLAY_NAME_TAKEN": "Display name already taken: {displayName}"
+  },
+  "success": {
+    "PROFILE_UPDATED": "Profile updated"
+  }
+}
+```
+
+Repita o mesmo arquivo em `pt-BR` e `es` com o texto traduzido.
+
+### Como o cliente escolhe o idioma
+
+| Prioridade | Mecanismo |
+| --- | --- |
+| 1 | Query `?lang=pt-BR` |
+| 2 | Header `x-lang: pt-BR` |
+| 3 | Header `Accept-Language` |
+| fallback | `en` |
 
 ---
 
@@ -822,7 +896,9 @@ Hoje o `EventPublisher` é in-memory ([`InMemoryEventPublisher`](../src/shared/i
 [ ] Port de repositório (interface + Symbol)
 [ ] Use cases implementam UseCase<TInput, TOutput>
 [ ] Postgres + in-memory repositories
-[ ] Controller fino com mapDomainError
+[ ] Controller fino com mapDomainError + translateDomainError
+[ ] Catálogos i18n en / pt-BR / es (`src/i18n/<locale>/<módulo>.json`)
+[ ] `pnpm check:i18n` passando
 [ ] DTOs HTTP com class-validator
 [ ] player.module.ts com factory de repositório
 [ ] Registrado no AppModule

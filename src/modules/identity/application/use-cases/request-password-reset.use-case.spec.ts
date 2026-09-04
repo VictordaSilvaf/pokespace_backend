@@ -16,7 +16,7 @@ import { SessionRevoker } from '../services/session-revoker.service.js';
 import { JwtTokenService } from '../../infrastructure/adapters/jwt-token.adapter.js';
 import type { DomainEvent } from '../../../../shared/domain/domain-event.js';
 import type { EventPublisher } from '../../../../shared/application/ports/event-publisher.port.js';
-import { FORGOT_PASSWORD_MESSAGE } from '../auth.config.js';
+import { FORGOT_PASSWORD_MESSAGE, PASSWORD_UPDATED_MESSAGE } from '../auth.config.js';
 import { InvalidResetTokenError } from '../../domain/errors/identity.errors.js';
 
 class SilentEventPublisher implements EventPublisher {
@@ -100,7 +100,7 @@ describe('Password reset flow', () => {
       token: forgot.resetToken!,
       newPassword: 'newpass123',
     });
-    expect(result.message).toBe('Password updated');
+    expect(result.message).toBe(PASSWORD_UPDATED_MESSAGE);
 
     await expect(
       resetPassword.execute({

@@ -8,9 +8,11 @@ import type {
   VerifyEmailResult,
 } from '../dto/auth.dto.js';
 import {
+  EMAIL_ALREADY_VERIFIED_MESSAGE,
   EMAIL_VERIFIED_MESSAGE,
   getVerifyEmailTtlSeconds,
   shouldExposeVerifyEmailToken,
+  VERIFICATION_EMAIL_SENT_MESSAGE,
 } from '../auth.config.js';
 import {
   EMAIL_VERIFICATION_STORE,
@@ -75,7 +77,7 @@ export class ResendVerificationUseCase
     }
 
     if (user.emailVerifiedAt) {
-      return { message: 'Email already verified' };
+      return { message: EMAIL_ALREADY_VERIFIED_MESSAGE };
     }
 
     const token = randomBytes(32).toString('hex');
@@ -90,7 +92,9 @@ export class ResendVerificationUseCase
       token,
     });
 
-    const result: VerifyEmailResult = { message: 'Verification email sent' };
+    const result: VerifyEmailResult = {
+      message: VERIFICATION_EMAIL_SENT_MESSAGE,
+    };
     if (shouldExposeVerifyEmailToken()) {
       result.verifyToken = token;
     }

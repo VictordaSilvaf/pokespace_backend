@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { config as loadEnv } from 'dotenv';
 import { createObserveModule } from '@nestjs/observe';
@@ -14,6 +14,9 @@ import {
 } from './shared/infrastructure/redis/redis.client.port.js';
 import { RedisThrottlerStorage } from './shared/infrastructure/redis/redis-throttler.storage.js';
 import { WorldModule } from './modules/world/world.module.js';
+import { CharacterModule } from './modules/character/character.module.js';
+import { AppI18nModule } from './shared/infrastructure/i18n/app-i18n.module.js';
+import { LocalizedMessageInterceptor } from './shared/infrastructure/i18n/localized-message.interceptor.js';
 
 loadEnv();
 
@@ -25,6 +28,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
       isGlobal: true,
       envFilePath: '.env',
     }),
+    AppI18nModule,
     ThrottlerModule.forRootAsync({
       imports: [SharedModule],
       inject: [REDIS_CLIENT],
@@ -44,12 +48,17 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     SharedModule,
     IdentityModule,
     WorldModule,
+    CharacterModule,
   ],
   controllers: [HealthController],
   providers: [
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
+    },
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LocalizedMessageInterceptor,
     },
   ],
 })

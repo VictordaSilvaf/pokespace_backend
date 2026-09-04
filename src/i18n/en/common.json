@@ -1,0 +1,21 @@
+{
+  "errors": {
+    "MISSING_AUTH_HEADER": "Missing or invalid authorization header",
+    "TOKEN_REVOKED": "Token has been revoked",
+    "INVALID_OR_EXPIRED_TOKEN": "Invalid or expired token",
+    "UNEXPECTED": "Unexpected error"
+  },
+  "http": {
+    "IDENTIFIER_PASSWORD_REQUIRED": "identifier and password are required",
+    "REFRESH_TOKEN_REQUIRED": "refreshToken is required",
+    "EMAIL_OR_PHONE_REQUIRED": "email or phone is required"
+  },
+  "validation": {
+    "IS_EMAIL": "{property} must be an email",
+    "IS_NOT_EMPTY": "{property} should not be empty",
+    "IS_STRING": "{property} must be a string",
+    "MIN_LENGTH": "{property} must be longer than or equal to {constraints.0} characters",
+    "MAX_LENGTH": "{property} must be shorter than or equal to {constraints.0} characters",
+    "WHITELIST_VALIDATION": "property {property} should not exist"
+  }
+}
