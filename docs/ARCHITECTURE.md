@@ -17,6 +17,8 @@ O backend do jogo é construído com **NestJS** como framework de composição e
 
 O projeto começa como **monólito modular**: baixo acoplamento e fronteiras explícitas, com caminho aberto para extrair módulos em microserviços se a escala justificar.
 
+**i18n obrigatório:** mensagens de domínio, HTTP e sucesso usam chaves estáveis traduzidas em `en`, `pt-BR` e `es` (`src/i18n/`). Todo módulo novo com erros/HTTP deve incluir catálogos nos três idiomas e passar em `pnpm check:i18n`. Detalhes em [`CREATING_A_MODULE.md`](./CREATING_A_MODULE.md).
+
 ```
 ┌─────────────────────────────────────────────────────────────┐
 │                     Modular Monolith                        │
