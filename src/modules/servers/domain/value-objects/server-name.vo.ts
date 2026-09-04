@@ -15,7 +15,10 @@ export class ServerName extends ValueObject<ServerNameProps> {
         const value = raw.trim();
 
         if (value.length < 3 || value.length > 50) {
-            throw new ServerDomainError('server name must be between 3 and 50 characters');
+            throw new ServerDomainError(
+                'INVALID_SERVER_NAME',
+                'server name must be between 3 and 50 characters',
+            );
         }
 
         return new ServerName({ value });

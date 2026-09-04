@@ -173,15 +173,11 @@ curl -X POST http://localhost:3000/api/v1/auth/logout-all \
 curl http://localhost:3000/api/v1/characters \
   -H 'Authorization: Bearer <accessToken>'
 
-# Creation options (online worlds + starter skins)
-curl http://localhost:3000/api/v1/characters/creation-options \
-  -H 'Authorization: Bearer <accessToken>'
-
-# Create character (world is immutable afterwards)
+# Create character (returns laboratory spawn)
 curl -X POST http://localhost:3000/api/v1/characters \
   -H 'Authorization: Bearer <accessToken>' \
   -H 'Content-Type: application/json' \
-  -d '{"worldId":"11111111-1111-4111-8111-111111111111","skinId":"starter-boy-01","displayName":"Ash"}'
+  -d '{"name":"Ash","serverId":"11111111-1111-4111-8111-111111111111"}'
 ```
 
 ---

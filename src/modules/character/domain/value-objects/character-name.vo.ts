@@ -1,5 +1,5 @@
 import { ValueObject } from '../../../../shared/domain/value-object.js';
-import { CharacterDomainError } from '../errors/character.errors.js';
+import { InvalidCharacterNameError } from '../errors/character.errors.js';
 
 export class CharacterName extends ValueObject<{ value: string }> {
   private constructor(value: string) {
@@ -9,14 +9,10 @@ export class CharacterName extends ValueObject<{ value: string }> {
   static create(raw: string): CharacterName {
     const value = raw.trim();
     if (value.length < 2 || value.length > 16) {
-      throw new CharacterDomainError(
-        'character name must be between 2 and 16 characters',
-      );
+      throw new InvalidCharacterNameError('INVALID_CHARACTER_NAME');
     }
     if (!/^[A-Za-z0-9_]+$/.test(value)) {
-      throw new CharacterDomainError(
-        'character name may only contain letters, numbers, and underscore',
-      );
+      throw new InvalidCharacterNameError('INVALID_CHARACTER_NAME_FORMAT');
     }
     return new CharacterName(value);
   }

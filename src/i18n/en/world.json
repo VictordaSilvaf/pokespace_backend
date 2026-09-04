@@ -1,9 +1,10 @@
 {
   "errors": {
-    "WORLD_NOT_FOUND": "World not found: {worldId}",
-    "INVALID_WORLD_STATUS": "Invalid world status: {status}",
-    "INVALID_WORLD_NAME": "World name must be between 3 and 50 characters",
-    "INVALID_MAX_PLAYERS": "maxPlayers must be >= 1",
-    "INVALID_REGION": "region must be 2–50 characters"
+    "INVALID_SEQUENCE": "Invalid sequence {sequence}; last accepted was {lastSequence}",
+    "MOVEMENT_BLOCKED": "Movement blocked by collision or bounds",
+    "SPAWN_UNAVAILABLE": "No available spawn on map {mapId}",
+    "INSTANCE_FULL": "Instance is full: {instanceId}",
+    "WORLD_SESSION_NOT_FOUND": "World session not found: {connectionId}",
+    "MAP_NOT_FOUND": "Map not found: {mapId}"
   }
 }

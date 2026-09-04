@@ -64,11 +64,15 @@ describe('Characters (e2e)', () => {
     );
   });
 
-  it('rejects create on maintenance server', async () => {
+  it('rejects create on maintenance server and localizes pt-BR', async () => {
     await request(app.getHttpServer())
       .post('/api/v1/characters')
       .set('Authorization', `Bearer ${token}`)
+      .set('Accept-Language', 'pt-BR')
       .send({ name: 'Ash', serverId: SEEDED_SERVER_IDS.earth })
-      .expect(400);
+      .expect(400)
+      .expect(({ body }) => {
+        expect(String(body.message)).toContain('indisponível');
+      });
   });
 });

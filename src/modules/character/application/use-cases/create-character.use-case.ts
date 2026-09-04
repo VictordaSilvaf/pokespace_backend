@@ -6,7 +6,7 @@ import {
 } from '../../domain/repositories/character.repository.js';
 import { CharacterName } from '../../domain/value-objects/character-name.vo.js';
 import { Character } from '../../domain/entities/character.entity.js';
-import { MAX_CHARACTERS_PER_ACCOUNT } from '../../domain/account-limits.js';
+import { getMaxCharactersPerAccount } from '../../domain/account-limits.js';
 import {
   CharacterLimitReachedError,
   CharacterNameTakenError,
@@ -63,9 +63,10 @@ export class CreateCharacterUseCase
       throw new ServerNotJoinableError(command.serverId);
     }
 
+    const limit = getMaxCharactersPerAccount();
     const count = await this.characters.countByAccountId(command.accountId);
-    if (count >= MAX_CHARACTERS_PER_ACCOUNT) {
-      throw new CharacterLimitReachedError(command.accountId);
+    if (count >= limit) {
+      throw new CharacterLimitReachedError(command.accountId, limit);
     }
 
     const name = CharacterName.create(command.name);

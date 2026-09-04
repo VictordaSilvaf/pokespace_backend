@@ -1,17 +1,11 @@
 {
   "errors": {
-    "INVALID_DISPLAY_NAME": "Nombre para mostrar inválido",
-    "INVALID_DISPLAY_NAME_FORMAT": "El nombre debe tener 3–16 caracteres: letras, números, espacios o guion bajo",
-    "INVALID_STARTER_SKIN": "Skin inicial inválida: {skinId}",
+    "INVALID_CHARACTER_NAME": "Nombre de personaje inválido",
+    "INVALID_CHARACTER_NAME_FORMAT": "El nombre debe tener 2–16 caracteres: letras, números o guion bajo",
+    "CHARACTER_NAME_TAKEN": "Nombre ya usado en este servidor: {name}",
     "CHARACTER_LIMIT_REACHED": "Máximo de {limit} personajes alcanzado en esta cuenta",
-    "DISPLAY_NAME_TAKEN": "Nombre para mostrar ya usado en esta cuenta: {displayName}",
-    "WORLD_NOT_AVAILABLE": "Mundo no disponible para crear personaje: {worldId}",
-    "CHARACTER_NOT_FOUND": "Personaje no encontrado: {characterId}"
-  },
-  "skins": {
-    "STARTER_BOY_01": "Entrenador inicial (Chico A)",
-    "STARTER_GIRL_01": "Entrenadora inicial (Chica A)",
-    "STARTER_BOY_02": "Entrenador inicial (Chico B)",
-    "STARTER_GIRL_02": "Entrenadora inicial (Chica B)"
+    "SERVER_NOT_JOINABLE": "Servidor no disponible para crear personaje: {serverId}",
+    "CHARACTER_NOT_FOUND": "Personaje no encontrado: {characterId}",
+    "CHARACTER_ACCESS_DENIED": "El personaje no pertenece a esta cuenta"
   }
 }

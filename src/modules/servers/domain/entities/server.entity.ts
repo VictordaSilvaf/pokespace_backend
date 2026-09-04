@@ -26,12 +26,18 @@ export class Server extends AggregateRoot<string> {
 
   static rehydrate(props: ServerProps): Server {
     if (props.maxPlayers < 1) {
-      throw new ServerDomainError('maxPlayers must be >= 1');
+      throw new ServerDomainError(
+        'INVALID_MAX_PLAYERS',
+        'maxPlayers must be >= 1',
+      );
     }
 
     const region = props.region.trim();
     if (region.length < 2 || region.length > 50) {
-      throw new ServerDomainError('region must be 2–50 characters');
+      throw new ServerDomainError(
+        'INVALID_REGION',
+        'region must be 2–50 characters',
+      );
     }
 
     return new Server(

@@ -13,6 +13,7 @@ import {
   ServerDomainError,
   ServerNotFoundError,
 } from '../../domain/errors/server.errors.js';
+import { translateDomainError } from '../../../../shared/infrastructure/i18n/translate.js';
 
 @ApiTags('servers')
 @Controller('servers')
@@ -39,11 +40,16 @@ export class ServerController {
   }
 
   private mapDomainError(error: unknown): never {
+    const message =
+      error instanceof ServerDomainError
+        ? translateDomainError(error, 'servers')
+        : undefined;
+
     if (error instanceof ServerNotFoundError) {
-      throw new NotFoundException(error.message);
+      throw new NotFoundException(message ?? error.message);
     }
     if (error instanceof ServerDomainError) {
-      throw new BadRequestException(error.message);
+      throw new BadRequestException(message ?? error.message);
     }
     throw error;
   }
