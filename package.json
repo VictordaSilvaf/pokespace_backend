@@ -26,6 +26,8 @@
     "docker:prod:logs": "docker compose -f docker-compose.prod.yml --env-file .env.production logs -f"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.1127.0",
+    "@aws-sdk/lib-dynamodb": "^3.1127.0",
     "@nestjs/common": "^12.0.1",
     "@nestjs/config": "^12.0.0",
     "@nestjs/core": "^12.0.1",

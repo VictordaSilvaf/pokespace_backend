@@ -1,9 +1,11 @@
 import {
   BadRequestException,
   Body,
+  ConflictException,
   Controller,
   ForbiddenException,
   Get,
+  Headers,
   Inject,
   NotFoundException,
   Param,
@@ -11,7 +13,7 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiHeader, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthGuard } from '../../../identity/infrastructure/http/auth.guard.js';
 import { CurrentUser } from '../../../identity/infrastructure/http/current-user.decorator.js';
 import type { AuthenticatedUser } from '../../../identity/application/dto/auth.dto.js';
@@ -31,6 +33,15 @@ import {
   type CharacterRepository,
 } from '../../domain/repositories/character.repository.js';
 import { translateDomainError } from '../../../../shared/infrastructure/i18n/translate.js';
+import { IdempotencyService } from '../../../idempotency/application/services/idempotency.service.js';
+import { hashIdempotencyRequest } from '../../../idempotency/application/idempotency-hash.js';
+import {
+  IdempotencyDomainError,
+  IdempotencyFailedReplayError,
+  IdempotencyInProgressError,
+  IdempotencyInvalidKeyError,
+  IdempotencyKeyMismatchError,
+} from '../../../idempotency/domain/errors/idempotency.errors.js';
 
 @ApiTags('characters')
 @ApiBearerAuth()
@@ -40,23 +51,51 @@ export class CharacterController {
   constructor(
     private readonly createCharacter: CreateCharacterUseCase,
     private readonly getCharacter: GetCharacterForAccountUseCase,
+    private readonly idempotency: IdempotencyService,
     @Inject(CHARACTER_REPOSITORY)
     private readonly characters: CharacterRepository,
   ) {}
 
   @Post()
   @ApiOperation({ summary: 'Create a character and receive laboratory spawn' })
+  @ApiHeader({
+    name: 'Idempotency-Key',
+    required: false,
+    description:
+      'Optional key to make character creation safe against retries/duplicates',
+  })
   async create(
     @CurrentUser() user: AuthenticatedUser,
     @Body() body: CreateCharacterRequestDto,
+    @Headers('idempotency-key') idempotencyKey?: string,
   ) {
     try {
-      return await this.createCharacter.execute({
+      const command = {
         accountId: user.userId,
         serverId: body.serverId,
         name: body.name,
+      };
+
+      if (!idempotencyKey?.trim()) {
+        return await this.createCharacter.execute(command);
+      }
+
+      return await this.idempotency.run({
+        key: idempotencyKey.trim(),
+        requestHash: hashIdempotencyRequest(command),
+        execute: () => this.createCharacter.execute(command),
+        mapFailure: (error) => ({
+          message: error instanceof Error ? error.message : 'Unknown error',
+          code:
+            error instanceof CharacterDomainError
+              ? error.code
+              : error instanceof Error
+                ? error.name
+                : undefined,
+        }),
       });
     } catch (error) {
+      this.mapIdempotencyError(error);
       this.mapDomainError(error);
     }
   }
@@ -86,6 +125,28 @@ export class CharacterController {
     } catch (error) {
       this.mapDomainError(error);
     }
+  }
+
+  private mapIdempotencyError(error: unknown): void {
+    if (!(error instanceof IdempotencyDomainError)) {
+      return;
+    }
+
+    const message = translateDomainError(error, 'idempotency');
+
+    if (error instanceof IdempotencyInProgressError) {
+      throw new ConflictException(message);
+    }
+    if (
+      error instanceof IdempotencyKeyMismatchError ||
+      error instanceof IdempotencyInvalidKeyError
+    ) {
+      throw new BadRequestException(message);
+    }
+    if (error instanceof IdempotencyFailedReplayError) {
+      throw new BadRequestException(message);
+    }
+    throw new BadRequestException(message);
   }
 
   private mapDomainError(error: unknown): never {

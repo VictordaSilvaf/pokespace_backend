@@ -27,11 +27,11 @@ API base: `http://localhost:3000/api/v1`
 Requer `.env` na raiz (veja `.env.example`).
 
 ```bash
-# stack completa (api + postgres + redis + rabbitmq + kafka + mailpit)
+# stack completa (api + postgres + redis + rabbitmq + kafka + mailpit + localstack)
 docker compose up --build -d
 
 # só infra (para rodar a API com pnpm start:dev)
-docker compose up -d postgres redis rabbitmq kafka
+docker compose up -d postgres redis rabbitmq kafka localstack
 
 # logs / parar
 docker compose logs -f
@@ -46,6 +46,7 @@ docker compose down
 | RabbitMQ | `localhost:5672` | Filas (jobs) |
 | RabbitMQ UI | `http://localhost:15672` | Management (`pokespace` / `pokespace`) |
 | Kafka | `localhost:9092` | Event streaming |
+| LocalStack | `localhost:4566` | DynamoDB local (idempotência) |
 | Mailpit UI | `http://localhost:8025` | E-mails de dev (verificação, reset, OTP) |
 | Mailpit SMTP | `localhost:1025` | SMTP local |
 

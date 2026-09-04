@@ -39,7 +39,7 @@ Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
 | `DELETE` | `/api/v1/auth/account` | Bearer | Exclui conta |
 | `GET` | `/api/v1/servers` | Não | Lista servidores |
 | `GET` | `/api/v1/servers/:id` | Não | Detalhe de um servidor |
-| `POST` | `/api/v1/characters` | Bearer | Cria personagem + spawn do laboratório |
+| `POST` | `/api/v1/characters` | Bearer | Cria personagem + spawn do laboratório (header opcional `Idempotency-Key`) |
 | `GET` | `/api/v1/characters` | Bearer | Lista personagens da conta |
 | `GET` | `/api/v1/characters/:id` | Bearer | Detalhe de personagem |
 
@@ -177,6 +177,7 @@ curl http://localhost:3000/api/v1/characters \
 curl -X POST http://localhost:3000/api/v1/characters \
   -H 'Authorization: Bearer <accessToken>' \
   -H 'Content-Type: application/json' \
+  -H 'Idempotency-Key: create-ash-lab-1' \
   -d '{"name":"Ash","serverId":"11111111-1111-4111-8111-111111111111"}'
 ```
 
@@ -187,6 +188,8 @@ curl -X POST http://localhost:3000/api/v1/characters \
 ### `POST /characters`
 
 Auth: Bearer.
+
+Header opcional: `Idempotency-Key` (1–128 ASCII imprimíveis). Com a mesma key e o mesmo payload, retries devolvem o resultado anterior (DynamoDB / store in-memory). Key reutilizada com payload diferente → `400`. Key em processamento → `409`.
 
 ```json
 { "name": "Ash", "serverId": "<uuid>" }
