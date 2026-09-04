@@ -4,6 +4,7 @@ import {
   Controller,
   ForbiddenException,
   Get,
+  Inject,
   NotFoundException,
   Param,
   ParseUUIDPipe,
@@ -29,7 +30,7 @@ import {
   CHARACTER_REPOSITORY,
   type CharacterRepository,
 } from '../../domain/repositories/character.repository.js';
-import { Inject } from '@nestjs/common';
+import { translateDomainError } from '../../../../shared/infrastructure/i18n/translate.js';
 
 @ApiTags('characters')
 @ApiBearerAuth()
@@ -88,11 +89,16 @@ export class CharacterController {
   }
 
   private mapDomainError(error: unknown): never {
+    const message =
+      error instanceof CharacterDomainError
+        ? translateDomainError(error, 'character')
+        : undefined;
+
     if (error instanceof CharacterNotFoundError) {
-      throw new NotFoundException(error.message);
+      throw new NotFoundException(message ?? error.message);
     }
     if (error instanceof CharacterAccessDeniedError) {
-      throw new ForbiddenException(error.message);
+      throw new ForbiddenException(message ?? error.message);
     }
     if (
       error instanceof CharacterNameTakenError ||
@@ -100,7 +106,7 @@ export class CharacterController {
       error instanceof ServerNotJoinableError ||
       error instanceof CharacterDomainError
     ) {
-      throw new BadRequestException(error.message);
+      throw new BadRequestException(message ?? error.message);
     }
     throw error;
   }

@@ -1,17 +1,11 @@
 {
   "errors": {
-    "INVALID_DISPLAY_NAME": "Invalid display name",
-    "INVALID_DISPLAY_NAME_FORMAT": "Display name must be 3–16 characters: letters, numbers, spaces or underscore",
-    "INVALID_STARTER_SKIN": "Invalid starter skin: {skinId}",
+    "INVALID_CHARACTER_NAME": "Invalid character name",
+    "INVALID_CHARACTER_NAME_FORMAT": "Character name must be 2–16 characters: letters, numbers or underscore",
+    "CHARACTER_NAME_TAKEN": "Character name already taken on this server: {name}",
     "CHARACTER_LIMIT_REACHED": "Maximum of {limit} characters reached for this account",
-    "DISPLAY_NAME_TAKEN": "Display name already taken on this account: {displayName}",
-    "WORLD_NOT_AVAILABLE": "World is not available for character creation: {worldId}",
-    "CHARACTER_NOT_FOUND": "Character not found: {characterId}"
-  },
-  "skins": {
-    "STARTER_BOY_01": "Starter Trainer (Boy A)",
-    "STARTER_GIRL_01": "Starter Trainer (Girl A)",
-    "STARTER_BOY_02": "Starter Trainer (Boy B)",
-    "STARTER_GIRL_02": "Starter Trainer (Girl B)"
+    "SERVER_NOT_JOINABLE": "Server is not available for character creation: {serverId}",
+    "CHARACTER_NOT_FOUND": "Character not found: {characterId}",
+    "CHARACTER_ACCESS_DENIED": "Character does not belong to this account"
   }
 }

@@ -1,0 +1,9 @@
+{
+  "errors": {
+    "SERVER_NOT_FOUND": "Servidor no encontrado: {serverId}",
+    "INVALID_SERVER_STATUS": "Estado de servidor inválido: {status}",
+    "INVALID_SERVER_NAME": "El nombre del servidor debe tener entre 3 y 50 caracteres",
+    "INVALID_MAX_PLAYERS": "maxPlayers debe ser >= 1",
+    "INVALID_REGION": "region debe tener entre 2 y 50 caracteres"
+  }
+}
