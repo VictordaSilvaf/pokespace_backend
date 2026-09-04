@@ -1,29 +1,44 @@
 export class WorldDomainError extends Error {
-  readonly code: string;
-  readonly args?: Record<string, string | number | boolean>;
-
-  constructor(
-    code: string,
-    message: string,
-    args?: Record<string, string | number | boolean>,
-  ) {
+  constructor(message: string) {
     super(message);
     this.name = new.target.name;
-    this.code = code;
-    this.args = args;
   }
 }
 
-export class WorldNotFoundError extends WorldDomainError {
-  constructor(worldId: string) {
-    super('WORLD_NOT_FOUND', `World not found: ${worldId}`, { worldId });
+export class InvalidSequenceError extends WorldDomainError {
+  constructor(sequence: number, lastSequence: number) {
+    super(
+      `invalid sequence ${sequence}; last accepted was ${lastSequence}`,
+    );
   }
 }
 
-export class InvalidWorldStatusError extends WorldDomainError {
-  constructor(status: string) {
-    super('INVALID_WORLD_STATUS', `Invalid world status: ${status}`, {
-      status,
-    });
+export class MovementBlockedError extends WorldDomainError {
+  constructor() {
+    super('movement blocked by collision or bounds');
+  }
+}
+
+export class SpawnUnavailableError extends WorldDomainError {
+  constructor(mapId: string) {
+    super(`no available spawn on map ${mapId}`);
+  }
+}
+
+export class InstanceFullError extends WorldDomainError {
+  constructor(instanceId: string) {
+    super(`instance is full: ${instanceId}`);
+  }
+}
+
+export class WorldSessionNotFoundError extends WorldDomainError {
+  constructor(connectionId: string) {
+    super(`world session not found: ${connectionId}`);
+  }
+}
+
+export class MapNotFoundError extends WorldDomainError {
+  constructor(mapId: string) {
+    super(`map not found: ${mapId}`);
   }
 }

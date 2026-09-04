@@ -4,7 +4,7 @@ Guia passo a passo para adicionar um bounded context ao monólito modular do Pok
 
 Usaremos como exemplo o módulo **`player`** — perfil do treinador criado após o registro em `identity`. O módulo `identity` já existente é a referência real do projeto.
 
-Playbook específico do catálogo de servidores: [`WORLD_MODULE.md`](./WORLD_MODULE.md).
+Playbook específico do catálogo de servidores: [`SERVERS_MODULE.md`](./SERVERS_MODULE.md).
 
 ---
 

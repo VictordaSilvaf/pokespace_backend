@@ -60,7 +60,10 @@ Swagger: `http://localhost:3000/api/docs`
 | `POST` | `/api/v1/auth/login` | Login por username ou email |
 | `POST` | `/api/v1/auth/refresh` | Renova tokens |
 | `GET` | `/api/v1/auth/me` | Perfil (Bearer) |
-| `GET` | `/api/v1/auth/sessions` | Sessões ativas (Bearer) |
+| `GET` | `/api/v1/servers` | Lista servidores |
+| `POST` | `/api/v1/characters` | Cria personagem + spawn do laboratório (Bearer) |
+
+WebSocket namespace `/world`: `WORLD_ENTER`, `MOVE`, `WORLD_LEAVE` (auth via `auth.token`).
 
 Rotas completas: [docs/API_ROUTES.md](./docs/API_ROUTES.md).
 
@@ -68,15 +71,15 @@ Rotas completas: [docs/API_ROUTES.md](./docs/API_ROUTES.md).
 
 ```
 src/
-├── shared/                 # Kernel compartilhado + ports/adapters transversais
+├── shared/
 ├── modules/
-│   └── identity/           # Autenticação (primeira feature)
-│       ├── domain/
-│       ├── application/
-│       └── infrastructure/
-├── health/
-├── app.module.ts
-└── main.ts
+│   ├── identity/     # Auth
+│   ├── servers/      # Catálogo de servidores
+│   ├── character/    # Personagens
+│   ├── world/        # World Engine (mapas, instâncias, movimento)
+│   └── realtime/     # WebSocket gateway
+maps/
+└── laboratory/       # Asset Tiled do laboratório
 ```
 
 **Como criar um novo módulo:** [docs/CREATING_A_MODULE.md](./docs/CREATING_A_MODULE.md)

@@ -1,26 +1,56 @@
-import type { WorldStatusValue } from '../../domain/value-objects/world-status.vo.js';
-import type { World } from '../../domain/entities/world.entity.js';
-
-export interface GetWorldQuery {
-  worldId: string;
+export interface EnterWorldCommand {
+  connectionId: string;
+  accountId: string;
+  characterId: string;
+  mapId?: string;
 }
 
-export interface WorldResult {
-  worldId: string;
-  name: string;
-  region: string;
-  status: WorldStatusValue;
-  maxPlayers: number;
+export interface LeaveWorldCommand {
+  connectionId: string;
 }
 
-export function toWorldResult(world: World): WorldResult {
-  return {
-    worldId: world.id,
-    name: world.name.value,
-    region: world.region,
-    status: world.status.value,
-    maxPlayers: world.maxPlayers,
-  };
+export interface MoveEntityCommand {
+  connectionId: string;
+  direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
+  sequence: number;
 }
 
-export type ListWorldsResult = WorldResult[];
+export interface WorldEntitySnapshot {
+  id: string;
+  type: string;
+  position: { x: number; y: number; z: number };
+  characterId?: string;
+}
+
+export interface WorldSnapshot {
+  map: { id: string };
+  instance: { id: string };
+  selfEntityId: string;
+  entities: WorldEntitySnapshot[];
+}
+
+export interface EnterWorldResult {
+  snapshot: WorldSnapshot;
+  spawned: WorldEntitySnapshot;
+}
+
+export interface LeaveWorldResult {
+  instanceId: string;
+  entityId: string;
+  despawned: boolean;
+}
+
+export interface MoveEntityResult {
+  accepted: boolean;
+  reason?: string;
+  entityId?: string;
+  position?: { x: number; y: number; z: number };
+  sequence?: number;
+  instanceId?: string;
+}
+
+export interface LaboratorySpawnInfo {
+  mapId: string;
+  instanceId: string;
+  position: { x: number; y: number; z: number };
+}

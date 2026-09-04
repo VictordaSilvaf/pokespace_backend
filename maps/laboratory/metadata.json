@@ -1,0 +1,6 @@
+{
+  "mapId": "laboratory",
+  "displayName": "Professor Oak Laboratory",
+  "defaultInstanceCapacity": 50,
+  "asset": "laboratory.json"
+}

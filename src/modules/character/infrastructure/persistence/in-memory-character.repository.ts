@@ -1,37 +1,37 @@
-import type { Character } from '../../domain/entities/character.entity.js';
+import { Injectable } from '@nestjs/common';
 import type { CharacterRepository } from '../../domain/repositories/character.repository.js';
+import type { Character } from '../../domain/entities/character.entity.js';
 
+@Injectable()
 export class InMemoryCharacterRepository implements CharacterRepository {
-  private readonly characters = new Map<string, Character>();
+  private readonly byId = new Map<string, Character>();
 
   async save(character: Character): Promise<void> {
-    this.characters.set(character.id, character);
+    this.byId.set(character.id, character);
   }
 
-  async findById(characterId: string): Promise<Character | null> {
-    return this.characters.get(characterId) ?? null;
+  async findById(id: string): Promise<Character | null> {
+    return this.byId.get(id) ?? null;
   }
 
-  async listByUserId(userId: string): Promise<Character[]> {
-    return [...this.characters.values()]
-      .filter((character) => character.userId === userId)
-      .sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+  async countByAccountId(accountId: string): Promise<number> {
+    return [...this.byId.values()].filter((c) => c.accountId === accountId)
+      .length;
   }
 
-  async countByUserId(userId: string): Promise<number> {
-    return [...this.characters.values()].filter(
-      (character) => character.userId === userId,
-    ).length;
-  }
-
-  async existsByUserIdAndDisplayName(
-    userId: string,
-    normalizedDisplayName: string,
+  async existsByServerAndName(
+    serverId: string,
+    name: string,
   ): Promise<boolean> {
-    return [...this.characters.values()].some(
-      (character) =>
-        character.userId === userId &&
-        character.displayName.normalized === normalizedDisplayName,
+    const normalized = name.toLowerCase();
+    return [...this.byId.values()].some(
+      (c) =>
+        c.serverId === serverId &&
+        c.name.value.toLowerCase() === normalized,
     );
+  }
+
+  async listByAccountId(accountId: string): Promise<Character[]> {
+    return [...this.byId.values()].filter((c) => c.accountId === accountId);
   }
 }
