@@ -46,10 +46,30 @@
       ]
     }
   ],
+  "npcs": [
+    {
+      "id": "oak",
+      "x": 10,
+      "y": 8,
+      "z": 0,
+      "direction": "DOWN",
+      "label": "Professor Oak",
+      "assetKey": "npc/oak"
+    },
+    {
+      "id": "aide",
+      "x": 12,
+      "y": 6,
+      "z": 0,
+      "direction": "LEFT",
+      "label": "Lab Aide",
+      "assetKey": "npc/aide"
+    }
+  ],
   "width": 20,
   "height": 16,
   "chunks": {
     "count": 2,
-    "pathPattern": "chunks/{cx}_{cy}.json"
+    "pathPattern": "chunks/{cx}_{cy}_z{z}.json"
   }
 }

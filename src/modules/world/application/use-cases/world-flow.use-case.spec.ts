@@ -5,6 +5,8 @@ import { MoveEntityUseCase } from './move-entity.use-case.js';
 import { InstanceManager } from '../services/instance-manager.service.js';
 import { SessionManager } from '../services/session-manager.service.js';
 import { WildSpawnService } from '../services/wild-spawn.service.js';
+import { NpcSpawnService } from '../services/npc-spawn.service.js';
+import { EncounterService } from '../services/encounter.service.js';
 import { InterestAreaService } from '../services/interest-area.service.js';
 import { SharedWorldStateService } from '../services/shared-world-state.service.js';
 import { FileWorldMapRepository } from '../../infrastructure/maps/file-world-map.repository.js';
@@ -21,11 +23,13 @@ describe('World movement use cases', () => {
     instances = new InstanceManager();
     const sessions = new SessionManager();
     const wild = new WildSpawnService();
+    const npcs = new NpcSpawnService();
     const interest = new InterestAreaService();
     const shared = new SharedWorldStateService(null);
-    enter = new EnterWorldUseCase(maps, instances, sessions, wild, interest);
+    const encounters = new EncounterService(wild);
+    enter = new EnterWorldUseCase(maps, instances, sessions, wild, npcs, interest);
     leave = new LeaveWorldUseCase(instances, sessions, shared);
-    move = new MoveEntityUseCase(maps, instances, sessions, shared);
+    move = new MoveEntityUseCase(maps, instances, sessions, shared, encounters);
   });
 
   it('enters laboratory, moves, and leaves', async () => {
@@ -88,5 +92,20 @@ describe('World movement use cases', () => {
       }
     }
     expect(blocked).toBe(true);
+  });
+
+  it('spawns laboratory NPCs on enter', async () => {
+    const result = await enter.execute({
+      connectionId: 'conn-npc',
+      accountId: 'acc-npc',
+      characterId: 'char-npc',
+    });
+    const npcIds = (result.npcSpawned ?? []).map((e) => e.id);
+    expect(npcIds.some((id) => id.startsWith('npc-'))).toBe(true);
+    expect(
+      result.snapshot.entities.some(
+        (e) => e.type === 'npc' || e.id.startsWith('npc-'),
+      ),
+    ).toBe(true);
   });
 });

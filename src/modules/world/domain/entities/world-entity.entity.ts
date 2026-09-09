@@ -9,6 +9,9 @@ export interface EntityVisual {
   dexId?: number;
   assetKey?: string;
   path?: string;
+  /** Display name for NPCs */
+  label?: string;
+  npcId?: string;
 }
 
 export interface WorldEntityProps {
@@ -75,6 +78,30 @@ export class WorldEntity extends Entity<string> {
       level,
       'DOWN',
       visual ?? { dexId },
+    );
+  }
+
+  static createNpc(
+    npcId: string,
+    position: Position,
+    direction: FacingDirection = 'DOWN',
+    visual?: EntityVisual,
+  ): WorldEntity {
+    const id = EntityId.create(`npc-${npcId}`);
+    return new WorldEntity(
+      id,
+      EntityType.NPC,
+      position,
+      undefined,
+      undefined,
+      undefined,
+      direction,
+      {
+        npcId,
+        label: visual?.label ?? npcId,
+        assetKey: visual?.assetKey,
+        path: visual?.path,
+      },
     );
   }
 

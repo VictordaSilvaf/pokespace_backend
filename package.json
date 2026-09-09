@@ -26,7 +26,8 @@
     "docker:prod:logs": "docker compose -f docker-compose.prod.yml --env-file .env.production logs -f",
     "assets:sync": "node ./scripts/assets/sync.mjs",
     "assets:validate": "node ./scripts/assets/validate.mjs",
-    "maps:convert": "node ./scripts/maps/convert-otbm.mjs"
+    "maps:convert": "node ./scripts/maps/convert-otbm.mjs",
+    "world:validate": "node ./scripts/maps/validate-world.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1127.0",

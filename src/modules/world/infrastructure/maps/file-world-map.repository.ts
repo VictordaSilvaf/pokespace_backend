@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Injectable } from '@nestjs/common';
@@ -6,7 +6,10 @@ import { WorldMap, type SpawnPoint } from '../../domain/entities/world-map.entit
 import { MapId } from '../../domain/value-objects/ids.vo.js';
 import { Position } from '../../domain/value-objects/position.vo.js';
 import { MapNotFoundError } from '../../domain/errors/world.errors.js';
-import type { WorldMapRepository } from '../../domain/repositories/world-map.repository.js';
+import type {
+  MapChunk,
+  WorldMapRepository,
+} from '../../domain/repositories/world-map.repository.js';
 
 interface TiledObject {
   id: number;
@@ -40,12 +43,12 @@ interface MapMetadata {
   mapId: string;
   displayName: string;
   version?: string;
+  chunkSize?: number;
 }
 
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
 function resolveMapsRoot(): string {
-  // Prefer repo-root /maps when running from src or dist
   const candidates = [
     join(process.cwd(), 'maps'),
     join(MODULE_DIR, '../../../../../maps'),
@@ -62,9 +65,19 @@ function resolveMapsRoot(): string {
   return join(process.cwd(), 'maps');
 }
 
+function chunkKey(
+  mapId: string,
+  cx: number,
+  cy: number,
+  floor: number,
+): string {
+  return `${mapId}:${cx}:${cy}:${floor}`;
+}
+
 @Injectable()
 export class FileWorldMapRepository implements WorldMapRepository {
   private readonly cache = new Map<string, WorldMap>();
+  private readonly chunkCache = new Map<string, MapChunk>();
   private readonly mapsRoot = resolveMapsRoot();
 
   async getById(id: MapId | string): Promise<WorldMap | null> {
@@ -87,6 +100,92 @@ export class FileWorldMapRepository implements WorldMapRepository {
       throw new MapNotFoundError('laboratory');
     }
     return map;
+  }
+
+  async loadChunk(
+    mapId: string,
+    chunkX: number,
+    chunkY: number,
+    floor = 0,
+  ): Promise<MapChunk | null> {
+    const key = chunkKey(mapId, chunkX, chunkY, floor);
+    if (this.chunkCache.has(key)) {
+      return this.chunkCache.get(key)!;
+    }
+    const withZ = join(
+      this.mapsRoot,
+      mapId,
+      'chunks',
+      `${chunkX}_${chunkY}_z${floor}.json`,
+    );
+    const legacy = join(
+      this.mapsRoot,
+      mapId,
+      'chunks',
+      `${chunkX}_${chunkY}.json`,
+    );
+    const path = existsSync(withZ) ? withZ : existsSync(legacy) ? legacy : null;
+    if (!path) {
+      return null;
+    }
+    const raw = JSON.parse(readFileSync(path, 'utf8')) as MapChunk & {
+      cx?: number;
+      cy?: number;
+      tiles?: Array<Record<string, unknown>>;
+    };
+    const chunk: MapChunk = {
+      mapId: raw.mapId ?? mapId,
+      chunkX: raw.chunkX ?? raw.cx ?? chunkX,
+      chunkY: raw.chunkY ?? raw.cy ?? chunkY,
+      floor: raw.floor ?? floor,
+      chunkSize: raw.chunkSize,
+      tiles: (raw.tiles ?? []).map((t) => {
+        const row = t as {
+          x?: number;
+          y?: number;
+          z?: number;
+          groundId?: number | null;
+          ground?: number | null;
+          objects?: number[];
+          walkable?: boolean;
+          elevation?: number;
+          blocked?: number | boolean;
+        };
+        return {
+          x: Number(row.x),
+          y: Number(row.y),
+          z: Number(row.z ?? floor),
+          groundId: row.groundId ?? row.ground ?? null,
+          objects: row.objects ?? [],
+          walkable:
+            typeof row.walkable === 'boolean'
+              ? row.walkable
+              : !(row.blocked === 1 || row.blocked === true),
+          elevation: Number(row.elevation ?? 0),
+          blocked: Number(row.blocked ?? 0),
+        };
+      }),
+    };
+    this.chunkCache.set(key, chunk);
+    return chunk;
+  }
+
+  async unloadChunk(
+    mapId: string,
+    chunkX: number,
+    chunkY: number,
+    floor = 0,
+  ): Promise<void> {
+    this.chunkCache.delete(chunkKey(mapId, chunkX, chunkY, floor));
+  }
+
+  getChunk(
+    mapId: string,
+    chunkX: number,
+    chunkY: number,
+    floor = 0,
+  ): MapChunk | null {
+    return this.chunkCache.get(chunkKey(mapId, chunkX, chunkY, floor)) ?? null;
   }
 
   private loadMap(mapId: string): WorldMap {

@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Body,
   Controller,
+  ForbiddenException,
   NotFoundException,
   Param,
   ParseUUIDPipe,
@@ -19,6 +20,11 @@ import {
   BattleNotFoundError,
 } from '../../domain/errors/battle.errors.js';
 import { PokemonDomainError } from '../../../pokemon/domain/errors/pokemon.errors.js';
+import {
+  CharacterAccessDeniedError,
+  CharacterDomainError,
+  CharacterNotFoundError,
+} from '../../../character/domain/errors/character.errors.js';
 import { IsIn, IsInt, IsOptional, IsString, IsUUID, Max, Min } from 'class-validator';
 
 class StartWildBattleDto {
@@ -49,6 +55,9 @@ class StartWildBattleDto {
 }
 
 class BattleActionDto {
+  @IsUUID('4')
+  characterId!: string;
+
   @IsIn(['move', 'capture', 'flee'])
   action!: 'move' | 'capture' | 'flee';
 
@@ -76,11 +85,12 @@ export class BattleController {
   @Post('wild')
   @ApiOperation({ summary: 'Start a wild encounter battle context' })
   async start(
-    @CurrentUser() _user: AuthenticatedUser,
+    @CurrentUser() user: AuthenticatedUser,
     @Body() body: StartWildBattleDto,
   ) {
     try {
       return await this.startWild.execute({
+        accountId: user.userId,
         characterId: body.characterId,
         playerDexId: body.playerDexId,
         playerLevel: body.playerLevel,
@@ -103,7 +113,8 @@ export class BattleController {
     try {
       return await this.executeAction.execute({
         battleId,
-        characterId: user.userId,
+        accountId: user.userId,
+        characterId: body.characterId,
         action: body.action,
         moveId: body.moveId,
         ballBonus: body.ballBonus,
@@ -117,9 +128,16 @@ export class BattleController {
     if (error instanceof BattleNotFoundError) {
       throw new NotFoundException(error.message);
     }
+    if (error instanceof CharacterNotFoundError) {
+      throw new NotFoundException(error.message);
+    }
+    if (error instanceof CharacterAccessDeniedError) {
+      throw new ForbiddenException(error.message);
+    }
     if (
       error instanceof BattleDomainError ||
-      error instanceof PokemonDomainError
+      error instanceof PokemonDomainError ||
+      error instanceof CharacterDomainError
     ) {
       throw new BadRequestException(error.message);
     }

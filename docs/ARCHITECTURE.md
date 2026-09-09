@@ -1,5 +1,8 @@
 # Arquitetura do Backend — PokeSpace
 
+Inventário do que já está implementado vs gaps do roadmap import→runtime:
+[`docs/architecture/current-state.md`](./architecture/current-state.md).
+
 ## 1. Visão geral
 
 O backend do jogo é construído com **NestJS** como framework de composição e I/O, seguindo:

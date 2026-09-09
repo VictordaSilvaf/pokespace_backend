@@ -23,6 +23,14 @@ import { SaveCharacterWorldStateUseCase } from '../../../character/application/u
 import { EnterWorldUseCase } from '../../../world/application/use-cases/enter-world.use-case.js';
 import { LeaveWorldUseCase } from '../../../world/application/use-cases/leave-world.use-case.js';
 import { MoveEntityUseCase } from '../../../world/application/use-cases/move-entity.use-case.js';
+import { InterestAreaService } from '../../../world/application/services/interest-area.service.js';
+import { SessionManager } from '../../../world/application/services/session-manager.service.js';
+import { StartWildBattleUseCase } from '../../../battle/application/use-cases/start-wild-battle.use-case.js';
+import { ExecuteBattleActionUseCase } from '../../../battle/application/use-cases/execute-battle-action.use-case.js';
+import {
+  BattleDomainError,
+  BattleNotFoundError,
+} from '../../../battle/domain/errors/battle.errors.js';
 import {
   InvalidSequenceError,
   MovementBlockedError,
@@ -35,6 +43,10 @@ import {
   CharacterNotFoundError,
 } from '../../../character/domain/errors/character.errors.js';
 import type { FacingDirection } from '../../../character/domain/value-objects/character-world-state.vo.js';
+
+/** MVP default party lead until inventory/party is wired into encounter. */
+const DEFAULT_PLAYER_DEX_ID = 25;
+const DEFAULT_PLAYER_LEVEL = 5;
 
 type AuthedSocket = Socket & {
   data: {
@@ -66,6 +78,10 @@ export class WorldGateway
     private readonly enterWorld: EnterWorldUseCase,
     private readonly leaveWorld: LeaveWorldUseCase,
     private readonly moveEntity: MoveEntityUseCase,
+    private readonly interest: InterestAreaService,
+    private readonly sessions: SessionManager,
+    private readonly startWildBattle: StartWildBattleUseCase,
+    private readonly executeBattleAction: ExecuteBattleActionUseCase,
   ) {}
 
   async handleConnection(client: AuthedSocket): Promise<void> {
@@ -143,6 +159,10 @@ export class WorldGateway
         });
       }
 
+      for (const npc of result.npcSpawned ?? []) {
+        client.to(room).emit('ENTITY_SPAWNED', npc);
+      }
+
       return { ok: true };
     } catch (error) {
       return this.mapError(client, error);
@@ -187,13 +207,28 @@ export class WorldGateway
       });
 
       if (result.accepted && result.instanceId) {
-        this.server.to(this.room(result.instanceId)).emit('ENTITY_MOVED', {
-          type: 'ENTITY_MOVED',
+        const payload = {
+          type: 'ENTITY_MOVED' as const,
           entityId: result.entityId,
           position: result.position,
           direction: result.direction,
           sequence: result.sequence,
-        });
+        };
+        // Interest-filtered broadcast: only peers within Chebyshev radius
+        if (result.position) {
+          const peers = this.sessions.listByInstance(result.instanceId);
+          for (const peer of peers) {
+            if (peer.connectionId === client.id) continue;
+            if (
+              this.interest.within(result.position, peer.position) ||
+              peer.entityId === result.entityId
+            ) {
+              this.server.to(peer.connectionId).emit('ENTITY_MOVED', payload);
+            }
+          }
+        } else {
+          this.server.to(this.room(result.instanceId)).emit('ENTITY_MOVED', payload);
+        }
 
         if (
           result.characterId &&
@@ -212,6 +247,52 @@ export class WorldGateway
             direction: result.direction,
           });
         }
+
+        if (
+          result.encounter?.triggered &&
+          result.encounter.dexId != null &&
+          result.encounter.level != null &&
+          result.characterId &&
+          result.accountId
+        ) {
+          const encounterPayload = {
+            type: 'battle.encounter' as const,
+            dexId: result.encounter.dexId,
+            level: result.encounter.level,
+            zoneId: result.encounter.zoneId,
+            position: result.position,
+          };
+          client.emit('battle.encounter', encounterPayload);
+
+          try {
+            const battle = await this.startWildBattle.execute({
+              accountId: result.accountId,
+              characterId: result.characterId,
+              playerDexId: DEFAULT_PLAYER_DEX_ID,
+              playerLevel: DEFAULT_PLAYER_LEVEL,
+              wildDexId: result.encounter.dexId,
+              wildLevel: result.encounter.level,
+            });
+            client.emit('battle.started', {
+              type: 'battle.started',
+              encounter: encounterPayload,
+              battle,
+              effects: (battle.playerMoves ?? [])
+                .concat(battle.wildMoves ?? [])
+                .map((m) => m.missileAssetKey)
+                .filter(Boolean),
+            });
+          } catch (battleError) {
+            this.logger.warn(
+              `encounter→battle failed: ${(battleError as Error).message}`,
+            );
+            client.emit('battle.error', {
+              type: 'battle.error',
+              code: 'BATTLE_START_FAILED',
+              message: (battleError as Error).message,
+            });
+          }
+        }
       }
 
       return result;
@@ -221,6 +302,59 @@ export class WorldGateway
       }
       if (error instanceof MovementBlockedError) {
         return this.error(client, 'MOVEMENT_BLOCKED', error.message);
+      }
+      return this.mapError(client, error);
+    }
+  }
+
+  @SubscribeMessage('BATTLE_ACTION')
+  async onBattleAction(
+    @ConnectedSocket() client: AuthedSocket,
+    @MessageBody()
+    body: {
+      battleId?: string;
+      characterId?: string;
+      action?: 'move' | 'capture' | 'flee';
+      moveId?: string;
+      ballBonus?: number;
+    },
+  ) {
+    if (!client.data.authenticated || !client.data.userId) {
+      return this.error(client, 'UNAUTHORIZED', 'not authenticated');
+    }
+    if (!body?.battleId || !body?.characterId || !body?.action) {
+      return this.error(
+        client,
+        'BAD_REQUEST',
+        'battleId, characterId, action required',
+      );
+    }
+
+    try {
+      const battle = await this.executeBattleAction.execute({
+        battleId: body.battleId,
+        accountId: client.data.userId,
+        characterId: body.characterId,
+        action: body.action,
+        moveId: body.moveId,
+        ballBonus: body.ballBonus,
+      });
+      const payload = {
+        type: 'battle.updated' as const,
+        battle,
+        effects: [battle.lastAction?.appliedEffect].filter(Boolean),
+        missiles: battle.lastAction?.moveId
+          ? [`effects/${battle.lastAction.moveId}`]
+          : [],
+      };
+      client.emit('battle.updated', payload);
+      return { ok: true, battle };
+    } catch (error) {
+      if (error instanceof BattleNotFoundError) {
+        return this.error(client, 'BATTLE_NOT_FOUND', error.message);
+      }
+      if (error instanceof BattleDomainError) {
+        return this.error(client, error.code, error.message);
       }
       return this.mapError(client, error);
     }

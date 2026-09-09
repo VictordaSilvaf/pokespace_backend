@@ -12,6 +12,7 @@ import { GridNavigationService } from '../../domain/services/navigation.service.
 import { InstanceManager } from '../services/instance-manager.service.js';
 import { SessionManager } from '../services/session-manager.service.js';
 import { SharedWorldStateService } from '../services/shared-world-state.service.js';
+import { EncounterService } from '../services/encounter.service.js';
 import type { MoveEntityCommand, MoveEntityResult } from '../dto/world.dto.js';
 import {
   InvalidSequenceError,
@@ -31,6 +32,7 @@ export class MoveEntityUseCase
     private readonly instances: InstanceManager,
     private readonly sessions: SessionManager,
     private readonly sharedState: SharedWorldStateService,
+    private readonly encounters: EncounterService,
   ) {}
 
   async execute(command: MoveEntityCommand): Promise<MoveEntityResult> {
@@ -86,6 +88,8 @@ export class MoveEntityUseCase
       direction: command.direction,
     });
 
+    const encounter = this.encounters.roll(session.mapId.value, target);
+
     return {
       accepted: true,
       entityId: entity.id,
@@ -96,6 +100,7 @@ export class MoveEntityUseCase
       characterId: session.characterId,
       accountId: session.accountId,
       mapId: session.mapId.value,
+      encounter,
     };
   }
 }

@@ -328,10 +328,12 @@ Pipeline: `pnpm maps:convert laboratory` (Tiled → chunks; OTBM path via `OTBM_
 
 Body: `{ characterId, playerDexId, playerLevel, wildDexId, wildLevel, wildEntityId? }`
 
+O `characterId` deve pertencer à conta autenticada.
+
 Retorna contexto de batalha com moves do seed catalog (`tackle`, `ember`, …) e stats derivados.
 
 ### `POST /api/v1/battles/:battleId/actions`
 
-Body: `{ "action": "move"|"capture"|"flee", "moveId?", "ballBonus?" }`
+Body: `{ "characterId": "uuid", "action": "move"|"capture"|"flee", "moveId?", "ballBonus?" }`
 
-Aplica dano/efeito, tentativa de captura ou fuga. Estado de batalha é in-memory (v1).
+Aplica dano/efeito, tentativa de captura ou fuga. O `characterId` deve ser o mesmo da batalha e pertencente à conta autenticada. Estado de batalha é in-memory (v1).

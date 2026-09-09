@@ -1,28 +1,36 @@
 #!/usr/bin/env node
 /**
- * OTBM → PokeSpace map pipeline (scaffold).
+ * OTBM / Tiled → PokeSpace map chunks.
  *
- * When OT Client map assets are available, point OTBM_PATH / OTBM_DIR at them.
- * This script currently:
- *  1. Validates metadata.json contract used by WorldMap loader
- *  2. Emits chunks/collision summary sidecar when Tiled JSON exists
- *  3. Documents the target PokeSpace map layout for a future OTBM binary parser
+ * Usage:
+ *   pnpm maps:convert [mapId]
+ *   OTBM_PATH=/path/to/file.otbm pnpm maps:convert laboratory
  *
- * Target layout per map:
- *   maps/<mapId>/
- *     metadata.json   # mapId, displayName, tilesets, spawnZones, chunkSize
- *     <mapId>.json    # Tiled (or converted) layers: Ground, Collision, Spawns
- *     chunks/         # optional chunk JSON for large maps (cx_cy.json)
+ * When OTBM_PATH is set, attempts to shell out to the frontend OTBM crop
+ * exporter if POKESPACE_FRONTEND tools are available; otherwise keeps Tiled path.
+ *
+ * Output:
+ *   maps/<mapId>/chunks/{cx}_{cy}_z{z}.json
+ *   maps/<mapId>/metadata.json (enriched)
  */
-import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
+import {
+  mkdirSync,
+  readFileSync,
+  writeFileSync,
+  existsSync,
+  readdirSync,
+  unlinkSync,
+} from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '../..');
 const mapId = process.argv[2] ?? 'laboratory';
 const mapDir = join(ROOT, 'maps', mapId);
 const metaPath = join(mapDir, 'metadata.json');
 const tiledPath = join(mapDir, `${mapId}.json`);
+const floorZ = Number(process.env.MAP_Z ?? 0);
 
 if (!existsSync(metaPath)) {
   console.error(`[maps:convert] missing ${metaPath}`);
@@ -30,15 +38,46 @@ if (!existsSync(metaPath)) {
 }
 
 const meta = JSON.parse(readFileSync(metaPath, 'utf8'));
-const chunkSize = meta.chunkSize ?? 16;
+/** Roadmap default 32; laboratory may keep 16 until regenerated. */
+const chunkSize = Number(meta.chunkSize ?? 32);
 
 if (process.env.OTBM_PATH) {
-  console.warn(
-    `[maps:convert] OTBM_PATH=${process.env.OTBM_PATH} set, but binary OTBM parser is not bundled yet.`,
+  const feExporter = join(
+    ROOT,
+    '../pokespace_frontend/tools/ot-pipeline/export-pokespace-world.mjs',
   );
-  console.warn(
-    '[maps:convert] Keep exporting via Tiled until OT assets + parser land; metadata contract is ready.',
-  );
+  if (existsSync(feExporter)) {
+    console.log(`[maps:convert] OTBM_PATH set — delegating to FE exporter`);
+    const result = spawnSync(
+      process.execPath,
+      [
+        feExporter,
+        '--otbm',
+        process.env.OTBM_PATH,
+        '--out',
+        mapDir,
+        '--map-id',
+        mapId,
+        '--chunk',
+        String(chunkSize),
+        '--z',
+        String(process.env.MAP_Z ?? 7),
+      ],
+      { stdio: 'inherit' },
+    );
+    if (result.status !== 0) {
+      console.warn(
+        '[maps:convert] FE OTBM export failed; falling back to Tiled if present',
+      );
+    } else {
+      console.log('[maps:convert] OTBM export done');
+      process.exit(0);
+    }
+  } else {
+    console.warn(
+      `[maps:convert] OTBM_PATH=${process.env.OTBM_PATH} but FE exporter missing at ${feExporter}`,
+    );
+  }
 }
 
 if (!existsSync(tiledPath)) {
@@ -57,6 +96,13 @@ const ground = tiled.layers?.find(
 const chunksDir = join(mapDir, 'chunks');
 mkdirSync(chunksDir, { recursive: true });
 
+// Remove legacy cx_cy.json without z if regenerating
+for (const name of readdirSync(chunksDir)) {
+  if (/^\d+_\d+\.json$/.test(name)) {
+    unlinkSync(join(chunksDir, name));
+  }
+}
+
 const width = tiled.width;
 const height = tiled.height;
 let chunkCount = 0;
@@ -73,18 +119,28 @@ for (let cy = 0; cy * chunkSize < height; cy++) {
         const idx = gy * width + gx;
         const blocked = collision?.data?.[idx] ? 1 : 0;
         const groundGid = ground?.data?.[idx] ?? 0;
-        tiles.push({ x: gx, y: gy, ground: groundGid, blocked });
+        tiles.push({
+          x: gx,
+          y: gy,
+          z: floorZ,
+          groundId: groundGid || null,
+          objects: [],
+          walkable: !blocked,
+          elevation: 0,
+          blocked,
+        });
       }
     }
     const out = {
       mapId,
-      cx,
-      cy,
+      chunkX: cx,
+      chunkY: cy,
+      floor: floorZ,
       chunkSize,
       tiles,
     };
     writeFileSync(
-      join(chunksDir, `${cx}_${cy}.json`),
+      join(chunksDir, `${cx}_${cy}_z${floorZ}.json`),
       `${JSON.stringify(out)}\n`,
       'utf8',
     );
@@ -100,7 +156,7 @@ const enriched = {
   chunkSize,
   chunks: {
     count: chunkCount,
-    pathPattern: `chunks/{cx}_{cy}.json`,
+    pathPattern: 'chunks/{cx}_{cy}_z{z}.json',
   },
   tilesets:
     meta.tilesets ??
@@ -115,5 +171,5 @@ const enriched = {
 
 writeFileSync(metaPath, `${JSON.stringify(enriched, null, 2)}\n`, 'utf8');
 console.log(
-  `[maps:convert] ${mapId}: wrote ${chunkCount} chunks + updated metadata`,
+  `[maps:convert] ${mapId}: wrote ${chunkCount} chunks (size=${chunkSize}, z=${floorZ}) + updated metadata`,
 );

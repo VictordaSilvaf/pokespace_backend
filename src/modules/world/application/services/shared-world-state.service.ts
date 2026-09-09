@@ -15,6 +15,10 @@ export interface PresencePayload {
 /**
  * Shared presence for multi-replica readiness.
  * Uses Redis when available; otherwise keeps a local Map (single process).
+ *
+ * MVP Laboratory: presence is write-only (TTL). Gameplay snapshots remain
+ * in-process via InstanceManager/SessionManager (single-node authority).
+ * Cross-replica read/sync is a later hardening step — not required for lab MVP.
  */
 @Injectable()
 export class SharedWorldStateService {

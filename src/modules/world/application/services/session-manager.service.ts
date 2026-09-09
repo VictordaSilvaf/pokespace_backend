@@ -23,6 +23,17 @@ export class SessionManager {
     return this.byCharacter.get(characterId);
   }
 
+  /** All sessions currently on a given instance (for interest-filtered emits). */
+  listByInstance(instanceId: string): WorldSession[] {
+    const out: WorldSession[] = [];
+    for (const session of this.byConnection.values()) {
+      if (session.instanceId.value === instanceId) {
+        out.push(session);
+      }
+    }
+    return out;
+  }
+
   removeByConnection(connectionId: string): WorldSession | undefined {
     const session = this.byConnection.get(connectionId);
     if (!session) {

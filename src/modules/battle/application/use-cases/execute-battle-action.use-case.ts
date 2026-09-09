@@ -7,10 +7,12 @@ import {
 import { BattleNotFoundError } from '../../domain/errors/battle.errors.js';
 import { getMoveById } from '../../domain/services/move-catalog.js';
 import { BattleDomainError } from '../../domain/errors/battle.errors.js';
+import { GetCharacterForAccountUseCase } from '../../../character/application/use-cases/get-character-for-account.use-case.js';
 import { toBattleResult, type BattleResult } from '../dto/battle.dto.js';
 
 export interface ExecuteBattleActionCommand {
   battleId: string;
+  accountId: string;
   characterId: string;
   action: 'move' | 'capture' | 'flee';
   moveId?: string;
@@ -24,9 +26,15 @@ export class ExecuteBattleActionUseCase
   constructor(
     @Inject(BATTLE_REPOSITORY)
     private readonly battles: BattleRepository,
+    private readonly getCharacter: GetCharacterForAccountUseCase,
   ) {}
 
   async execute(command: ExecuteBattleActionCommand): Promise<BattleResult> {
+    await this.getCharacter.execute({
+      characterId: command.characterId,
+      accountId: command.accountId,
+    });
+
     const battle = await this.battles.findById(command.battleId);
     if (!battle || battle.characterId !== command.characterId) {
       throw new BattleNotFoundError(command.battleId);

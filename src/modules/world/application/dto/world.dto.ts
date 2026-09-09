@@ -53,6 +53,7 @@ export interface EnterWorldResult {
   snapshot: WorldSnapshot;
   spawned: WorldEntitySnapshot;
   wildSpawned?: WorldEntitySnapshot[];
+  npcSpawned?: WorldEntitySnapshot[];
 }
 
 export interface LeaveWorldResult {
@@ -77,6 +78,12 @@ export interface MoveEntityResult {
   characterId?: string;
   accountId?: string;
   mapId?: string;
+  encounter?: {
+    triggered: boolean;
+    dexId?: number;
+    level?: number;
+    zoneId?: string;
+  };
 }
 
 export interface LaboratorySpawnInfo {

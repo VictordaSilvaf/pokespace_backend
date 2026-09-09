@@ -14,10 +14,12 @@ import {
 } from '../../../pokemon/domain/repositories/pokemon.repository.js';
 import { DexId } from '../../../pokemon/domain/value-objects/dex-id.vo.js';
 import { PokemonNotFoundError } from '../../../pokemon/domain/errors/pokemon.errors.js';
+import { GetCharacterForAccountUseCase } from '../../../character/application/use-cases/get-character-for-account.use-case.js';
 import { starterMovesForType } from '../../domain/services/move-catalog.js';
 import { toBattleResult, type BattleResult } from '../dto/battle.dto.js';
 
 export interface StartWildBattleCommand {
+  accountId: string;
   characterId: string;
   playerDexId: number;
   playerLevel: number;
@@ -35,9 +37,15 @@ export class StartWildBattleUseCase
     private readonly battles: BattleRepository,
     @Inject(POKEMON_REPOSITORY)
     private readonly pokemon: PokemonRepository,
+    private readonly getCharacter: GetCharacterForAccountUseCase,
   ) {}
 
   async execute(command: StartWildBattleCommand): Promise<BattleResult> {
+    await this.getCharacter.execute({
+      characterId: command.characterId,
+      accountId: command.accountId,
+    });
+
     const playerSpecies = await this.pokemon.findByDexId(
       DexId.create(command.playerDexId),
     );

@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "note": "dexId is identity; creature id is AssetReference only",
+  "visuals": [
+    {
+      "dexId": 3,
+      "portrait": {
+        "category": "creature",
+        "id": 40056
+      },
+      "walk": {
+        "category": "creature",
+        "id": 40056
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 7,
+      "portrait": {
+        "category": "creature",
+        "id": 40036
+      },
+      "walk": {
+        "category": "creature",
+        "id": 40036
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 9,
+      "portrait": {
+        "category": "creature",
+        "id": 40040
+      },
+      "walk": {
+        "category": "creature",
+        "id": 40040
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 52,
+      "portrait": {
+        "category": "creature",
+        "id": 40037
+      },
+      "walk": {
+        "category": "creature",
+        "id": 40037
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 107,
+      "portrait": {
+        "category": "creature",
+        "id": 40368
+      },
+      "walk": {
+        "category": "creature",
+        "id": 40368
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 114,
+      "portrait": {
+        "category": "creature",
+        "id": 40052
+      },
+      "walk": {
+        "category": "creature",
+        "id": 40052
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    }
+  ]
+}

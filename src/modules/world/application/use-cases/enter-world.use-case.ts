@@ -12,6 +12,7 @@ import { SpawnService } from '../../domain/services/spawn.service.js';
 import { InstanceManager } from '../services/instance-manager.service.js';
 import { SessionManager } from '../services/session-manager.service.js';
 import { WildSpawnService } from '../services/wild-spawn.service.js';
+import { NpcSpawnService } from '../services/npc-spawn.service.js';
 import { InterestAreaService } from '../services/interest-area.service.js';
 import type { EnterWorldCommand, EnterWorldResult } from '../dto/world.dto.js';
 import { MapNotFoundError } from '../../domain/errors/world.errors.js';
@@ -29,6 +30,7 @@ export class EnterWorldUseCase
     private readonly instances: InstanceManager,
     private readonly sessions: SessionManager,
     private readonly wildSpawns: WildSpawnService,
+    private readonly npcSpawns: NpcSpawnService,
     private readonly interest: InterestAreaService,
   ) {}
 
@@ -52,6 +54,7 @@ export class EnterWorldUseCase
 
     const instance = this.instances.findAvailableInstance(map.id);
 
+    const npcSpawned = this.npcSpawns.ensureNpcs(map, instance);
     const wildSpawned = this.wildSpawns.ensureSpawns(map, instance);
 
     let spawn = this.spawnService.findSpawn(map, instance.occupiedKeys());
@@ -101,6 +104,7 @@ export class EnterWorldUseCase
       },
       spawned: entity.toSnapshot(),
       wildSpawned: wildSpawned.map((e) => e.toSnapshot()),
+      npcSpawned: npcSpawned.map((e) => e.toSnapshot()),
     };
   }
 }
