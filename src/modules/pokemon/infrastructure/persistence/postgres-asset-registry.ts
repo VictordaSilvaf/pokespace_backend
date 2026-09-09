@@ -48,12 +48,14 @@ export class PostgresAssetRegistry implements AssetRegistry {
 
     const assets: PokemonAssetsResult = {};
     for (const row of result.rows) {
+      const lookType = parseLookTypeFromPath(row.path);
       const sprite: SpriteAssetResult = {
         assetKey: row.asset_key,
         path: row.path,
         frameWidth: row.frame_width,
         frameHeight: row.frame_height,
         frameCount: row.frame_count,
+        ...(lookType != null ? { lookType } : {}),
       };
       assets[VISUAL_RESULT_KEY[row.visual_type]] = sprite;
     }
@@ -134,4 +136,11 @@ export class PostgresAssetRegistry implements AssetRegistry {
     }
     return out;
   }
+}
+
+function parseLookTypeFromPath(path: string): number | null {
+  const match = /creature\/(\d+)\./i.exec(path);
+  if (!match) return null;
+  const n = Number(match[1]);
+  return Number.isInteger(n) ? n : null;
 }

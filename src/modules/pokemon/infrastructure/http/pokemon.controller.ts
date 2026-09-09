@@ -5,8 +5,9 @@ import {
   NotFoundException,
   Param,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiQuery, ApiTags } from '@nestjs/swagger';
 import { ListPokemonUseCase } from '../../application/use-cases/list-pokemon.use-case.js';
 import { GetPokemonByDexIdUseCase } from '../../application/use-cases/get-pokemon-by-dex-id.use-case.js';
 import {
@@ -23,14 +24,29 @@ export class PokemonController {
   ) {}
 
   @Get()
-  @ApiOperation({ summary: 'List active Pokémon catalog entries' })
-  async list() {
-    return this.listPokemon.execute();
+  @ApiOperation({ summary: 'List active Pokémon (paginated, filterable)' })
+  @ApiQuery({ name: 'q', required: false })
+  @ApiQuery({ name: 'type', required: false })
+  @ApiQuery({ name: 'limit', required: false })
+  @ApiQuery({ name: 'offset', required: false })
+  async list(
+    @Query('q') q?: string,
+    @Query('type') type?: string,
+    @Query('limit') limit?: string,
+    @Query('offset') offset?: string,
+  ) {
+    return this.listPokemon.execute({
+      q,
+      type,
+      limit: limit != null ? Number(limit) : undefined,
+      offset: offset != null ? Number(offset) : undefined,
+    });
   }
 
   @Get(':dexId')
   @ApiOperation({
-    summary: 'Get Pokémon by National Dex id (includes visual assets when registered)',
+    summary:
+      'Get Pokémon by National Dex id (includes visual assets when registered)',
   })
   async getByDexId(
     @Param('dexId', new ParseIntPipe({ errorHttpStatusCode: 400 }))

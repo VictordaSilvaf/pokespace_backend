@@ -16,13 +16,22 @@ export interface PokemonRow {
   special_defense: number;
   speed: number;
   status: string;
+  look_type: number | null;
+  portrait_id: number | null;
+  experience: number | null;
+  ot_hp: number | null;
+  ot_speed: number | null;
+  has_shiny: boolean;
+  has_mega: boolean;
+  source: string;
   created_at: Date;
 }
 
 export const POKEMON_SELECTED_COLUMNS = `
   id, dex_id, name, types,
   hp, attack, defense, special_attack, special_defense, speed,
-  status, created_at
+  status, look_type, portrait_id, experience, ot_hp, ot_speed,
+  has_shiny, has_mega, source, created_at
 `.trim();
 
 export function mapRowToPokemon(row: PokemonRow): Pokemon {
@@ -40,6 +49,14 @@ export function mapRowToPokemon(row: PokemonRow): Pokemon {
       speed: row.speed,
     }),
     status: PokemonStatus.create(row.status),
+    lookType: row.look_type,
+    portraitId: row.portrait_id,
+    experience: row.experience,
+    otHp: row.ot_hp,
+    otSpeed: row.ot_speed,
+    hasShiny: row.has_shiny,
+    hasMega: row.has_mega,
+    source: row.source ?? 'ot-catalog',
     createdAt: row.created_at,
   });
 }

@@ -3,6 +3,7 @@ import { IdentityModule } from '../identity/identity.module.js';
 import { CharacterModule } from '../character/character.module.js';
 import { WorldModule } from '../world/world.module.js';
 import { BattleModule } from '../battle/battle.module.js';
+import { PokemonModule } from '../pokemon/pokemon.module.js';
 import { WorldGateway } from './infrastructure/websocket/world.gateway.js';
 
 /**
@@ -10,7 +11,13 @@ import { WorldGateway } from './infrastructure/websocket/world.gateway.js';
  * Gateway stays thin — business rules live in World / Character / Battle use cases.
  */
 @Module({
-  imports: [IdentityModule, CharacterModule, WorldModule, BattleModule],
+  imports: [
+    IdentityModule,
+    CharacterModule,
+    WorldModule,
+    BattleModule,
+    PokemonModule,
+  ],
   providers: [WorldGateway],
 })
 export class RealtimeModule {}

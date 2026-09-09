@@ -1,12 +1,13 @@
 {
-  "generatedAt": "2026-09-09T00:10:21.717Z",
-  "packRoot": "(seed)",
+  "generatedAt": "2026-09-09T21:31:32.831Z",
+  "packRoot": "(pokemon-visuals.json)",
   "entries": [
     {
       "dexId": 1,
       "visualType": "portrait",
       "assetKey": "pokemon/1/portrait",
-      "path": "sprites/pokemon/1/portrait.png",
+      "path": "sprites/creature/376.png",
+      "lookType": 376,
       "frameWidth": 64,
       "frameHeight": 64,
       "frameCount": 1
@@ -15,7 +16,48 @@
       "dexId": 1,
       "visualType": "walk",
       "assetKey": "pokemon/1/walk",
-      "path": "sprites/pokemon/1/walk.png",
+      "path": "sprites/creature/376.png",
+      "lookType": 376,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 2,
+      "visualType": "portrait",
+      "assetKey": "pokemon/2/portrait",
+      "path": "sprites/creature/375.png",
+      "lookType": 375,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 2,
+      "visualType": "walk",
+      "assetKey": "pokemon/2/walk",
+      "path": "sprites/creature/375.png",
+      "lookType": 375,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 3,
+      "visualType": "portrait",
+      "assetKey": "pokemon/3/portrait",
+      "path": "sprites/creature/373.png",
+      "lookType": 373,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 3,
+      "visualType": "walk",
+      "assetKey": "pokemon/3/walk",
+      "path": "sprites/creature/373.png",
+      "lookType": 373,
       "frameWidth": 32,
       "frameHeight": 32,
       "frameCount": 4
@@ -24,7 +66,8 @@
       "dexId": 4,
       "visualType": "portrait",
       "assetKey": "pokemon/4/portrait",
-      "path": "sprites/pokemon/4/portrait.png",
+      "path": "sprites/creature/380.png",
+      "lookType": 380,
       "frameWidth": 64,
       "frameHeight": 64,
       "frameCount": 1
@@ -33,7 +76,48 @@
       "dexId": 4,
       "visualType": "walk",
       "assetKey": "pokemon/4/walk",
-      "path": "sprites/pokemon/4/walk.png",
+      "path": "sprites/creature/380.png",
+      "lookType": 380,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 5,
+      "visualType": "portrait",
+      "assetKey": "pokemon/5/portrait",
+      "path": "sprites/creature/374.png",
+      "lookType": 374,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 5,
+      "visualType": "walk",
+      "assetKey": "pokemon/5/walk",
+      "path": "sprites/creature/374.png",
+      "lookType": 374,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 6,
+      "visualType": "portrait",
+      "assetKey": "pokemon/6/portrait",
+      "path": "sprites/creature/556.png",
+      "lookType": 556,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 6,
+      "visualType": "walk",
+      "assetKey": "pokemon/6/walk",
+      "path": "sprites/creature/556.png",
+      "lookType": 556,
       "frameWidth": 32,
       "frameHeight": 32,
       "frameCount": 4
@@ -42,7 +126,8 @@
       "dexId": 7,
       "visualType": "portrait",
       "assetKey": "pokemon/7/portrait",
-      "path": "sprites/pokemon/7/portrait.png",
+      "path": "sprites/creature/353.png",
+      "lookType": 353,
       "frameWidth": 64,
       "frameHeight": 64,
       "frameCount": 1
@@ -51,7 +136,168 @@
       "dexId": 7,
       "visualType": "walk",
       "assetKey": "pokemon/7/walk",
-      "path": "sprites/pokemon/7/walk.png",
+      "path": "sprites/creature/353.png",
+      "lookType": 353,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 8,
+      "visualType": "portrait",
+      "assetKey": "pokemon/8/portrait",
+      "path": "sprites/creature/357.png",
+      "lookType": 357,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 8,
+      "visualType": "walk",
+      "assetKey": "pokemon/8/walk",
+      "path": "sprites/creature/357.png",
+      "lookType": 357,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 9,
+      "visualType": "portrait",
+      "assetKey": "pokemon/9/portrait",
+      "path": "sprites/creature/406.png",
+      "lookType": 406,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 9,
+      "visualType": "walk",
+      "assetKey": "pokemon/9/walk",
+      "path": "sprites/creature/406.png",
+      "lookType": 406,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 10,
+      "visualType": "portrait",
+      "assetKey": "pokemon/10/portrait",
+      "path": "sprites/creature/383.png",
+      "lookType": 383,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 10,
+      "visualType": "walk",
+      "assetKey": "pokemon/10/walk",
+      "path": "sprites/creature/383.png",
+      "lookType": 383,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 11,
+      "visualType": "portrait",
+      "assetKey": "pokemon/11/portrait",
+      "path": "sprites/creature/382.png",
+      "lookType": 382,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 11,
+      "visualType": "walk",
+      "assetKey": "pokemon/11/walk",
+      "path": "sprites/creature/382.png",
+      "lookType": 382,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 12,
+      "visualType": "portrait",
+      "assetKey": "pokemon/12/portrait",
+      "path": "sprites/creature/391.png",
+      "lookType": 391,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 12,
+      "visualType": "walk",
+      "assetKey": "pokemon/12/walk",
+      "path": "sprites/creature/391.png",
+      "lookType": 391,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 13,
+      "visualType": "portrait",
+      "assetKey": "pokemon/13/portrait",
+      "path": "sprites/creature/372.png",
+      "lookType": 372,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 13,
+      "visualType": "walk",
+      "assetKey": "pokemon/13/walk",
+      "path": "sprites/creature/372.png",
+      "lookType": 372,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 14,
+      "visualType": "portrait",
+      "assetKey": "pokemon/14/portrait",
+      "path": "sprites/creature/411.png",
+      "lookType": 411,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 14,
+      "visualType": "walk",
+      "assetKey": "pokemon/14/walk",
+      "path": "sprites/creature/411.png",
+      "lookType": 411,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 15,
+      "visualType": "portrait",
+      "assetKey": "pokemon/15/portrait",
+      "path": "sprites/creature/396.png",
+      "lookType": 396,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 15,
+      "visualType": "walk",
+      "assetKey": "pokemon/15/walk",
+      "path": "sprites/creature/396.png",
+      "lookType": 396,
       "frameWidth": 32,
       "frameHeight": 32,
       "frameCount": 4
@@ -60,7 +306,8 @@
       "dexId": 16,
       "visualType": "portrait",
       "assetKey": "pokemon/16/portrait",
-      "path": "sprites/pokemon/16/portrait.png",
+      "path": "sprites/creature/381.png",
+      "lookType": 381,
       "frameWidth": 64,
       "frameHeight": 64,
       "frameCount": 1
@@ -69,7 +316,48 @@
       "dexId": 16,
       "visualType": "walk",
       "assetKey": "pokemon/16/walk",
-      "path": "sprites/pokemon/16/walk.png",
+      "path": "sprites/creature/381.png",
+      "lookType": 381,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 17,
+      "visualType": "portrait",
+      "assetKey": "pokemon/17/portrait",
+      "path": "sprites/creature/356.png",
+      "lookType": 356,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 17,
+      "visualType": "walk",
+      "assetKey": "pokemon/17/walk",
+      "path": "sprites/creature/356.png",
+      "lookType": 356,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 18,
+      "visualType": "portrait",
+      "assetKey": "pokemon/18/portrait",
+      "path": "sprites/creature/431.png",
+      "lookType": 431,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 18,
+      "visualType": "walk",
+      "assetKey": "pokemon/18/walk",
+      "path": "sprites/creature/431.png",
+      "lookType": 431,
       "frameWidth": 32,
       "frameHeight": 32,
       "frameCount": 4
@@ -78,7 +366,8 @@
       "dexId": 19,
       "visualType": "portrait",
       "assetKey": "pokemon/19/portrait",
-      "path": "sprites/pokemon/19/portrait.png",
+      "path": "sprites/creature/387.png",
+      "lookType": 387,
       "frameWidth": 64,
       "frameHeight": 64,
       "frameCount": 1
@@ -87,7 +376,108 @@
       "dexId": 19,
       "visualType": "walk",
       "assetKey": "pokemon/19/walk",
-      "path": "sprites/pokemon/19/walk.png",
+      "path": "sprites/creature/387.png",
+      "lookType": 387,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 20,
+      "visualType": "portrait",
+      "assetKey": "pokemon/20/portrait",
+      "path": "sprites/creature/420.png",
+      "lookType": 420,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 20,
+      "visualType": "walk",
+      "assetKey": "pokemon/20/walk",
+      "path": "sprites/creature/420.png",
+      "lookType": 420,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 21,
+      "visualType": "portrait",
+      "assetKey": "pokemon/21/portrait",
+      "path": "sprites/creature/378.png",
+      "lookType": 378,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 21,
+      "visualType": "walk",
+      "assetKey": "pokemon/21/walk",
+      "path": "sprites/creature/378.png",
+      "lookType": 378,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 22,
+      "visualType": "portrait",
+      "assetKey": "pokemon/22/portrait",
+      "path": "sprites/creature/368.png",
+      "lookType": 368,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 22,
+      "visualType": "walk",
+      "assetKey": "pokemon/22/walk",
+      "path": "sprites/creature/368.png",
+      "lookType": 368,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 23,
+      "visualType": "portrait",
+      "assetKey": "pokemon/23/portrait",
+      "path": "sprites/creature/358.png",
+      "lookType": 358,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 23,
+      "visualType": "walk",
+      "assetKey": "pokemon/23/walk",
+      "path": "sprites/creature/358.png",
+      "lookType": 358,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 24,
+      "visualType": "portrait",
+      "assetKey": "pokemon/24/portrait",
+      "path": "sprites/creature/390.png",
+      "lookType": 390,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 24,
+      "visualType": "walk",
+      "assetKey": "pokemon/24/walk",
+      "path": "sprites/creature/390.png",
+      "lookType": 390,
       "frameWidth": 32,
       "frameHeight": 32,
       "frameCount": 4
@@ -96,7 +486,8 @@
       "dexId": 25,
       "visualType": "portrait",
       "assetKey": "pokemon/25/portrait",
-      "path": "sprites/pokemon/25/portrait.png",
+      "path": "sprites/creature/410.png",
+      "lookType": 410,
       "frameWidth": 64,
       "frameHeight": 64,
       "frameCount": 1
@@ -105,7 +496,6128 @@
       "dexId": 25,
       "visualType": "walk",
       "assetKey": "pokemon/25/walk",
-      "path": "sprites/pokemon/25/walk.png",
+      "path": "sprites/creature/410.png",
+      "lookType": 410,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 26,
+      "visualType": "portrait",
+      "assetKey": "pokemon/26/portrait",
+      "path": "sprites/creature/401.png",
+      "lookType": 401,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 26,
+      "visualType": "walk",
+      "assetKey": "pokemon/26/walk",
+      "path": "sprites/creature/401.png",
+      "lookType": 401,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 27,
+      "visualType": "portrait",
+      "assetKey": "pokemon/27/portrait",
+      "path": "sprites/creature/394.png",
+      "lookType": 394,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 27,
+      "visualType": "walk",
+      "assetKey": "pokemon/27/walk",
+      "path": "sprites/creature/394.png",
+      "lookType": 394,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 28,
+      "visualType": "portrait",
+      "assetKey": "pokemon/28/portrait",
+      "path": "sprites/creature/466.png",
+      "lookType": 466,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 28,
+      "visualType": "walk",
+      "assetKey": "pokemon/28/walk",
+      "path": "sprites/creature/466.png",
+      "lookType": 466,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 29,
+      "visualType": "portrait",
+      "assetKey": "pokemon/29/portrait",
+      "path": "sprites/creature/421.png",
+      "lookType": 421,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 29,
+      "visualType": "walk",
+      "assetKey": "pokemon/29/walk",
+      "path": "sprites/creature/421.png",
+      "lookType": 421,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 30,
+      "visualType": "portrait",
+      "assetKey": "pokemon/30/portrait",
+      "path": "sprites/creature/422.png",
+      "lookType": 422,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 30,
+      "visualType": "walk",
+      "assetKey": "pokemon/30/walk",
+      "path": "sprites/creature/422.png",
+      "lookType": 422,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 31,
+      "visualType": "portrait",
+      "assetKey": "pokemon/31/portrait",
+      "path": "sprites/creature/430.png",
+      "lookType": 430,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 31,
+      "visualType": "walk",
+      "assetKey": "pokemon/31/walk",
+      "path": "sprites/creature/430.png",
+      "lookType": 430,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 32,
+      "visualType": "portrait",
+      "assetKey": "pokemon/32/portrait",
+      "path": "sprites/creature/417.png",
+      "lookType": 417,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 32,
+      "visualType": "walk",
+      "assetKey": "pokemon/32/walk",
+      "path": "sprites/creature/417.png",
+      "lookType": 417,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 33,
+      "visualType": "portrait",
+      "assetKey": "pokemon/33/portrait",
+      "path": "sprites/creature/429.png",
+      "lookType": 429,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 33,
+      "visualType": "walk",
+      "assetKey": "pokemon/33/walk",
+      "path": "sprites/creature/429.png",
+      "lookType": 429,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 34,
+      "visualType": "portrait",
+      "assetKey": "pokemon/34/portrait",
+      "path": "sprites/creature/386.png",
+      "lookType": 386,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 34,
+      "visualType": "walk",
+      "assetKey": "pokemon/34/walk",
+      "path": "sprites/creature/386.png",
+      "lookType": 386,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 35,
+      "visualType": "portrait",
+      "assetKey": "pokemon/35/portrait",
+      "path": "sprites/creature/424.png",
+      "lookType": 424,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 35,
+      "visualType": "walk",
+      "assetKey": "pokemon/35/walk",
+      "path": "sprites/creature/424.png",
+      "lookType": 424,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 36,
+      "visualType": "portrait",
+      "assetKey": "pokemon/36/portrait",
+      "path": "sprites/creature/419.png",
+      "lookType": 419,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 36,
+      "visualType": "walk",
+      "assetKey": "pokemon/36/walk",
+      "path": "sprites/creature/419.png",
+      "lookType": 419,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 37,
+      "visualType": "portrait",
+      "assetKey": "pokemon/37/portrait",
+      "path": "sprites/creature/413.png",
+      "lookType": 413,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 37,
+      "visualType": "walk",
+      "assetKey": "pokemon/37/walk",
+      "path": "sprites/creature/413.png",
+      "lookType": 413,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 38,
+      "visualType": "portrait",
+      "assetKey": "pokemon/38/portrait",
+      "path": "sprites/creature/465.png",
+      "lookType": 465,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 38,
+      "visualType": "walk",
+      "assetKey": "pokemon/38/walk",
+      "path": "sprites/creature/465.png",
+      "lookType": 465,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 39,
+      "visualType": "portrait",
+      "assetKey": "pokemon/39/portrait",
+      "path": "sprites/creature/414.png",
+      "lookType": 414,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 39,
+      "visualType": "walk",
+      "assetKey": "pokemon/39/walk",
+      "path": "sprites/creature/414.png",
+      "lookType": 414,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 40,
+      "visualType": "portrait",
+      "assetKey": "pokemon/40/portrait",
+      "path": "sprites/creature/415.png",
+      "lookType": 415,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 40,
+      "visualType": "walk",
+      "assetKey": "pokemon/40/walk",
+      "path": "sprites/creature/415.png",
+      "lookType": 415,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 41,
+      "visualType": "portrait",
+      "assetKey": "pokemon/41/portrait",
+      "path": "sprites/creature/395.png",
+      "lookType": 395,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 41,
+      "visualType": "walk",
+      "assetKey": "pokemon/41/walk",
+      "path": "sprites/creature/395.png",
+      "lookType": 395,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 42,
+      "visualType": "portrait",
+      "assetKey": "pokemon/42/portrait",
+      "path": "sprites/creature/473.png",
+      "lookType": 473,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 42,
+      "visualType": "walk",
+      "assetKey": "pokemon/42/walk",
+      "path": "sprites/creature/473.png",
+      "lookType": 473,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 43,
+      "visualType": "portrait",
+      "assetKey": "pokemon/43/portrait",
+      "path": "sprites/creature/407.png",
+      "lookType": 407,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 43,
+      "visualType": "walk",
+      "assetKey": "pokemon/43/walk",
+      "path": "sprites/creature/407.png",
+      "lookType": 407,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 44,
+      "visualType": "portrait",
+      "assetKey": "pokemon/44/portrait",
+      "path": "sprites/creature/425.png",
+      "lookType": 425,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 44,
+      "visualType": "walk",
+      "assetKey": "pokemon/44/walk",
+      "path": "sprites/creature/425.png",
+      "lookType": 425,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 45,
+      "visualType": "portrait",
+      "assetKey": "pokemon/45/portrait",
+      "path": "sprites/creature/437.png",
+      "lookType": 437,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 45,
+      "visualType": "walk",
+      "assetKey": "pokemon/45/walk",
+      "path": "sprites/creature/437.png",
+      "lookType": 437,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 46,
+      "visualType": "portrait",
+      "assetKey": "pokemon/46/portrait",
+      "path": "sprites/creature/432.png",
+      "lookType": 432,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 46,
+      "visualType": "walk",
+      "assetKey": "pokemon/46/walk",
+      "path": "sprites/creature/432.png",
+      "lookType": 432,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 47,
+      "visualType": "portrait",
+      "assetKey": "pokemon/47/portrait",
+      "path": "sprites/creature/446.png",
+      "lookType": 446,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 47,
+      "visualType": "walk",
+      "assetKey": "pokemon/47/walk",
+      "path": "sprites/creature/446.png",
+      "lookType": 446,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 48,
+      "visualType": "portrait",
+      "assetKey": "pokemon/48/portrait",
+      "path": "sprites/creature/403.png",
+      "lookType": 403,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 48,
+      "visualType": "walk",
+      "assetKey": "pokemon/48/walk",
+      "path": "sprites/creature/403.png",
+      "lookType": 403,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 49,
+      "visualType": "portrait",
+      "assetKey": "pokemon/49/portrait",
+      "path": "sprites/creature/400.png",
+      "lookType": 400,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 49,
+      "visualType": "walk",
+      "assetKey": "pokemon/49/walk",
+      "path": "sprites/creature/400.png",
+      "lookType": 400,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 50,
+      "visualType": "portrait",
+      "assetKey": "pokemon/50/portrait",
+      "path": "sprites/creature/433.png",
+      "lookType": 433,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 50,
+      "visualType": "walk",
+      "assetKey": "pokemon/50/walk",
+      "path": "sprites/creature/433.png",
+      "lookType": 433,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 51,
+      "visualType": "portrait",
+      "assetKey": "pokemon/51/portrait",
+      "path": "sprites/creature/434.png",
+      "lookType": 434,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 51,
+      "visualType": "walk",
+      "assetKey": "pokemon/51/walk",
+      "path": "sprites/creature/434.png",
+      "lookType": 434,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 52,
+      "visualType": "portrait",
+      "assetKey": "pokemon/52/portrait",
+      "path": "sprites/creature/456.png",
+      "lookType": 456,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 52,
+      "visualType": "walk",
+      "assetKey": "pokemon/52/walk",
+      "path": "sprites/creature/456.png",
+      "lookType": 456,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 53,
+      "visualType": "portrait",
+      "assetKey": "pokemon/53/portrait",
+      "path": "sprites/creature/354.png",
+      "lookType": 354,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 53,
+      "visualType": "walk",
+      "assetKey": "pokemon/53/walk",
+      "path": "sprites/creature/354.png",
+      "lookType": 354,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 54,
+      "visualType": "portrait",
+      "assetKey": "pokemon/54/portrait",
+      "path": "sprites/creature/451.png",
+      "lookType": 451,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 54,
+      "visualType": "walk",
+      "assetKey": "pokemon/54/walk",
+      "path": "sprites/creature/451.png",
+      "lookType": 451,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 55,
+      "visualType": "portrait",
+      "assetKey": "pokemon/55/portrait",
+      "path": "sprites/creature/450.png",
+      "lookType": 450,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 55,
+      "visualType": "walk",
+      "assetKey": "pokemon/55/walk",
+      "path": "sprites/creature/450.png",
+      "lookType": 450,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 56,
+      "visualType": "portrait",
+      "assetKey": "pokemon/56/portrait",
+      "path": "sprites/creature/457.png",
+      "lookType": 457,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 56,
+      "visualType": "walk",
+      "assetKey": "pokemon/56/walk",
+      "path": "sprites/creature/457.png",
+      "lookType": 457,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 57,
+      "visualType": "portrait",
+      "assetKey": "pokemon/57/portrait",
+      "path": "sprites/creature/454.png",
+      "lookType": 454,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 57,
+      "visualType": "walk",
+      "assetKey": "pokemon/57/walk",
+      "path": "sprites/creature/454.png",
+      "lookType": 454,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 58,
+      "visualType": "portrait",
+      "assetKey": "pokemon/58/portrait",
+      "path": "sprites/creature/460.png",
+      "lookType": 460,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 58,
+      "visualType": "walk",
+      "assetKey": "pokemon/58/walk",
+      "path": "sprites/creature/460.png",
+      "lookType": 460,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 59,
+      "visualType": "portrait",
+      "assetKey": "pokemon/59/portrait",
+      "path": "sprites/creature/439.png",
+      "lookType": 439,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 59,
+      "visualType": "walk",
+      "assetKey": "pokemon/59/walk",
+      "path": "sprites/creature/439.png",
+      "lookType": 439,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 60,
+      "visualType": "portrait",
+      "assetKey": "pokemon/60/portrait",
+      "path": "sprites/creature/462.png",
+      "lookType": 462,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 60,
+      "visualType": "walk",
+      "assetKey": "pokemon/60/walk",
+      "path": "sprites/creature/462.png",
+      "lookType": 462,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 61,
+      "visualType": "portrait",
+      "assetKey": "pokemon/61/portrait",
+      "path": "sprites/creature/563.png",
+      "lookType": 563,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 61,
+      "visualType": "walk",
+      "assetKey": "pokemon/61/walk",
+      "path": "sprites/creature/563.png",
+      "lookType": 563,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 62,
+      "visualType": "portrait",
+      "assetKey": "pokemon/62/portrait",
+      "path": "sprites/creature/455.png",
+      "lookType": 455,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 62,
+      "visualType": "walk",
+      "assetKey": "pokemon/62/walk",
+      "path": "sprites/creature/455.png",
+      "lookType": 455,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 63,
+      "visualType": "portrait",
+      "assetKey": "pokemon/63/portrait",
+      "path": "sprites/creature/613.png",
+      "lookType": 613,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 63,
+      "visualType": "walk",
+      "assetKey": "pokemon/63/walk",
+      "path": "sprites/creature/613.png",
+      "lookType": 613,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 64,
+      "visualType": "portrait",
+      "assetKey": "pokemon/64/portrait",
+      "path": "sprites/creature/570.png",
+      "lookType": 570,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 64,
+      "visualType": "walk",
+      "assetKey": "pokemon/64/walk",
+      "path": "sprites/creature/570.png",
+      "lookType": 570,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 65,
+      "visualType": "portrait",
+      "assetKey": "pokemon/65/portrait",
+      "path": "sprites/creature/569.png",
+      "lookType": 569,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 65,
+      "visualType": "walk",
+      "assetKey": "pokemon/65/walk",
+      "path": "sprites/creature/569.png",
+      "lookType": 569,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 66,
+      "visualType": "portrait",
+      "assetKey": "pokemon/66/portrait",
+      "path": "sprites/creature/469.png",
+      "lookType": 469,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 66,
+      "visualType": "walk",
+      "assetKey": "pokemon/66/walk",
+      "path": "sprites/creature/469.png",
+      "lookType": 469,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 67,
+      "visualType": "portrait",
+      "assetKey": "pokemon/67/portrait",
+      "path": "sprites/creature/464.png",
+      "lookType": 464,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 67,
+      "visualType": "walk",
+      "assetKey": "pokemon/67/walk",
+      "path": "sprites/creature/464.png",
+      "lookType": 464,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 68,
+      "visualType": "portrait",
+      "assetKey": "pokemon/68/portrait",
+      "path": "sprites/creature/472.png",
+      "lookType": 472,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 68,
+      "visualType": "walk",
+      "assetKey": "pokemon/68/walk",
+      "path": "sprites/creature/472.png",
+      "lookType": 472,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 69,
+      "visualType": "portrait",
+      "assetKey": "pokemon/69/portrait",
+      "path": "sprites/creature/601.png",
+      "lookType": 601,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 69,
+      "visualType": "walk",
+      "assetKey": "pokemon/69/walk",
+      "path": "sprites/creature/601.png",
+      "lookType": 601,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 70,
+      "visualType": "portrait",
+      "assetKey": "pokemon/70/portrait",
+      "path": "sprites/creature/388.png",
+      "lookType": 388,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 70,
+      "visualType": "walk",
+      "assetKey": "pokemon/70/walk",
+      "path": "sprites/creature/388.png",
+      "lookType": 388,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 71,
+      "visualType": "portrait",
+      "assetKey": "pokemon/71/portrait",
+      "path": "sprites/creature/591.png",
+      "lookType": 591,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 71,
+      "visualType": "walk",
+      "assetKey": "pokemon/71/walk",
+      "path": "sprites/creature/591.png",
+      "lookType": 591,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 72,
+      "visualType": "portrait",
+      "assetKey": "pokemon/72/portrait",
+      "path": "sprites/creature/447.png",
+      "lookType": 447,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 72,
+      "visualType": "walk",
+      "assetKey": "pokemon/72/walk",
+      "path": "sprites/creature/447.png",
+      "lookType": 447,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 73,
+      "visualType": "portrait",
+      "assetKey": "pokemon/73/portrait",
+      "path": "sprites/creature/459.png",
+      "lookType": 459,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 73,
+      "visualType": "walk",
+      "assetKey": "pokemon/73/walk",
+      "path": "sprites/creature/459.png",
+      "lookType": 459,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 74,
+      "visualType": "portrait",
+      "assetKey": "pokemon/74/portrait",
+      "path": "sprites/creature/547.png",
+      "lookType": 547,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 74,
+      "visualType": "walk",
+      "assetKey": "pokemon/74/walk",
+      "path": "sprites/creature/547.png",
+      "lookType": 547,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 75,
+      "visualType": "portrait",
+      "assetKey": "pokemon/75/portrait",
+      "path": "sprites/creature/598.png",
+      "lookType": 598,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 75,
+      "visualType": "walk",
+      "assetKey": "pokemon/75/walk",
+      "path": "sprites/creature/598.png",
+      "lookType": 598,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 76,
+      "visualType": "portrait",
+      "assetKey": "pokemon/76/portrait",
+      "path": "sprites/creature/467.png",
+      "lookType": 467,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 76,
+      "visualType": "walk",
+      "assetKey": "pokemon/76/walk",
+      "path": "sprites/creature/467.png",
+      "lookType": 467,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 77,
+      "visualType": "portrait",
+      "assetKey": "pokemon/77/portrait",
+      "path": "sprites/creature/367.png",
+      "lookType": 367,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 77,
+      "visualType": "walk",
+      "assetKey": "pokemon/77/walk",
+      "path": "sprites/creature/367.png",
+      "lookType": 367,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 78,
+      "visualType": "portrait",
+      "assetKey": "pokemon/78/portrait",
+      "path": "sprites/creature/571.png",
+      "lookType": 571,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 78,
+      "visualType": "walk",
+      "assetKey": "pokemon/78/walk",
+      "path": "sprites/creature/571.png",
+      "lookType": 571,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 79,
+      "visualType": "portrait",
+      "assetKey": "pokemon/79/portrait",
+      "path": "sprites/creature/426.png",
+      "lookType": 426,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 79,
+      "visualType": "walk",
+      "assetKey": "pokemon/79/walk",
+      "path": "sprites/creature/426.png",
+      "lookType": 426,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 80,
+      "visualType": "portrait",
+      "assetKey": "pokemon/80/portrait",
+      "path": "sprites/creature/392.png",
+      "lookType": 392,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 80,
+      "visualType": "walk",
+      "assetKey": "pokemon/80/walk",
+      "path": "sprites/creature/392.png",
+      "lookType": 392,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 81,
+      "visualType": "portrait",
+      "assetKey": "pokemon/81/portrait",
+      "path": "sprites/creature/568.png",
+      "lookType": 568,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 81,
+      "visualType": "walk",
+      "assetKey": "pokemon/81/walk",
+      "path": "sprites/creature/568.png",
+      "lookType": 568,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 82,
+      "visualType": "portrait",
+      "assetKey": "pokemon/82/portrait",
+      "path": "sprites/creature/574.png",
+      "lookType": 574,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 82,
+      "visualType": "walk",
+      "assetKey": "pokemon/82/walk",
+      "path": "sprites/creature/574.png",
+      "lookType": 574,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 83,
+      "visualType": "portrait",
+      "assetKey": "pokemon/83/portrait",
+      "path": "sprites/creature/408.png",
+      "lookType": 408,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 83,
+      "visualType": "walk",
+      "assetKey": "pokemon/83/walk",
+      "path": "sprites/creature/408.png",
+      "lookType": 408,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 84,
+      "visualType": "portrait",
+      "assetKey": "pokemon/84/portrait",
+      "path": "sprites/creature/377.png",
+      "lookType": 377,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 84,
+      "visualType": "walk",
+      "assetKey": "pokemon/84/walk",
+      "path": "sprites/creature/377.png",
+      "lookType": 377,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 85,
+      "visualType": "portrait",
+      "assetKey": "pokemon/85/portrait",
+      "path": "sprites/creature/471.png",
+      "lookType": 471,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 85,
+      "visualType": "walk",
+      "assetKey": "pokemon/85/walk",
+      "path": "sprites/creature/471.png",
+      "lookType": 471,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 86,
+      "visualType": "portrait",
+      "assetKey": "pokemon/86/portrait",
+      "path": "sprites/creature/452.png",
+      "lookType": 452,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 86,
+      "visualType": "walk",
+      "assetKey": "pokemon/86/walk",
+      "path": "sprites/creature/452.png",
+      "lookType": 452,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 87,
+      "visualType": "portrait",
+      "assetKey": "pokemon/87/portrait",
+      "path": "sprites/creature/461.png",
+      "lookType": 461,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 87,
+      "visualType": "walk",
+      "assetKey": "pokemon/87/walk",
+      "path": "sprites/creature/461.png",
+      "lookType": 461,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 88,
+      "visualType": "portrait",
+      "assetKey": "pokemon/88/portrait",
+      "path": "sprites/creature/565.png",
+      "lookType": 565,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 88,
+      "visualType": "walk",
+      "assetKey": "pokemon/88/walk",
+      "path": "sprites/creature/565.png",
+      "lookType": 565,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 89,
+      "visualType": "portrait",
+      "assetKey": "pokemon/89/portrait",
+      "path": "sprites/creature/398.png",
+      "lookType": 398,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 89,
+      "visualType": "walk",
+      "assetKey": "pokemon/89/walk",
+      "path": "sprites/creature/398.png",
+      "lookType": 398,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 90,
+      "visualType": "portrait",
+      "assetKey": "pokemon/90/portrait",
+      "path": "sprites/creature/405.png",
+      "lookType": 405,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 90,
+      "visualType": "walk",
+      "assetKey": "pokemon/90/walk",
+      "path": "sprites/creature/405.png",
+      "lookType": 405,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 91,
+      "visualType": "portrait",
+      "assetKey": "pokemon/91/portrait",
+      "path": "sprites/creature/423.png",
+      "lookType": 423,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 91,
+      "visualType": "walk",
+      "assetKey": "pokemon/91/walk",
+      "path": "sprites/creature/423.png",
+      "lookType": 423,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 92,
+      "visualType": "portrait",
+      "assetKey": "pokemon/92/portrait",
+      "path": "sprites/creature/399.png",
+      "lookType": 399,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 92,
+      "visualType": "walk",
+      "assetKey": "pokemon/92/walk",
+      "path": "sprites/creature/399.png",
+      "lookType": 399,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 93,
+      "visualType": "portrait",
+      "assetKey": "pokemon/93/portrait",
+      "path": "sprites/creature/416.png",
+      "lookType": 416,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 93,
+      "visualType": "walk",
+      "assetKey": "pokemon/93/walk",
+      "path": "sprites/creature/416.png",
+      "lookType": 416,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 94,
+      "visualType": "portrait",
+      "assetKey": "pokemon/94/portrait",
+      "path": "sprites/creature/595.png",
+      "lookType": 595,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 94,
+      "visualType": "walk",
+      "assetKey": "pokemon/94/walk",
+      "path": "sprites/creature/595.png",
+      "lookType": 595,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 95,
+      "visualType": "portrait",
+      "assetKey": "pokemon/95/portrait",
+      "path": "sprites/creature/599.png",
+      "lookType": 599,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 95,
+      "visualType": "walk",
+      "assetKey": "pokemon/95/walk",
+      "path": "sprites/creature/599.png",
+      "lookType": 599,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 96,
+      "visualType": "portrait",
+      "assetKey": "pokemon/96/portrait",
+      "path": "sprites/creature/445.png",
+      "lookType": 445,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 96,
+      "visualType": "walk",
+      "assetKey": "pokemon/96/walk",
+      "path": "sprites/creature/445.png",
+      "lookType": 445,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 97,
+      "visualType": "portrait",
+      "assetKey": "pokemon/97/portrait",
+      "path": "sprites/creature/470.png",
+      "lookType": 470,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 97,
+      "visualType": "walk",
+      "assetKey": "pokemon/97/walk",
+      "path": "sprites/creature/470.png",
+      "lookType": 470,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 98,
+      "visualType": "portrait",
+      "assetKey": "pokemon/98/portrait",
+      "path": "sprites/creature/463.png",
+      "lookType": 463,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 98,
+      "visualType": "walk",
+      "assetKey": "pokemon/98/walk",
+      "path": "sprites/creature/463.png",
+      "lookType": 463,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 99,
+      "visualType": "portrait",
+      "assetKey": "pokemon/99/portrait",
+      "path": "sprites/creature/596.png",
+      "lookType": 596,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 99,
+      "visualType": "walk",
+      "assetKey": "pokemon/99/walk",
+      "path": "sprites/creature/596.png",
+      "lookType": 596,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 100,
+      "visualType": "portrait",
+      "assetKey": "pokemon/100/portrait",
+      "path": "sprites/creature/474.png",
+      "lookType": 474,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 100,
+      "visualType": "walk",
+      "assetKey": "pokemon/100/walk",
+      "path": "sprites/creature/474.png",
+      "lookType": 474,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 101,
+      "visualType": "portrait",
+      "assetKey": "pokemon/101/portrait",
+      "path": "sprites/creature/476.png",
+      "lookType": 476,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 101,
+      "visualType": "walk",
+      "assetKey": "pokemon/101/walk",
+      "path": "sprites/creature/476.png",
+      "lookType": 476,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 102,
+      "visualType": "portrait",
+      "assetKey": "pokemon/102/portrait",
+      "path": "sprites/creature/564.png",
+      "lookType": 564,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 102,
+      "visualType": "walk",
+      "assetKey": "pokemon/102/walk",
+      "path": "sprites/creature/564.png",
+      "lookType": 564,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 103,
+      "visualType": "portrait",
+      "assetKey": "pokemon/103/portrait",
+      "path": "sprites/creature/397.png",
+      "lookType": 397,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 103,
+      "visualType": "walk",
+      "assetKey": "pokemon/103/walk",
+      "path": "sprites/creature/397.png",
+      "lookType": 397,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 104,
+      "visualType": "portrait",
+      "assetKey": "pokemon/104/portrait",
+      "path": "sprites/creature/475.png",
+      "lookType": 475,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 104,
+      "visualType": "walk",
+      "assetKey": "pokemon/104/walk",
+      "path": "sprites/creature/475.png",
+      "lookType": 475,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 105,
+      "visualType": "portrait",
+      "assetKey": "pokemon/105/portrait",
+      "path": "sprites/creature/548.png",
+      "lookType": 548,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 105,
+      "visualType": "walk",
+      "assetKey": "pokemon/105/walk",
+      "path": "sprites/creature/548.png",
+      "lookType": 548,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 106,
+      "visualType": "portrait",
+      "assetKey": "pokemon/106/portrait",
+      "path": "sprites/creature/371.png",
+      "lookType": 371,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 106,
+      "visualType": "walk",
+      "assetKey": "pokemon/106/walk",
+      "path": "sprites/creature/371.png",
+      "lookType": 371,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 107,
+      "visualType": "portrait",
+      "assetKey": "pokemon/107/portrait",
+      "path": "sprites/creature/389.png",
+      "lookType": 389,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 107,
+      "visualType": "walk",
+      "assetKey": "pokemon/107/walk",
+      "path": "sprites/creature/389.png",
+      "lookType": 389,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 108,
+      "visualType": "portrait",
+      "assetKey": "pokemon/108/portrait",
+      "path": "sprites/creature/362.png",
+      "lookType": 362,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 108,
+      "visualType": "walk",
+      "assetKey": "pokemon/108/walk",
+      "path": "sprites/creature/362.png",
+      "lookType": 362,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 109,
+      "visualType": "portrait",
+      "assetKey": "pokemon/109/portrait",
+      "path": "sprites/creature/579.png",
+      "lookType": 579,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 109,
+      "visualType": "walk",
+      "assetKey": "pokemon/109/walk",
+      "path": "sprites/creature/579.png",
+      "lookType": 579,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 110,
+      "visualType": "portrait",
+      "assetKey": "pokemon/110/portrait",
+      "path": "sprites/creature/582.png",
+      "lookType": 582,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 110,
+      "visualType": "walk",
+      "assetKey": "pokemon/110/walk",
+      "path": "sprites/creature/582.png",
+      "lookType": 582,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 111,
+      "visualType": "portrait",
+      "assetKey": "pokemon/111/portrait",
+      "path": "sprites/creature/428.png",
+      "lookType": 428,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 111,
+      "visualType": "walk",
+      "assetKey": "pokemon/111/walk",
+      "path": "sprites/creature/428.png",
+      "lookType": 428,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 112,
+      "visualType": "portrait",
+      "assetKey": "pokemon/112/portrait",
+      "path": "sprites/creature/551.png",
+      "lookType": 551,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 112,
+      "visualType": "walk",
+      "assetKey": "pokemon/112/walk",
+      "path": "sprites/creature/551.png",
+      "lookType": 551,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 113,
+      "visualType": "portrait",
+      "assetKey": "pokemon/113/portrait",
+      "path": "sprites/creature/355.png",
+      "lookType": 355,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 113,
+      "visualType": "walk",
+      "assetKey": "pokemon/113/walk",
+      "path": "sprites/creature/355.png",
+      "lookType": 355,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 114,
+      "visualType": "portrait",
+      "assetKey": "pokemon/114/portrait",
+      "path": "sprites/creature/369.png",
+      "lookType": 369,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 114,
+      "visualType": "walk",
+      "assetKey": "pokemon/114/walk",
+      "path": "sprites/creature/369.png",
+      "lookType": 369,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 115,
+      "visualType": "portrait",
+      "assetKey": "pokemon/115/portrait",
+      "path": "sprites/creature/549.png",
+      "lookType": 549,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 115,
+      "visualType": "walk",
+      "assetKey": "pokemon/115/walk",
+      "path": "sprites/creature/549.png",
+      "lookType": 549,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 116,
+      "visualType": "portrait",
+      "assetKey": "pokemon/116/portrait",
+      "path": "sprites/creature/384.png",
+      "lookType": 384,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 116,
+      "visualType": "walk",
+      "assetKey": "pokemon/116/walk",
+      "path": "sprites/creature/384.png",
+      "lookType": 384,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 117,
+      "visualType": "portrait",
+      "assetKey": "pokemon/117/portrait",
+      "path": "sprites/creature/627.png",
+      "lookType": 627,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 117,
+      "visualType": "walk",
+      "assetKey": "pokemon/117/walk",
+      "path": "sprites/creature/627.png",
+      "lookType": 627,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 118,
+      "visualType": "portrait",
+      "assetKey": "pokemon/118/portrait",
+      "path": "sprites/creature/625.png",
+      "lookType": 625,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 118,
+      "visualType": "walk",
+      "assetKey": "pokemon/118/walk",
+      "path": "sprites/creature/625.png",
+      "lookType": 625,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 119,
+      "visualType": "portrait",
+      "assetKey": "pokemon/119/portrait",
+      "path": "sprites/creature/623.png",
+      "lookType": 623,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 119,
+      "visualType": "walk",
+      "assetKey": "pokemon/119/walk",
+      "path": "sprites/creature/623.png",
+      "lookType": 623,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 120,
+      "visualType": "portrait",
+      "assetKey": "pokemon/120/portrait",
+      "path": "sprites/creature/393.png",
+      "lookType": 393,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 120,
+      "visualType": "walk",
+      "assetKey": "pokemon/120/walk",
+      "path": "sprites/creature/393.png",
+      "lookType": 393,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 121,
+      "visualType": "portrait",
+      "assetKey": "pokemon/121/portrait",
+      "path": "sprites/creature/600.png",
+      "lookType": 600,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 121,
+      "visualType": "walk",
+      "assetKey": "pokemon/121/walk",
+      "path": "sprites/creature/600.png",
+      "lookType": 600,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 122,
+      "visualType": "portrait",
+      "assetKey": "pokemon/122/portrait",
+      "path": "sprites/creature/597.png",
+      "lookType": 597,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 122,
+      "visualType": "walk",
+      "assetKey": "pokemon/122/walk",
+      "path": "sprites/creature/597.png",
+      "lookType": 597,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 123,
+      "visualType": "portrait",
+      "assetKey": "pokemon/123/portrait",
+      "path": "sprites/creature/366.png",
+      "lookType": 366,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 123,
+      "visualType": "walk",
+      "assetKey": "pokemon/123/walk",
+      "path": "sprites/creature/366.png",
+      "lookType": 366,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 124,
+      "visualType": "portrait",
+      "assetKey": "pokemon/124/portrait",
+      "path": "sprites/creature/633.png",
+      "lookType": 633,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 124,
+      "visualType": "walk",
+      "assetKey": "pokemon/124/walk",
+      "path": "sprites/creature/633.png",
+      "lookType": 633,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 125,
+      "visualType": "portrait",
+      "assetKey": "pokemon/125/portrait",
+      "path": "sprites/creature/632.png",
+      "lookType": 632,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 125,
+      "visualType": "walk",
+      "assetKey": "pokemon/125/walk",
+      "path": "sprites/creature/632.png",
+      "lookType": 632,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 126,
+      "visualType": "portrait",
+      "assetKey": "pokemon/126/portrait",
+      "path": "sprites/creature/427.png",
+      "lookType": 427,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 126,
+      "visualType": "walk",
+      "assetKey": "pokemon/126/walk",
+      "path": "sprites/creature/427.png",
+      "lookType": 427,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 127,
+      "visualType": "portrait",
+      "assetKey": "pokemon/127/portrait",
+      "path": "sprites/creature/404.png",
+      "lookType": 404,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 127,
+      "visualType": "walk",
+      "assetKey": "pokemon/127/walk",
+      "path": "sprites/creature/404.png",
+      "lookType": 404,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 128,
+      "visualType": "portrait",
+      "assetKey": "pokemon/128/portrait",
+      "path": "sprites/creature/444.png",
+      "lookType": 444,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 128,
+      "visualType": "walk",
+      "assetKey": "pokemon/128/walk",
+      "path": "sprites/creature/444.png",
+      "lookType": 444,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 129,
+      "visualType": "portrait",
+      "assetKey": "pokemon/129/portrait",
+      "path": "sprites/creature/370.png",
+      "lookType": 370,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 129,
+      "visualType": "walk",
+      "assetKey": "pokemon/129/walk",
+      "path": "sprites/creature/370.png",
+      "lookType": 370,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 130,
+      "visualType": "portrait",
+      "assetKey": "pokemon/130/portrait",
+      "path": "sprites/creature/468.png",
+      "lookType": 468,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 130,
+      "visualType": "walk",
+      "assetKey": "pokemon/130/walk",
+      "path": "sprites/creature/468.png",
+      "lookType": 468,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 131,
+      "visualType": "portrait",
+      "assetKey": "pokemon/131/portrait",
+      "path": "sprites/creature/544.png",
+      "lookType": 544,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 131,
+      "visualType": "walk",
+      "assetKey": "pokemon/131/walk",
+      "path": "sprites/creature/544.png",
+      "lookType": 544,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 132,
+      "visualType": "portrait",
+      "assetKey": "pokemon/132/portrait",
+      "path": "sprites/creature/379.png",
+      "lookType": 379,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 132,
+      "visualType": "walk",
+      "assetKey": "pokemon/132/walk",
+      "path": "sprites/creature/379.png",
+      "lookType": 379,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 133,
+      "visualType": "portrait",
+      "assetKey": "pokemon/133/portrait",
+      "path": "sprites/creature/453.png",
+      "lookType": 453,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 133,
+      "visualType": "walk",
+      "assetKey": "pokemon/133/walk",
+      "path": "sprites/creature/453.png",
+      "lookType": 453,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 134,
+      "visualType": "portrait",
+      "assetKey": "pokemon/134/portrait",
+      "path": "sprites/creature/566.png",
+      "lookType": 566,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 134,
+      "visualType": "walk",
+      "assetKey": "pokemon/134/walk",
+      "path": "sprites/creature/566.png",
+      "lookType": 566,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 135,
+      "visualType": "portrait",
+      "assetKey": "pokemon/135/portrait",
+      "path": "sprites/creature/546.png",
+      "lookType": 546,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 135,
+      "visualType": "walk",
+      "assetKey": "pokemon/135/walk",
+      "path": "sprites/creature/546.png",
+      "lookType": 546,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 136,
+      "visualType": "portrait",
+      "assetKey": "pokemon/136/portrait",
+      "path": "sprites/creature/365.png",
+      "lookType": 365,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 136,
+      "visualType": "walk",
+      "assetKey": "pokemon/136/walk",
+      "path": "sprites/creature/365.png",
+      "lookType": 365,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 137,
+      "visualType": "portrait",
+      "assetKey": "pokemon/137/portrait",
+      "path": "sprites/creature/448.png",
+      "lookType": 448,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 137,
+      "visualType": "walk",
+      "assetKey": "pokemon/137/walk",
+      "path": "sprites/creature/448.png",
+      "lookType": 448,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 138,
+      "visualType": "portrait",
+      "assetKey": "pokemon/138/portrait",
+      "path": "sprites/creature/443.png",
+      "lookType": 443,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 138,
+      "visualType": "walk",
+      "assetKey": "pokemon/138/walk",
+      "path": "sprites/creature/443.png",
+      "lookType": 443,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 139,
+      "visualType": "portrait",
+      "assetKey": "pokemon/139/portrait",
+      "path": "sprites/creature/543.png",
+      "lookType": 543,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 139,
+      "visualType": "walk",
+      "assetKey": "pokemon/139/walk",
+      "path": "sprites/creature/543.png",
+      "lookType": 543,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 140,
+      "visualType": "portrait",
+      "assetKey": "pokemon/140/portrait",
+      "path": "sprites/creature/449.png",
+      "lookType": 449,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 140,
+      "visualType": "walk",
+      "assetKey": "pokemon/140/walk",
+      "path": "sprites/creature/449.png",
+      "lookType": 449,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 141,
+      "visualType": "portrait",
+      "assetKey": "pokemon/141/portrait",
+      "path": "sprites/creature/364.png",
+      "lookType": 364,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 141,
+      "visualType": "walk",
+      "assetKey": "pokemon/141/walk",
+      "path": "sprites/creature/364.png",
+      "lookType": 364,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 142,
+      "visualType": "portrait",
+      "assetKey": "pokemon/142/portrait",
+      "path": "sprites/creature/361.png",
+      "lookType": 361,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 142,
+      "visualType": "walk",
+      "assetKey": "pokemon/142/walk",
+      "path": "sprites/creature/361.png",
+      "lookType": 361,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 143,
+      "visualType": "portrait",
+      "assetKey": "pokemon/143/portrait",
+      "path": "sprites/creature/402.png",
+      "lookType": 402,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 143,
+      "visualType": "walk",
+      "assetKey": "pokemon/143/walk",
+      "path": "sprites/creature/402.png",
+      "lookType": 402,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 144,
+      "visualType": "portrait",
+      "assetKey": "pokemon/144/portrait",
+      "path": "sprites/creature/634.png",
+      "lookType": 634,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 144,
+      "visualType": "walk",
+      "assetKey": "pokemon/144/walk",
+      "path": "sprites/creature/634.png",
+      "lookType": 634,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 145,
+      "visualType": "portrait",
+      "assetKey": "pokemon/145/portrait",
+      "path": "sprites/creature/550.png",
+      "lookType": 550,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 145,
+      "visualType": "walk",
+      "assetKey": "pokemon/145/walk",
+      "path": "sprites/creature/550.png",
+      "lookType": 550,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 146,
+      "visualType": "portrait",
+      "assetKey": "pokemon/146/portrait",
+      "path": "sprites/creature/616.png",
+      "lookType": 616,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 146,
+      "visualType": "walk",
+      "assetKey": "pokemon/146/walk",
+      "path": "sprites/creature/616.png",
+      "lookType": 616,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 147,
+      "visualType": "portrait",
+      "assetKey": "pokemon/147/portrait",
+      "path": "sprites/creature/409.png",
+      "lookType": 409,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 147,
+      "visualType": "walk",
+      "assetKey": "pokemon/147/walk",
+      "path": "sprites/creature/409.png",
+      "lookType": 409,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 148,
+      "visualType": "portrait",
+      "assetKey": "pokemon/148/portrait",
+      "path": "sprites/creature/412.png",
+      "lookType": 412,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 148,
+      "visualType": "walk",
+      "assetKey": "pokemon/148/walk",
+      "path": "sprites/creature/412.png",
+      "lookType": 412,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 149,
+      "visualType": "portrait",
+      "assetKey": "pokemon/149/portrait",
+      "path": "sprites/creature/561.png",
+      "lookType": 561,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 149,
+      "visualType": "walk",
+      "assetKey": "pokemon/149/walk",
+      "path": "sprites/creature/561.png",
+      "lookType": 561,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 150,
+      "visualType": "portrait",
+      "assetKey": "pokemon/150/portrait",
+      "path": "sprites/creature/385.png",
+      "lookType": 385,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 150,
+      "visualType": "walk",
+      "assetKey": "pokemon/150/walk",
+      "path": "sprites/creature/385.png",
+      "lookType": 385,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 151,
+      "visualType": "portrait",
+      "assetKey": "pokemon/151/portrait",
+      "path": "sprites/creature/360.png",
+      "lookType": 360,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 151,
+      "visualType": "walk",
+      "assetKey": "pokemon/151/walk",
+      "path": "sprites/creature/360.png",
+      "lookType": 360,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 152,
+      "visualType": "portrait",
+      "assetKey": "pokemon/152/portrait",
+      "path": "sprites/creature/1510.png",
+      "lookType": 1510,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 152,
+      "visualType": "walk",
+      "assetKey": "pokemon/152/walk",
+      "path": "sprites/creature/1510.png",
+      "lookType": 1510,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 153,
+      "visualType": "portrait",
+      "assetKey": "pokemon/153/portrait",
+      "path": "sprites/creature/670.png",
+      "lookType": 670,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 153,
+      "visualType": "walk",
+      "assetKey": "pokemon/153/walk",
+      "path": "sprites/creature/670.png",
+      "lookType": 670,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 154,
+      "visualType": "portrait",
+      "assetKey": "pokemon/154/portrait",
+      "path": "sprites/creature/671.png",
+      "lookType": 671,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 154,
+      "visualType": "walk",
+      "assetKey": "pokemon/154/walk",
+      "path": "sprites/creature/671.png",
+      "lookType": 671,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 155,
+      "visualType": "portrait",
+      "assetKey": "pokemon/155/portrait",
+      "path": "sprites/creature/672.png",
+      "lookType": 672,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 155,
+      "visualType": "walk",
+      "assetKey": "pokemon/155/walk",
+      "path": "sprites/creature/672.png",
+      "lookType": 672,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 156,
+      "visualType": "portrait",
+      "assetKey": "pokemon/156/portrait",
+      "path": "sprites/creature/673.png",
+      "lookType": 673,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 156,
+      "visualType": "walk",
+      "assetKey": "pokemon/156/walk",
+      "path": "sprites/creature/673.png",
+      "lookType": 673,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 157,
+      "visualType": "portrait",
+      "assetKey": "pokemon/157/portrait",
+      "path": "sprites/creature/674.png",
+      "lookType": 674,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 157,
+      "visualType": "walk",
+      "assetKey": "pokemon/157/walk",
+      "path": "sprites/creature/674.png",
+      "lookType": 674,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 158,
+      "visualType": "portrait",
+      "assetKey": "pokemon/158/portrait",
+      "path": "sprites/creature/675.png",
+      "lookType": 675,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 158,
+      "visualType": "walk",
+      "assetKey": "pokemon/158/walk",
+      "path": "sprites/creature/675.png",
+      "lookType": 675,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 159,
+      "visualType": "portrait",
+      "assetKey": "pokemon/159/portrait",
+      "path": "sprites/creature/679.png",
+      "lookType": 679,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 159,
+      "visualType": "walk",
+      "assetKey": "pokemon/159/walk",
+      "path": "sprites/creature/679.png",
+      "lookType": 679,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 160,
+      "visualType": "portrait",
+      "assetKey": "pokemon/160/portrait",
+      "path": "sprites/creature/680.png",
+      "lookType": 680,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 160,
+      "visualType": "walk",
+      "assetKey": "pokemon/160/walk",
+      "path": "sprites/creature/680.png",
+      "lookType": 680,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 161,
+      "visualType": "portrait",
+      "assetKey": "pokemon/161/portrait",
+      "path": "sprites/creature/681.png",
+      "lookType": 681,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 161,
+      "visualType": "walk",
+      "assetKey": "pokemon/161/walk",
+      "path": "sprites/creature/681.png",
+      "lookType": 681,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 162,
+      "visualType": "portrait",
+      "assetKey": "pokemon/162/portrait",
+      "path": "sprites/creature/950.png",
+      "lookType": 950,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 162,
+      "visualType": "walk",
+      "assetKey": "pokemon/162/walk",
+      "path": "sprites/creature/950.png",
+      "lookType": 950,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 163,
+      "visualType": "portrait",
+      "assetKey": "pokemon/163/portrait",
+      "path": "sprites/creature/953.png",
+      "lookType": 953,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 163,
+      "visualType": "walk",
+      "assetKey": "pokemon/163/walk",
+      "path": "sprites/creature/953.png",
+      "lookType": 953,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 164,
+      "visualType": "portrait",
+      "assetKey": "pokemon/164/portrait",
+      "path": "sprites/creature/682.png",
+      "lookType": 682,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 164,
+      "visualType": "walk",
+      "assetKey": "pokemon/164/walk",
+      "path": "sprites/creature/682.png",
+      "lookType": 682,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 165,
+      "visualType": "portrait",
+      "assetKey": "pokemon/165/portrait",
+      "path": "sprites/creature/683.png",
+      "lookType": 683,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 165,
+      "visualType": "walk",
+      "assetKey": "pokemon/165/walk",
+      "path": "sprites/creature/683.png",
+      "lookType": 683,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 166,
+      "visualType": "portrait",
+      "assetKey": "pokemon/166/portrait",
+      "path": "sprites/creature/684.png",
+      "lookType": 684,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 166,
+      "visualType": "walk",
+      "assetKey": "pokemon/166/walk",
+      "path": "sprites/creature/684.png",
+      "lookType": 684,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 167,
+      "visualType": "portrait",
+      "assetKey": "pokemon/167/portrait",
+      "path": "sprites/creature/685.png",
+      "lookType": 685,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 167,
+      "visualType": "walk",
+      "assetKey": "pokemon/167/walk",
+      "path": "sprites/creature/685.png",
+      "lookType": 685,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 168,
+      "visualType": "portrait",
+      "assetKey": "pokemon/168/portrait",
+      "path": "sprites/creature/686.png",
+      "lookType": 686,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 168,
+      "visualType": "walk",
+      "assetKey": "pokemon/168/walk",
+      "path": "sprites/creature/686.png",
+      "lookType": 686,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 169,
+      "visualType": "portrait",
+      "assetKey": "pokemon/169/portrait",
+      "path": "sprites/creature/687.png",
+      "lookType": 687,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 169,
+      "visualType": "walk",
+      "assetKey": "pokemon/169/walk",
+      "path": "sprites/creature/687.png",
+      "lookType": 687,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 170,
+      "visualType": "portrait",
+      "assetKey": "pokemon/170/portrait",
+      "path": "sprites/creature/1454.png",
+      "lookType": 1454,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 170,
+      "visualType": "walk",
+      "assetKey": "pokemon/170/walk",
+      "path": "sprites/creature/1454.png",
+      "lookType": 1454,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 171,
+      "visualType": "portrait",
+      "assetKey": "pokemon/171/portrait",
+      "path": "sprites/creature/689.png",
+      "lookType": 689,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 171,
+      "visualType": "walk",
+      "assetKey": "pokemon/171/walk",
+      "path": "sprites/creature/689.png",
+      "lookType": 689,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 172,
+      "visualType": "portrait",
+      "assetKey": "pokemon/172/portrait",
+      "path": "sprites/creature/690.png",
+      "lookType": 690,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 172,
+      "visualType": "walk",
+      "assetKey": "pokemon/172/walk",
+      "path": "sprites/creature/690.png",
+      "lookType": 690,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 173,
+      "visualType": "portrait",
+      "assetKey": "pokemon/173/portrait",
+      "path": "sprites/creature/692.png",
+      "lookType": 692,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 173,
+      "visualType": "walk",
+      "assetKey": "pokemon/173/walk",
+      "path": "sprites/creature/692.png",
+      "lookType": 692,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 174,
+      "visualType": "portrait",
+      "assetKey": "pokemon/174/portrait",
+      "path": "sprites/creature/885.png",
+      "lookType": 885,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 174,
+      "visualType": "walk",
+      "assetKey": "pokemon/174/walk",
+      "path": "sprites/creature/885.png",
+      "lookType": 885,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 175,
+      "visualType": "portrait",
+      "assetKey": "pokemon/175/portrait",
+      "path": "sprites/creature/884.png",
+      "lookType": 884,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 175,
+      "visualType": "walk",
+      "assetKey": "pokemon/175/walk",
+      "path": "sprites/creature/884.png",
+      "lookType": 884,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 176,
+      "visualType": "portrait",
+      "assetKey": "pokemon/176/portrait",
+      "path": "sprites/creature/886.png",
+      "lookType": 886,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 176,
+      "visualType": "walk",
+      "assetKey": "pokemon/176/walk",
+      "path": "sprites/creature/886.png",
+      "lookType": 886,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 177,
+      "visualType": "portrait",
+      "assetKey": "pokemon/177/portrait",
+      "path": "sprites/creature/887.png",
+      "lookType": 887,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 177,
+      "visualType": "walk",
+      "assetKey": "pokemon/177/walk",
+      "path": "sprites/creature/887.png",
+      "lookType": 887,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 178,
+      "visualType": "portrait",
+      "assetKey": "pokemon/178/portrait",
+      "path": "sprites/creature/888.png",
+      "lookType": 888,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 178,
+      "visualType": "walk",
+      "assetKey": "pokemon/178/walk",
+      "path": "sprites/creature/888.png",
+      "lookType": 888,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 179,
+      "visualType": "portrait",
+      "assetKey": "pokemon/179/portrait",
+      "path": "sprites/creature/889.png",
+      "lookType": 889,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 179,
+      "visualType": "walk",
+      "assetKey": "pokemon/179/walk",
+      "path": "sprites/creature/889.png",
+      "lookType": 889,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 180,
+      "visualType": "portrait",
+      "assetKey": "pokemon/180/portrait",
+      "path": "sprites/creature/891.png",
+      "lookType": 891,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 180,
+      "visualType": "walk",
+      "assetKey": "pokemon/180/walk",
+      "path": "sprites/creature/891.png",
+      "lookType": 891,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 181,
+      "visualType": "portrait",
+      "assetKey": "pokemon/181/portrait",
+      "path": "sprites/creature/892.png",
+      "lookType": 892,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 181,
+      "visualType": "walk",
+      "assetKey": "pokemon/181/walk",
+      "path": "sprites/creature/892.png",
+      "lookType": 892,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 182,
+      "visualType": "portrait",
+      "assetKey": "pokemon/182/portrait",
+      "path": "sprites/creature/903.png",
+      "lookType": 903,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 182,
+      "visualType": "walk",
+      "assetKey": "pokemon/182/walk",
+      "path": "sprites/creature/903.png",
+      "lookType": 903,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 183,
+      "visualType": "portrait",
+      "assetKey": "pokemon/183/portrait",
+      "path": "sprites/creature/897.png",
+      "lookType": 897,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 183,
+      "visualType": "walk",
+      "assetKey": "pokemon/183/walk",
+      "path": "sprites/creature/897.png",
+      "lookType": 897,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 184,
+      "visualType": "portrait",
+      "assetKey": "pokemon/184/portrait",
+      "path": "sprites/creature/893.png",
+      "lookType": 893,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 184,
+      "visualType": "walk",
+      "assetKey": "pokemon/184/walk",
+      "path": "sprites/creature/893.png",
+      "lookType": 893,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 185,
+      "visualType": "portrait",
+      "assetKey": "pokemon/185/portrait",
+      "path": "sprites/creature/894.png",
+      "lookType": 894,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 185,
+      "visualType": "walk",
+      "assetKey": "pokemon/185/walk",
+      "path": "sprites/creature/894.png",
+      "lookType": 894,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 186,
+      "visualType": "portrait",
+      "assetKey": "pokemon/186/portrait",
+      "path": "sprites/creature/902.png",
+      "lookType": 902,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 186,
+      "visualType": "walk",
+      "assetKey": "pokemon/186/walk",
+      "path": "sprites/creature/902.png",
+      "lookType": 902,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 187,
+      "visualType": "portrait",
+      "assetKey": "pokemon/187/portrait",
+      "path": "sprites/creature/901.png",
+      "lookType": 901,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 187,
+      "visualType": "walk",
+      "assetKey": "pokemon/187/walk",
+      "path": "sprites/creature/901.png",
+      "lookType": 901,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 188,
+      "visualType": "portrait",
+      "assetKey": "pokemon/188/portrait",
+      "path": "sprites/creature/898.png",
+      "lookType": 898,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 188,
+      "visualType": "walk",
+      "assetKey": "pokemon/188/walk",
+      "path": "sprites/creature/898.png",
+      "lookType": 898,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 189,
+      "visualType": "portrait",
+      "assetKey": "pokemon/189/portrait",
+      "path": "sprites/creature/899.png",
+      "lookType": 899,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 189,
+      "visualType": "walk",
+      "assetKey": "pokemon/189/walk",
+      "path": "sprites/creature/899.png",
+      "lookType": 899,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 190,
+      "visualType": "portrait",
+      "assetKey": "pokemon/190/portrait",
+      "path": "sprites/creature/900.png",
+      "lookType": 900,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 190,
+      "visualType": "walk",
+      "assetKey": "pokemon/190/walk",
+      "path": "sprites/creature/900.png",
+      "lookType": 900,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 191,
+      "visualType": "portrait",
+      "assetKey": "pokemon/191/portrait",
+      "path": "sprites/creature/890.png",
+      "lookType": 890,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 191,
+      "visualType": "walk",
+      "assetKey": "pokemon/191/walk",
+      "path": "sprites/creature/890.png",
+      "lookType": 890,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 192,
+      "visualType": "portrait",
+      "assetKey": "pokemon/192/portrait",
+      "path": "sprites/creature/895.png",
+      "lookType": 895,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 192,
+      "visualType": "walk",
+      "assetKey": "pokemon/192/walk",
+      "path": "sprites/creature/895.png",
+      "lookType": 895,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 193,
+      "visualType": "portrait",
+      "assetKey": "pokemon/193/portrait",
+      "path": "sprites/creature/896.png",
+      "lookType": 896,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 193,
+      "visualType": "walk",
+      "assetKey": "pokemon/193/walk",
+      "path": "sprites/creature/896.png",
+      "lookType": 896,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 194,
+      "visualType": "portrait",
+      "assetKey": "pokemon/194/portrait",
+      "path": "sprites/creature/921.png",
+      "lookType": 921,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 194,
+      "visualType": "walk",
+      "assetKey": "pokemon/194/walk",
+      "path": "sprites/creature/921.png",
+      "lookType": 921,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 195,
+      "visualType": "portrait",
+      "assetKey": "pokemon/195/portrait",
+      "path": "sprites/creature/922.png",
+      "lookType": 922,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 195,
+      "visualType": "walk",
+      "assetKey": "pokemon/195/walk",
+      "path": "sprites/creature/922.png",
+      "lookType": 922,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 196,
+      "visualType": "portrait",
+      "assetKey": "pokemon/196/portrait",
+      "path": "sprites/creature/923.png",
+      "lookType": 923,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 196,
+      "visualType": "walk",
+      "assetKey": "pokemon/196/walk",
+      "path": "sprites/creature/923.png",
+      "lookType": 923,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 197,
+      "visualType": "portrait",
+      "assetKey": "pokemon/197/portrait",
+      "path": "sprites/creature/919.png",
+      "lookType": 919,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 197,
+      "visualType": "walk",
+      "assetKey": "pokemon/197/walk",
+      "path": "sprites/creature/919.png",
+      "lookType": 919,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 198,
+      "visualType": "portrait",
+      "assetKey": "pokemon/198/portrait",
+      "path": "sprites/creature/920.png",
+      "lookType": 920,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 198,
+      "visualType": "walk",
+      "assetKey": "pokemon/198/walk",
+      "path": "sprites/creature/920.png",
+      "lookType": 920,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 199,
+      "visualType": "portrait",
+      "assetKey": "pokemon/199/portrait",
+      "path": "sprites/creature/905.png",
+      "lookType": 905,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 199,
+      "visualType": "walk",
+      "assetKey": "pokemon/199/walk",
+      "path": "sprites/creature/905.png",
+      "lookType": 905,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 200,
+      "visualType": "portrait",
+      "assetKey": "pokemon/200/portrait",
+      "path": "sprites/creature/916.png",
+      "lookType": 916,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 200,
+      "visualType": "walk",
+      "assetKey": "pokemon/200/walk",
+      "path": "sprites/creature/916.png",
+      "lookType": 916,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 201,
+      "visualType": "portrait",
+      "assetKey": "pokemon/201/portrait",
+      "path": "sprites/creature/908.png",
+      "lookType": 908,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 201,
+      "visualType": "walk",
+      "assetKey": "pokemon/201/walk",
+      "path": "sprites/creature/908.png",
+      "lookType": 908,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 202,
+      "visualType": "portrait",
+      "assetKey": "pokemon/202/portrait",
+      "path": "sprites/creature/961.png",
+      "lookType": 961,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 202,
+      "visualType": "walk",
+      "assetKey": "pokemon/202/walk",
+      "path": "sprites/creature/961.png",
+      "lookType": 961,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 203,
+      "visualType": "portrait",
+      "assetKey": "pokemon/203/portrait",
+      "path": "sprites/creature/924.png",
+      "lookType": 924,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 203,
+      "visualType": "walk",
+      "assetKey": "pokemon/203/walk",
+      "path": "sprites/creature/924.png",
+      "lookType": 924,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 204,
+      "visualType": "portrait",
+      "assetKey": "pokemon/204/portrait",
+      "path": "sprites/creature/904.png",
+      "lookType": 904,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 204,
+      "visualType": "walk",
+      "assetKey": "pokemon/204/walk",
+      "path": "sprites/creature/904.png",
+      "lookType": 904,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 205,
+      "visualType": "portrait",
+      "assetKey": "pokemon/205/portrait",
+      "path": "sprites/creature/909.png",
+      "lookType": 909,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 205,
+      "visualType": "walk",
+      "assetKey": "pokemon/205/walk",
+      "path": "sprites/creature/909.png",
+      "lookType": 909,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 206,
+      "visualType": "portrait",
+      "assetKey": "pokemon/206/portrait",
+      "path": "sprites/creature/910.png",
+      "lookType": 910,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 206,
+      "visualType": "walk",
+      "assetKey": "pokemon/206/walk",
+      "path": "sprites/creature/910.png",
+      "lookType": 910,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 207,
+      "visualType": "portrait",
+      "assetKey": "pokemon/207/portrait",
+      "path": "sprites/creature/906.png",
+      "lookType": 906,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 207,
+      "visualType": "walk",
+      "assetKey": "pokemon/207/walk",
+      "path": "sprites/creature/906.png",
+      "lookType": 906,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 208,
+      "visualType": "portrait",
+      "assetKey": "pokemon/208/portrait",
+      "path": "sprites/creature/925.png",
+      "lookType": 925,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 208,
+      "visualType": "walk",
+      "assetKey": "pokemon/208/walk",
+      "path": "sprites/creature/925.png",
+      "lookType": 925,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 209,
+      "visualType": "portrait",
+      "assetKey": "pokemon/209/portrait",
+      "path": "sprites/creature/911.png",
+      "lookType": 911,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 209,
+      "visualType": "walk",
+      "assetKey": "pokemon/209/walk",
+      "path": "sprites/creature/911.png",
+      "lookType": 911,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 210,
+      "visualType": "portrait",
+      "assetKey": "pokemon/210/portrait",
+      "path": "sprites/creature/948.png",
+      "lookType": 948,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 210,
+      "visualType": "walk",
+      "assetKey": "pokemon/210/walk",
+      "path": "sprites/creature/948.png",
+      "lookType": 948,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 211,
+      "visualType": "portrait",
+      "assetKey": "pokemon/211/portrait",
+      "path": "sprites/creature/951.png",
+      "lookType": 951,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 211,
+      "visualType": "walk",
+      "assetKey": "pokemon/211/walk",
+      "path": "sprites/creature/951.png",
+      "lookType": 951,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 212,
+      "visualType": "portrait",
+      "assetKey": "pokemon/212/portrait",
+      "path": "sprites/creature/1457.png",
+      "lookType": 1457,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 212,
+      "visualType": "walk",
+      "assetKey": "pokemon/212/walk",
+      "path": "sprites/creature/1457.png",
+      "lookType": 1457,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 213,
+      "visualType": "portrait",
+      "assetKey": "pokemon/213/portrait",
+      "path": "sprites/creature/912.png",
+      "lookType": 912,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 213,
+      "visualType": "walk",
+      "assetKey": "pokemon/213/walk",
+      "path": "sprites/creature/912.png",
+      "lookType": 912,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 214,
+      "visualType": "portrait",
+      "assetKey": "pokemon/214/portrait",
+      "path": "sprites/creature/949.png",
+      "lookType": 949,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 214,
+      "visualType": "walk",
+      "assetKey": "pokemon/214/walk",
+      "path": "sprites/creature/949.png",
+      "lookType": 949,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 215,
+      "visualType": "portrait",
+      "assetKey": "pokemon/215/portrait",
+      "path": "sprites/creature/915.png",
+      "lookType": 915,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 215,
+      "visualType": "walk",
+      "assetKey": "pokemon/215/walk",
+      "path": "sprites/creature/915.png",
+      "lookType": 915,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 216,
+      "visualType": "portrait",
+      "assetKey": "pokemon/216/portrait",
+      "path": "sprites/creature/917.png",
+      "lookType": 917,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 216,
+      "visualType": "walk",
+      "assetKey": "pokemon/216/walk",
+      "path": "sprites/creature/917.png",
+      "lookType": 917,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 217,
+      "visualType": "portrait",
+      "assetKey": "pokemon/217/portrait",
+      "path": "sprites/creature/913.png",
+      "lookType": 913,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 217,
+      "visualType": "walk",
+      "assetKey": "pokemon/217/walk",
+      "path": "sprites/creature/913.png",
+      "lookType": 913,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 218,
+      "visualType": "portrait",
+      "assetKey": "pokemon/218/portrait",
+      "path": "sprites/creature/914.png",
+      "lookType": 914,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 218,
+      "visualType": "walk",
+      "assetKey": "pokemon/218/walk",
+      "path": "sprites/creature/914.png",
+      "lookType": 914,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 219,
+      "visualType": "portrait",
+      "assetKey": "pokemon/219/portrait",
+      "path": "sprites/creature/934.png",
+      "lookType": 934,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 219,
+      "visualType": "walk",
+      "assetKey": "pokemon/219/walk",
+      "path": "sprites/creature/934.png",
+      "lookType": 934,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 220,
+      "visualType": "portrait",
+      "assetKey": "pokemon/220/portrait",
+      "path": "sprites/creature/935.png",
+      "lookType": 935,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 220,
+      "visualType": "walk",
+      "assetKey": "pokemon/220/walk",
+      "path": "sprites/creature/935.png",
+      "lookType": 935,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 221,
+      "visualType": "portrait",
+      "assetKey": "pokemon/221/portrait",
+      "path": "sprites/creature/927.png",
+      "lookType": 927,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 221,
+      "visualType": "walk",
+      "assetKey": "pokemon/221/walk",
+      "path": "sprites/creature/927.png",
+      "lookType": 927,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 222,
+      "visualType": "portrait",
+      "assetKey": "pokemon/222/portrait",
+      "path": "sprites/creature/928.png",
+      "lookType": 928,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 222,
+      "visualType": "walk",
+      "assetKey": "pokemon/222/walk",
+      "path": "sprites/creature/928.png",
+      "lookType": 928,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 223,
+      "visualType": "portrait",
+      "assetKey": "pokemon/223/portrait",
+      "path": "sprites/creature/926.png",
+      "lookType": 926,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 223,
+      "visualType": "walk",
+      "assetKey": "pokemon/223/walk",
+      "path": "sprites/creature/926.png",
+      "lookType": 926,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 224,
+      "visualType": "portrait",
+      "assetKey": "pokemon/224/portrait",
+      "path": "sprites/creature/929.png",
+      "lookType": 929,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 224,
+      "visualType": "walk",
+      "assetKey": "pokemon/224/walk",
+      "path": "sprites/creature/929.png",
+      "lookType": 929,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 225,
+      "visualType": "portrait",
+      "assetKey": "pokemon/225/portrait",
+      "path": "sprites/creature/931.png",
+      "lookType": 931,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 225,
+      "visualType": "walk",
+      "assetKey": "pokemon/225/walk",
+      "path": "sprites/creature/931.png",
+      "lookType": 931,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 226,
+      "visualType": "portrait",
+      "assetKey": "pokemon/226/portrait",
+      "path": "sprites/creature/937.png",
+      "lookType": 937,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 226,
+      "visualType": "walk",
+      "assetKey": "pokemon/226/walk",
+      "path": "sprites/creature/937.png",
+      "lookType": 937,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 227,
+      "visualType": "portrait",
+      "assetKey": "pokemon/227/portrait",
+      "path": "sprites/creature/930.png",
+      "lookType": 930,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 227,
+      "visualType": "walk",
+      "assetKey": "pokemon/227/walk",
+      "path": "sprites/creature/930.png",
+      "lookType": 930,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 228,
+      "visualType": "portrait",
+      "assetKey": "pokemon/228/portrait",
+      "path": "sprites/creature/936.png",
+      "lookType": 936,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 228,
+      "visualType": "walk",
+      "assetKey": "pokemon/228/walk",
+      "path": "sprites/creature/936.png",
+      "lookType": 936,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 229,
+      "visualType": "portrait",
+      "assetKey": "pokemon/229/portrait",
+      "path": "sprites/creature/932.png",
+      "lookType": 932,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 229,
+      "visualType": "walk",
+      "assetKey": "pokemon/229/walk",
+      "path": "sprites/creature/932.png",
+      "lookType": 932,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 230,
+      "visualType": "portrait",
+      "assetKey": "pokemon/230/portrait",
+      "path": "sprites/creature/933.png",
+      "lookType": 933,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 230,
+      "visualType": "walk",
+      "assetKey": "pokemon/230/walk",
+      "path": "sprites/creature/933.png",
+      "lookType": 933,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 231,
+      "visualType": "portrait",
+      "assetKey": "pokemon/231/portrait",
+      "path": "sprites/creature/944.png",
+      "lookType": 944,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 231,
+      "visualType": "walk",
+      "assetKey": "pokemon/231/walk",
+      "path": "sprites/creature/944.png",
+      "lookType": 944,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 232,
+      "visualType": "portrait",
+      "assetKey": "pokemon/232/portrait",
+      "path": "sprites/creature/1004.png",
+      "lookType": 1004,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 232,
+      "visualType": "walk",
+      "assetKey": "pokemon/232/walk",
+      "path": "sprites/creature/1004.png",
+      "lookType": 1004,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 233,
+      "visualType": "portrait",
+      "assetKey": "pokemon/233/portrait",
+      "path": "sprites/creature/1458.png",
+      "lookType": 1458,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 233,
+      "visualType": "walk",
+      "assetKey": "pokemon/233/walk",
+      "path": "sprites/creature/1458.png",
+      "lookType": 1458,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 234,
+      "visualType": "portrait",
+      "assetKey": "pokemon/234/portrait",
+      "path": "sprites/creature/736.png",
+      "lookType": 736,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 234,
+      "visualType": "walk",
+      "assetKey": "pokemon/234/walk",
+      "path": "sprites/creature/736.png",
+      "lookType": 736,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 235,
+      "visualType": "portrait",
+      "assetKey": "pokemon/235/portrait",
+      "path": "sprites/creature/947.png",
+      "lookType": 947,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 235,
+      "visualType": "walk",
+      "assetKey": "pokemon/235/walk",
+      "path": "sprites/creature/947.png",
+      "lookType": 947,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 236,
+      "visualType": "portrait",
+      "assetKey": "pokemon/236/portrait",
+      "path": "sprites/creature/942.png",
+      "lookType": 942,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 236,
+      "visualType": "walk",
+      "assetKey": "pokemon/236/walk",
+      "path": "sprites/creature/942.png",
+      "lookType": 942,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 237,
+      "visualType": "portrait",
+      "assetKey": "pokemon/237/portrait",
+      "path": "sprites/creature/735.png",
+      "lookType": 735,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 237,
+      "visualType": "walk",
+      "assetKey": "pokemon/237/walk",
+      "path": "sprites/creature/735.png",
+      "lookType": 735,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 238,
+      "visualType": "portrait",
+      "assetKey": "pokemon/238/portrait",
+      "path": "sprites/creature/952.png",
+      "lookType": 952,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 238,
+      "visualType": "walk",
+      "assetKey": "pokemon/238/walk",
+      "path": "sprites/creature/952.png",
+      "lookType": 952,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 239,
+      "visualType": "portrait",
+      "assetKey": "pokemon/239/portrait",
+      "path": "sprites/creature/940.png",
+      "lookType": 940,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 239,
+      "visualType": "walk",
+      "assetKey": "pokemon/239/walk",
+      "path": "sprites/creature/940.png",
+      "lookType": 940,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 240,
+      "visualType": "portrait",
+      "assetKey": "pokemon/240/portrait",
+      "path": "sprites/creature/738.png",
+      "lookType": 738,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 240,
+      "visualType": "walk",
+      "assetKey": "pokemon/240/walk",
+      "path": "sprites/creature/738.png",
+      "lookType": 738,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 241,
+      "visualType": "portrait",
+      "assetKey": "pokemon/241/portrait",
+      "path": "sprites/creature/737.png",
+      "lookType": 737,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 241,
+      "visualType": "walk",
+      "assetKey": "pokemon/241/walk",
+      "path": "sprites/creature/737.png",
+      "lookType": 737,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 242,
+      "visualType": "portrait",
+      "assetKey": "pokemon/242/portrait",
+      "path": "sprites/creature/946.png",
+      "lookType": 946,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 242,
+      "visualType": "walk",
+      "assetKey": "pokemon/242/walk",
+      "path": "sprites/creature/946.png",
+      "lookType": 946,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 243,
+      "visualType": "portrait",
+      "assetKey": "pokemon/243/portrait",
+      "path": "sprites/creature/945.png",
+      "lookType": 945,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 243,
+      "visualType": "walk",
+      "assetKey": "pokemon/243/walk",
+      "path": "sprites/creature/945.png",
+      "lookType": 945,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 244,
+      "visualType": "portrait",
+      "assetKey": "pokemon/244/portrait",
+      "path": "sprites/creature/957.png",
+      "lookType": 957,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 244,
+      "visualType": "walk",
+      "assetKey": "pokemon/244/walk",
+      "path": "sprites/creature/957.png",
+      "lookType": 957,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 245,
+      "visualType": "portrait",
+      "assetKey": "pokemon/245/portrait",
+      "path": "sprites/creature/956.png",
+      "lookType": 956,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 245,
+      "visualType": "walk",
+      "assetKey": "pokemon/245/walk",
+      "path": "sprites/creature/956.png",
+      "lookType": 956,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 246,
+      "visualType": "portrait",
+      "assetKey": "pokemon/246/portrait",
+      "path": "sprites/creature/958.png",
+      "lookType": 958,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 246,
+      "visualType": "walk",
+      "assetKey": "pokemon/246/walk",
+      "path": "sprites/creature/958.png",
+      "lookType": 958,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 247,
+      "visualType": "portrait",
+      "assetKey": "pokemon/247/portrait",
+      "path": "sprites/creature/938.png",
+      "lookType": 938,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 247,
+      "visualType": "walk",
+      "assetKey": "pokemon/247/walk",
+      "path": "sprites/creature/938.png",
+      "lookType": 938,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 248,
+      "visualType": "portrait",
+      "assetKey": "pokemon/248/portrait",
+      "path": "sprites/creature/939.png",
+      "lookType": 939,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 248,
+      "visualType": "walk",
+      "assetKey": "pokemon/248/walk",
+      "path": "sprites/creature/939.png",
+      "lookType": 939,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 249,
+      "visualType": "portrait",
+      "assetKey": "pokemon/249/portrait",
+      "path": "sprites/creature/954.png",
+      "lookType": 954,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 249,
+      "visualType": "walk",
+      "assetKey": "pokemon/249/walk",
+      "path": "sprites/creature/954.png",
+      "lookType": 954,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 250,
+      "visualType": "portrait",
+      "assetKey": "pokemon/250/portrait",
+      "path": "sprites/creature/959.png",
+      "lookType": 959,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 250,
+      "visualType": "walk",
+      "assetKey": "pokemon/250/walk",
+      "path": "sprites/creature/959.png",
+      "lookType": 959,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 251,
+      "visualType": "portrait",
+      "assetKey": "pokemon/251/portrait",
+      "path": "sprites/creature/955.png",
+      "lookType": 955,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 251,
+      "visualType": "walk",
+      "assetKey": "pokemon/251/walk",
+      "path": "sprites/creature/955.png",
+      "lookType": 955,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 252,
+      "visualType": "portrait",
+      "assetKey": "pokemon/252/portrait",
+      "path": "sprites/creature/960.png",
+      "lookType": 960,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 252,
+      "visualType": "walk",
+      "assetKey": "pokemon/252/walk",
+      "path": "sprites/creature/960.png",
+      "lookType": 960,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 253,
+      "visualType": "portrait",
+      "assetKey": "pokemon/253/portrait",
+      "path": "sprites/creature/1573.png",
+      "lookType": 1573,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 253,
+      "visualType": "walk",
+      "assetKey": "pokemon/253/walk",
+      "path": "sprites/creature/1573.png",
+      "lookType": 1573,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 254,
+      "visualType": "portrait",
+      "assetKey": "pokemon/254/portrait",
+      "path": "sprites/creature/1738.png",
+      "lookType": 1738,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 254,
+      "visualType": "walk",
+      "assetKey": "pokemon/254/walk",
+      "path": "sprites/creature/1738.png",
+      "lookType": 1738,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 255,
+      "visualType": "portrait",
+      "assetKey": "pokemon/255/portrait",
+      "path": "sprites/creature/1754.png",
+      "lookType": 1754,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 255,
+      "visualType": "walk",
+      "assetKey": "pokemon/255/walk",
+      "path": "sprites/creature/1754.png",
+      "lookType": 1754,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 256,
+      "visualType": "portrait",
+      "assetKey": "pokemon/256/portrait",
+      "path": "sprites/creature/1736.png",
+      "lookType": 1736,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 256,
+      "visualType": "walk",
+      "assetKey": "pokemon/256/walk",
+      "path": "sprites/creature/1736.png",
+      "lookType": 1736,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 257,
+      "visualType": "portrait",
+      "assetKey": "pokemon/257/portrait",
+      "path": "sprites/creature/1740.png",
+      "lookType": 1740,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 257,
+      "visualType": "walk",
+      "assetKey": "pokemon/257/walk",
+      "path": "sprites/creature/1740.png",
+      "lookType": 1740,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 258,
+      "visualType": "portrait",
+      "assetKey": "pokemon/258/portrait",
+      "path": "sprites/creature/1771.png",
+      "lookType": 1771,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 258,
+      "visualType": "walk",
+      "assetKey": "pokemon/258/walk",
+      "path": "sprites/creature/1771.png",
+      "lookType": 1771,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 259,
+      "visualType": "portrait",
+      "assetKey": "pokemon/259/portrait",
+      "path": "sprites/creature/1761.png",
+      "lookType": 1761,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 259,
+      "visualType": "walk",
+      "assetKey": "pokemon/259/walk",
+      "path": "sprites/creature/1761.png",
+      "lookType": 1761,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 260,
+      "visualType": "portrait",
+      "assetKey": "pokemon/260/portrait",
+      "path": "sprites/creature/1734.png",
+      "lookType": 1734,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 260,
+      "visualType": "walk",
+      "assetKey": "pokemon/260/walk",
+      "path": "sprites/creature/1734.png",
+      "lookType": 1734,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 261,
+      "visualType": "portrait",
+      "assetKey": "pokemon/261/portrait",
+      "path": "sprites/creature/1791.png",
+      "lookType": 1791,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 261,
+      "visualType": "walk",
+      "assetKey": "pokemon/261/walk",
+      "path": "sprites/creature/1791.png",
+      "lookType": 1791,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 262,
+      "visualType": "portrait",
+      "assetKey": "pokemon/262/portrait",
+      "path": "sprites/creature/1813.png",
+      "lookType": 1813,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 262,
+      "visualType": "walk",
+      "assetKey": "pokemon/262/walk",
+      "path": "sprites/creature/1813.png",
+      "lookType": 1813,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 263,
+      "visualType": "portrait",
+      "assetKey": "pokemon/263/portrait",
+      "path": "sprites/creature/1733.png",
+      "lookType": 1733,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 263,
+      "visualType": "walk",
+      "assetKey": "pokemon/263/walk",
+      "path": "sprites/creature/1733.png",
+      "lookType": 1733,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 264,
+      "visualType": "portrait",
+      "assetKey": "pokemon/264/portrait",
+      "path": "sprites/creature/1783.png",
+      "lookType": 1783,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 264,
+      "visualType": "walk",
+      "assetKey": "pokemon/264/walk",
+      "path": "sprites/creature/1783.png",
+      "lookType": 1783,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 265,
+      "visualType": "portrait",
+      "assetKey": "pokemon/265/portrait",
+      "path": "sprites/creature/1784.png",
+      "lookType": 1784,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 265,
+      "visualType": "walk",
+      "assetKey": "pokemon/265/walk",
+      "path": "sprites/creature/1784.png",
+      "lookType": 1784,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 266,
+      "visualType": "portrait",
+      "assetKey": "pokemon/266/portrait",
+      "path": "sprites/creature/1768.png",
+      "lookType": 1768,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 266,
+      "visualType": "walk",
+      "assetKey": "pokemon/266/walk",
+      "path": "sprites/creature/1768.png",
+      "lookType": 1768,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 267,
+      "visualType": "portrait",
+      "assetKey": "pokemon/267/portrait",
+      "path": "sprites/creature/1769.png",
+      "lookType": 1769,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 267,
+      "visualType": "walk",
+      "assetKey": "pokemon/267/walk",
+      "path": "sprites/creature/1769.png",
+      "lookType": 1769,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 268,
+      "visualType": "portrait",
+      "assetKey": "pokemon/268/portrait",
+      "path": "sprites/creature/1767.png",
+      "lookType": 1767,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 268,
+      "visualType": "walk",
+      "assetKey": "pokemon/268/walk",
+      "path": "sprites/creature/1767.png",
+      "lookType": 1767,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 269,
+      "visualType": "portrait",
+      "assetKey": "pokemon/269/portrait",
+      "path": "sprites/creature/1743.png",
+      "lookType": 1743,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 269,
+      "visualType": "walk",
+      "assetKey": "pokemon/269/walk",
+      "path": "sprites/creature/1743.png",
+      "lookType": 1743,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 270,
+      "visualType": "portrait",
+      "assetKey": "pokemon/270/portrait",
+      "path": "sprites/creature/1780.png",
+      "lookType": 1780,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 270,
+      "visualType": "walk",
+      "assetKey": "pokemon/270/walk",
+      "path": "sprites/creature/1780.png",
+      "lookType": 1780,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 271,
+      "visualType": "portrait",
+      "assetKey": "pokemon/271/portrait",
+      "path": "sprites/creature/1772.png",
+      "lookType": 1772,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 271,
+      "visualType": "walk",
+      "assetKey": "pokemon/271/walk",
+      "path": "sprites/creature/1772.png",
+      "lookType": 1772,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 272,
+      "visualType": "portrait",
+      "assetKey": "pokemon/272/portrait",
+      "path": "sprites/creature/1760.png",
+      "lookType": 1760,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 272,
+      "visualType": "walk",
+      "assetKey": "pokemon/272/walk",
+      "path": "sprites/creature/1760.png",
+      "lookType": 1760,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 273,
+      "visualType": "portrait",
+      "assetKey": "pokemon/273/portrait",
+      "path": "sprites/creature/1725.png",
+      "lookType": 1725,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 273,
+      "visualType": "walk",
+      "assetKey": "pokemon/273/walk",
+      "path": "sprites/creature/1725.png",
+      "lookType": 1725,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 274,
+      "visualType": "portrait",
+      "assetKey": "pokemon/274/portrait",
+      "path": "sprites/creature/1749.png",
+      "lookType": 1749,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 274,
+      "visualType": "walk",
+      "assetKey": "pokemon/274/walk",
+      "path": "sprites/creature/1749.png",
+      "lookType": 1749,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 275,
+      "visualType": "portrait",
+      "assetKey": "pokemon/275/portrait",
+      "path": "sprites/creature/1794.png",
+      "lookType": 1794,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 275,
+      "visualType": "walk",
+      "assetKey": "pokemon/275/walk",
+      "path": "sprites/creature/1794.png",
+      "lookType": 1794,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 276,
+      "visualType": "portrait",
+      "assetKey": "pokemon/276/portrait",
+      "path": "sprites/creature/1727.png",
+      "lookType": 1727,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 276,
+      "visualType": "walk",
+      "assetKey": "pokemon/276/walk",
+      "path": "sprites/creature/1727.png",
+      "lookType": 1727,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 277,
+      "visualType": "portrait",
+      "assetKey": "pokemon/277/portrait",
+      "path": "sprites/creature/1746.png",
+      "lookType": 1746,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 277,
+      "visualType": "walk",
+      "assetKey": "pokemon/277/walk",
+      "path": "sprites/creature/1746.png",
+      "lookType": 1746,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 278,
+      "visualType": "portrait",
+      "assetKey": "pokemon/278/portrait",
+      "path": "sprites/creature/1723.png",
+      "lookType": 1723,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 278,
+      "visualType": "walk",
+      "assetKey": "pokemon/278/walk",
+      "path": "sprites/creature/1723.png",
+      "lookType": 1723,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 279,
+      "visualType": "portrait",
+      "assetKey": "pokemon/279/portrait",
+      "path": "sprites/creature/1793.png",
+      "lookType": 1793,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 279,
+      "visualType": "walk",
+      "assetKey": "pokemon/279/walk",
+      "path": "sprites/creature/1793.png",
+      "lookType": 1793,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 280,
+      "visualType": "portrait",
+      "assetKey": "pokemon/280/portrait",
+      "path": "sprites/creature/1737.png",
+      "lookType": 1737,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 280,
+      "visualType": "walk",
+      "assetKey": "pokemon/280/walk",
+      "path": "sprites/creature/1737.png",
+      "lookType": 1737,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 281,
+      "visualType": "portrait",
+      "assetKey": "pokemon/281/portrait",
+      "path": "sprites/creature/1752.png",
+      "lookType": 1752,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 281,
+      "visualType": "walk",
+      "assetKey": "pokemon/281/walk",
+      "path": "sprites/creature/1752.png",
+      "lookType": 1752,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 282,
+      "visualType": "portrait",
+      "assetKey": "pokemon/282/portrait",
+      "path": "sprites/creature/1750.png",
+      "lookType": 1750,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 282,
+      "visualType": "walk",
+      "assetKey": "pokemon/282/walk",
+      "path": "sprites/creature/1750.png",
+      "lookType": 1750,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 283,
+      "visualType": "portrait",
+      "assetKey": "pokemon/283/portrait",
+      "path": "sprites/creature/1778.png",
+      "lookType": 1778,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 283,
+      "visualType": "walk",
+      "assetKey": "pokemon/283/walk",
+      "path": "sprites/creature/1778.png",
+      "lookType": 1778,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 284,
+      "visualType": "portrait",
+      "assetKey": "pokemon/284/portrait",
+      "path": "sprites/creature/1797.png",
+      "lookType": 1797,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 284,
+      "visualType": "walk",
+      "assetKey": "pokemon/284/walk",
+      "path": "sprites/creature/1797.png",
+      "lookType": 1797,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 285,
+      "visualType": "portrait",
+      "assetKey": "pokemon/285/portrait",
+      "path": "sprites/creature/1751.png",
+      "lookType": 1751,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 285,
+      "visualType": "walk",
+      "assetKey": "pokemon/285/walk",
+      "path": "sprites/creature/1751.png",
+      "lookType": 1751,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 286,
+      "visualType": "portrait",
+      "assetKey": "pokemon/286/portrait",
+      "path": "sprites/creature/1745.png",
+      "lookType": 1745,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 286,
+      "visualType": "walk",
+      "assetKey": "pokemon/286/walk",
+      "path": "sprites/creature/1745.png",
+      "lookType": 1745,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 287,
+      "visualType": "portrait",
+      "assetKey": "pokemon/287/portrait",
+      "path": "sprites/creature/1744.png",
+      "lookType": 1744,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 287,
+      "visualType": "walk",
+      "assetKey": "pokemon/287/walk",
+      "path": "sprites/creature/1744.png",
+      "lookType": 1744,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 288,
+      "visualType": "portrait",
+      "assetKey": "pokemon/288/portrait",
+      "path": "sprites/creature/1730.png",
+      "lookType": 1730,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 288,
+      "visualType": "walk",
+      "assetKey": "pokemon/288/walk",
+      "path": "sprites/creature/1730.png",
+      "lookType": 1730,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 289,
+      "visualType": "portrait",
+      "assetKey": "pokemon/289/portrait",
+      "path": "sprites/creature/1735.png",
+      "lookType": 1735,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 289,
+      "visualType": "walk",
+      "assetKey": "pokemon/289/walk",
+      "path": "sprites/creature/1735.png",
+      "lookType": 1735,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 290,
+      "visualType": "portrait",
+      "assetKey": "pokemon/290/portrait",
+      "path": "sprites/creature/1756.png",
+      "lookType": 1756,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 290,
+      "visualType": "walk",
+      "assetKey": "pokemon/290/walk",
+      "path": "sprites/creature/1756.png",
+      "lookType": 1756,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 291,
+      "visualType": "portrait",
+      "assetKey": "pokemon/291/portrait",
+      "path": "sprites/creature/1763.png",
+      "lookType": 1763,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 291,
+      "visualType": "walk",
+      "assetKey": "pokemon/291/walk",
+      "path": "sprites/creature/1763.png",
+      "lookType": 1763,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 292,
+      "visualType": "portrait",
+      "assetKey": "pokemon/292/portrait",
+      "path": "sprites/creature/1762.png",
+      "lookType": 1762,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 292,
+      "visualType": "walk",
+      "assetKey": "pokemon/292/walk",
+      "path": "sprites/creature/1762.png",
+      "lookType": 1762,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 293,
+      "visualType": "portrait",
+      "assetKey": "pokemon/293/portrait",
+      "path": "sprites/creature/1773.png",
+      "lookType": 1773,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 293,
+      "visualType": "walk",
+      "assetKey": "pokemon/293/walk",
+      "path": "sprites/creature/1773.png",
+      "lookType": 1773,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 294,
+      "visualType": "portrait",
+      "assetKey": "pokemon/294/portrait",
+      "path": "sprites/creature/1729.png",
+      "lookType": 1729,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 294,
+      "visualType": "walk",
+      "assetKey": "pokemon/294/walk",
+      "path": "sprites/creature/1729.png",
+      "lookType": 1729,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 295,
+      "visualType": "portrait",
+      "assetKey": "pokemon/295/portrait",
+      "path": "sprites/creature/1764.png",
+      "lookType": 1764,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 295,
+      "visualType": "walk",
+      "assetKey": "pokemon/295/walk",
+      "path": "sprites/creature/1764.png",
+      "lookType": 1764,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 296,
+      "visualType": "portrait",
+      "assetKey": "pokemon/296/portrait",
+      "path": "sprites/creature/1765.png",
+      "lookType": 1765,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 296,
+      "visualType": "walk",
+      "assetKey": "pokemon/296/walk",
+      "path": "sprites/creature/1765.png",
+      "lookType": 1765,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 297,
+      "visualType": "portrait",
+      "assetKey": "pokemon/297/portrait",
+      "path": "sprites/creature/1790.png",
+      "lookType": 1790,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 297,
+      "visualType": "walk",
+      "assetKey": "pokemon/297/walk",
+      "path": "sprites/creature/1790.png",
+      "lookType": 1790,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 298,
+      "visualType": "portrait",
+      "assetKey": "pokemon/298/portrait",
+      "path": "sprites/creature/1806.png",
+      "lookType": 1806,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 298,
+      "visualType": "walk",
+      "assetKey": "pokemon/298/walk",
+      "path": "sprites/creature/1806.png",
+      "lookType": 1806,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 299,
+      "visualType": "portrait",
+      "assetKey": "pokemon/299/portrait",
+      "path": "sprites/creature/1724.png",
+      "lookType": 1724,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 299,
+      "visualType": "walk",
+      "assetKey": "pokemon/299/walk",
+      "path": "sprites/creature/1724.png",
+      "lookType": 1724,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 300,
+      "visualType": "portrait",
+      "assetKey": "pokemon/300/portrait",
+      "path": "sprites/creature/1795.png",
+      "lookType": 1795,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 300,
+      "visualType": "walk",
+      "assetKey": "pokemon/300/walk",
+      "path": "sprites/creature/1795.png",
+      "lookType": 1795,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 301,
+      "visualType": "portrait",
+      "assetKey": "pokemon/301/portrait",
+      "path": "sprites/creature/1789.png",
+      "lookType": 1789,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 301,
+      "visualType": "walk",
+      "assetKey": "pokemon/301/walk",
+      "path": "sprites/creature/1789.png",
+      "lookType": 1789,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 302,
+      "visualType": "portrait",
+      "assetKey": "pokemon/302/portrait",
+      "path": "sprites/creature/1810.png",
+      "lookType": 1810,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 302,
+      "visualType": "walk",
+      "assetKey": "pokemon/302/walk",
+      "path": "sprites/creature/1810.png",
+      "lookType": 1810,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 303,
+      "visualType": "portrait",
+      "assetKey": "pokemon/303/portrait",
+      "path": "sprites/creature/1812.png",
+      "lookType": 1812,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 303,
+      "visualType": "walk",
+      "assetKey": "pokemon/303/walk",
+      "path": "sprites/creature/1812.png",
+      "lookType": 1812,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 304,
+      "visualType": "portrait",
+      "assetKey": "pokemon/304/portrait",
+      "path": "sprites/creature/1742.png",
+      "lookType": 1742,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 304,
+      "visualType": "walk",
+      "assetKey": "pokemon/304/walk",
+      "path": "sprites/creature/1742.png",
+      "lookType": 1742,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 305,
+      "visualType": "portrait",
+      "assetKey": "pokemon/305/portrait",
+      "path": "sprites/creature/1728.png",
+      "lookType": 1728,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 305,
+      "visualType": "walk",
+      "assetKey": "pokemon/305/walk",
+      "path": "sprites/creature/1728.png",
+      "lookType": 1728,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 306,
+      "visualType": "portrait",
+      "assetKey": "pokemon/306/portrait",
+      "path": "sprites/creature/1786.png",
+      "lookType": 1786,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 306,
+      "visualType": "walk",
+      "assetKey": "pokemon/306/walk",
+      "path": "sprites/creature/1786.png",
+      "lookType": 1786,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 307,
+      "visualType": "portrait",
+      "assetKey": "pokemon/307/portrait",
+      "path": "sprites/creature/1785.png",
+      "lookType": 1785,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 307,
+      "visualType": "walk",
+      "assetKey": "pokemon/307/walk",
+      "path": "sprites/creature/1785.png",
+      "lookType": 1785,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 308,
+      "visualType": "portrait",
+      "assetKey": "pokemon/308/portrait",
+      "path": "sprites/creature/1792.png",
+      "lookType": 1792,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 308,
+      "visualType": "walk",
+      "assetKey": "pokemon/308/walk",
+      "path": "sprites/creature/1792.png",
+      "lookType": 1792,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 309,
+      "visualType": "portrait",
+      "assetKey": "pokemon/309/portrait",
+      "path": "sprites/creature/1766.png",
+      "lookType": 1766,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 309,
+      "visualType": "walk",
+      "assetKey": "pokemon/309/walk",
+      "path": "sprites/creature/1766.png",
+      "lookType": 1766,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 310,
+      "visualType": "portrait",
+      "assetKey": "pokemon/310/portrait",
+      "path": "sprites/creature/1741.png",
+      "lookType": 1741,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 310,
+      "visualType": "walk",
+      "assetKey": "pokemon/310/walk",
+      "path": "sprites/creature/1741.png",
+      "lookType": 1741,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 311,
+      "visualType": "portrait",
+      "assetKey": "pokemon/311/portrait",
+      "path": "sprites/creature/1807.png",
+      "lookType": 1807,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 311,
+      "visualType": "walk",
+      "assetKey": "pokemon/311/walk",
+      "path": "sprites/creature/1807.png",
+      "lookType": 1807,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 312,
+      "visualType": "portrait",
+      "assetKey": "pokemon/312/portrait",
+      "path": "sprites/creature/1770.png",
+      "lookType": 1770,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 312,
+      "visualType": "walk",
+      "assetKey": "pokemon/312/walk",
+      "path": "sprites/creature/1770.png",
+      "lookType": 1770,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 313,
+      "visualType": "portrait",
+      "assetKey": "pokemon/313/portrait",
+      "path": "sprites/creature/1782.png",
+      "lookType": 1782,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 313,
+      "visualType": "walk",
+      "assetKey": "pokemon/313/walk",
+      "path": "sprites/creature/1782.png",
+      "lookType": 1782,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 314,
+      "visualType": "portrait",
+      "assetKey": "pokemon/314/portrait",
+      "path": "sprites/creature/1781.png",
+      "lookType": 1781,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 314,
+      "visualType": "walk",
+      "assetKey": "pokemon/314/walk",
+      "path": "sprites/creature/1781.png",
+      "lookType": 1781,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 315,
+      "visualType": "portrait",
+      "assetKey": "pokemon/315/portrait",
+      "path": "sprites/creature/1748.png",
+      "lookType": 1748,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 315,
+      "visualType": "walk",
+      "assetKey": "pokemon/315/walk",
+      "path": "sprites/creature/1748.png",
+      "lookType": 1748,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 316,
+      "visualType": "portrait",
+      "assetKey": "pokemon/316/portrait",
+      "path": "sprites/creature/1785.png",
+      "lookType": 1785,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 316,
+      "visualType": "walk",
+      "assetKey": "pokemon/316/walk",
+      "path": "sprites/creature/1785.png",
+      "lookType": 1785,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 317,
+      "visualType": "portrait",
+      "assetKey": "pokemon/317/portrait",
+      "path": "sprites/creature/1753.png",
+      "lookType": 1753,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 317,
+      "visualType": "walk",
+      "assetKey": "pokemon/317/walk",
+      "path": "sprites/creature/1753.png",
+      "lookType": 1753,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 318,
+      "visualType": "portrait",
+      "assetKey": "pokemon/318/portrait",
+      "path": "sprites/creature/1731.png",
+      "lookType": 1731,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 318,
+      "visualType": "walk",
+      "assetKey": "pokemon/318/walk",
+      "path": "sprites/creature/1731.png",
+      "lookType": 1731,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 319,
+      "visualType": "portrait",
+      "assetKey": "pokemon/319/portrait",
+      "path": "sprites/creature/1809.png",
+      "lookType": 1809,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 319,
+      "visualType": "walk",
+      "assetKey": "pokemon/319/walk",
+      "path": "sprites/creature/1809.png",
+      "lookType": 1809,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 320,
+      "visualType": "portrait",
+      "assetKey": "pokemon/320/portrait",
+      "path": "sprites/creature/1774.png",
+      "lookType": 1774,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 320,
+      "visualType": "walk",
+      "assetKey": "pokemon/320/walk",
+      "path": "sprites/creature/1774.png",
+      "lookType": 1774,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 321,
+      "visualType": "portrait",
+      "assetKey": "pokemon/321/portrait",
+      "path": "sprites/creature/1808.png",
+      "lookType": 1808,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 321,
+      "visualType": "walk",
+      "assetKey": "pokemon/321/walk",
+      "path": "sprites/creature/1808.png",
+      "lookType": 1808,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 322,
+      "visualType": "portrait",
+      "assetKey": "pokemon/322/portrait",
+      "path": "sprites/creature/1732.png",
+      "lookType": 1732,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 322,
+      "visualType": "walk",
+      "assetKey": "pokemon/322/walk",
+      "path": "sprites/creature/1732.png",
+      "lookType": 1732,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 323,
+      "visualType": "portrait",
+      "assetKey": "pokemon/323/portrait",
+      "path": "sprites/creature/1788.png",
+      "lookType": 1788,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 323,
+      "visualType": "walk",
+      "assetKey": "pokemon/323/walk",
+      "path": "sprites/creature/1788.png",
+      "lookType": 1788,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 324,
+      "visualType": "portrait",
+      "assetKey": "pokemon/324/portrait",
+      "path": "sprites/creature/1758.png",
+      "lookType": 1758,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 324,
+      "visualType": "walk",
+      "assetKey": "pokemon/324/walk",
+      "path": "sprites/creature/1758.png",
+      "lookType": 1758,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 325,
+      "visualType": "portrait",
+      "assetKey": "pokemon/325/portrait",
+      "path": "sprites/creature/1726.png",
+      "lookType": 1726,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 325,
+      "visualType": "walk",
+      "assetKey": "pokemon/325/walk",
+      "path": "sprites/creature/1726.png",
+      "lookType": 1726,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 326,
+      "visualType": "portrait",
+      "assetKey": "pokemon/326/portrait",
+      "path": "sprites/creature/1755.png",
+      "lookType": 1755,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 326,
+      "visualType": "walk",
+      "assetKey": "pokemon/326/walk",
+      "path": "sprites/creature/1755.png",
+      "lookType": 1755,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 327,
+      "visualType": "portrait",
+      "assetKey": "pokemon/327/portrait",
+      "path": "sprites/creature/1759.png",
+      "lookType": 1759,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 327,
+      "visualType": "walk",
+      "assetKey": "pokemon/327/walk",
+      "path": "sprites/creature/1759.png",
+      "lookType": 1759,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 328,
+      "visualType": "portrait",
+      "assetKey": "pokemon/328/portrait",
+      "path": "sprites/creature/1796.png",
+      "lookType": 1796,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 328,
+      "visualType": "walk",
+      "assetKey": "pokemon/328/walk",
+      "path": "sprites/creature/1796.png",
+      "lookType": 1796,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 329,
+      "visualType": "portrait",
+      "assetKey": "pokemon/329/portrait",
+      "path": "sprites/creature/1787.png",
+      "lookType": 1787,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 329,
+      "visualType": "walk",
+      "assetKey": "pokemon/329/walk",
+      "path": "sprites/creature/1787.png",
+      "lookType": 1787,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 330,
+      "visualType": "portrait",
+      "assetKey": "pokemon/330/portrait",
+      "path": "sprites/creature/1777.png",
+      "lookType": 1777,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 330,
+      "visualType": "walk",
+      "assetKey": "pokemon/330/walk",
+      "path": "sprites/creature/1777.png",
+      "lookType": 1777,
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 331,
+      "visualType": "portrait",
+      "assetKey": "pokemon/331/portrait",
+      "path": "sprites/creature/1811.png",
+      "lookType": 1811,
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 331,
+      "visualType": "walk",
+      "assetKey": "pokemon/331/walk",
+      "path": "sprites/creature/1811.png",
+      "lookType": 1811,
       "frameWidth": 32,
       "frameHeight": 32,
       "frameCount": 4

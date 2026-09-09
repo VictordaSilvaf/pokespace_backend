@@ -8,6 +8,8 @@ import { GetCharacterForAccountUseCase } from '../../../character/application/us
 import { Character } from '../../../character/domain/entities/character.entity.js';
 import { CharacterName } from '../../../character/domain/value-objects/character-name.vo.js';
 import { CharacterAccessDeniedError } from '../../../character/domain/errors/character.errors.js';
+import { InMemoryPokedexProgressRepository } from '../../../pokemon/infrastructure/persistence/in-memory-pokedex-progress.repository.js';
+import { MarkPokemonCaughtUseCase } from '../../../pokemon/application/use-cases/pokedex-progress.use-cases.js';
 
 async function setupOwnedCharacter(accountId = 'acc-1') {
   const characters = new InMemoryCharacterRepository();
@@ -18,16 +20,23 @@ async function setupOwnedCharacter(accountId = 'acc-1') {
   );
   await characters.save(character);
   const getCharacter = new GetCharacterForAccountUseCase(characters);
-  return { character, getCharacter, characters };
+  const markCaught = new MarkPokemonCaughtUseCase(
+    new InMemoryPokedexProgressRepository(),
+  );
+  return { character, getCharacter, markCaught };
 }
 
 describe('Battle use cases', () => {
   it('starts a wild battle and resolves a tackle turn', async () => {
     const battles = new InMemoryBattleRepository();
     const pokemon = new InMemoryPokemonRepository();
-    const { character, getCharacter } = await setupOwnedCharacter();
+    const { character, getCharacter, markCaught } = await setupOwnedCharacter();
     const start = new StartWildBattleUseCase(battles, pokemon, getCharacter);
-    const act = new ExecuteBattleActionUseCase(battles, getCharacter);
+    const act = new ExecuteBattleActionUseCase(
+      battles,
+      getCharacter,
+      markCaught,
+    );
 
     const battle = await start.execute({
       accountId: 'acc-1',
@@ -56,9 +65,13 @@ describe('Battle use cases', () => {
   it('can attempt capture', async () => {
     const battles = new InMemoryBattleRepository();
     const pokemon = new InMemoryPokemonRepository();
-    const { character, getCharacter } = await setupOwnedCharacter();
+    const { character, getCharacter, markCaught } = await setupOwnedCharacter();
     const start = new StartWildBattleUseCase(battles, pokemon, getCharacter);
-    const act = new ExecuteBattleActionUseCase(battles, getCharacter);
+    const act = new ExecuteBattleActionUseCase(
+      battles,
+      getCharacter,
+      markCaught,
+    );
 
     const battle = await start.execute({
       accountId: 'acc-1',

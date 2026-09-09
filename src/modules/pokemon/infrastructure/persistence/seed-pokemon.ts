@@ -1,85 +1,110 @@
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Pokemon } from '../../domain/entities/pokemon.entity.js';
 import { DexId } from '../../domain/value-objects/dex-id.vo.js';
 import { PokemonType } from '../../domain/value-objects/pokemon-type.vo.js';
 import { BaseStats } from '../../domain/value-objects/base-stats.vo.js';
 import { PokemonStatus } from '../../domain/value-objects/pokemon-status.vo.js';
 
-const SEED_CREATED_AT = new Date('2026-01-01T00:00:00.000Z');
+const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 
-export function createSeedPokemon(): Pokemon[] {
-  return [
-    seed(1, 'Bulbasaur', ['grass', 'poison'], {
-      hp: 45,
-      attack: 49,
-      defense: 49,
-      specialAttack: 65,
-      specialDefense: 65,
-      speed: 45,
-    }),
-    seed(4, 'Charmander', ['fire'], {
-      hp: 39,
-      attack: 52,
-      defense: 43,
-      specialAttack: 60,
-      specialDefense: 50,
-      speed: 65,
-    }),
-    seed(7, 'Squirtle', ['water'], {
-      hp: 44,
-      attack: 48,
-      defense: 65,
-      specialAttack: 50,
-      specialDefense: 64,
-      speed: 43,
-    }),
-    seed(16, 'Pidgey', ['normal', 'flying'], {
-      hp: 40,
-      attack: 45,
-      defense: 40,
-      specialAttack: 35,
-      specialDefense: 35,
-      speed: 56,
-    }),
-    seed(19, 'Rattata', ['normal'], {
-      hp: 30,
-      attack: 56,
-      defense: 35,
-      specialAttack: 25,
-      specialDefense: 35,
-      speed: 72,
-    }),
-    seed(25, 'Pikachu', ['electric'], {
-      hp: 35,
-      attack: 55,
-      defense: 40,
-      specialAttack: 50,
-      specialDefense: 50,
-      speed: 90,
-    }),
-  ];
+const TYPE_ALIASES: Record<string, string> = {
+  fire2: 'fire',
+};
+
+export interface CatalogSpeciesJson {
+  dexId: number;
+  name: string;
+  types?: string[];
+  lookType?: number | null;
+  portraitId?: number | null;
+  hp?: number | null;
+  speed?: number | null;
+  experience?: number | null;
+  hasShiny?: boolean;
+  hasMega?: boolean;
 }
 
-function seed(
-  dexId: number,
-  name: string,
-  types: string[],
-  baseStats: {
-    hp: number;
-    attack: number;
-    defense: number;
-    specialAttack: number;
-    specialDefense: number;
-    speed: number;
-  },
-): Pokemon {
-  const padded = String(dexId).padStart(3, '0');
-  return Pokemon.rehydrate({
-    id: `a0000001-0001-4000-8000-000000000${padded}`,
-    dexId: DexId.create(dexId),
-    name,
-    types: types.map((t) => PokemonType.create(t)),
-    baseStats: BaseStats.create(baseStats),
-    status: PokemonStatus.create('active'),
-    createdAt: SEED_CREATED_AT,
-  });
+function resolveCatalogPath(): string {
+  const candidates = [
+    join(process.cwd(), 'assets/catalog/pokemon-species.json'),
+    join(MODULE_DIR, '../../../../../assets/catalog/pokemon-species.json'),
+    join(MODULE_DIR, '../../../../../../assets/catalog/pokemon-species.json'),
+  ];
+  for (const candidate of candidates) {
+    try {
+      readFileSync(candidate, 'utf8');
+      return candidate;
+    } catch {
+      // next
+    }
+  }
+  return candidates[0]!;
+}
+
+export function loadSpeciesCatalogJson(): CatalogSpeciesJson[] {
+  const raw = JSON.parse(readFileSync(resolveCatalogPath(), 'utf8')) as unknown;
+  if (!Array.isArray(raw)) {
+    return [];
+  }
+  return raw as CatalogSpeciesJson[];
+}
+
+function normalizeType(raw: string): string {
+  const t = raw.trim().toLowerCase();
+  return TYPE_ALIASES[t] ?? t;
+}
+
+function stableUuid(dexId: number): string {
+  const hex = createHash('sha1')
+    .update(`pokespace-pokemon-${dexId}`)
+    .digest('hex')
+    .slice(0, 32);
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-4${hex.slice(13, 16)}-a${hex.slice(17, 20)}-${hex.slice(20, 32)}`;
+}
+
+export function createSeedPokemon(): Pokemon[] {
+  const catalog = loadSpeciesCatalogJson();
+  const out: Pokemon[] = [];
+  for (const entry of catalog) {
+    try {
+      const types = [
+        ...new Set((entry.types ?? []).map(normalizeType).filter(Boolean)),
+      ].slice(0, 2);
+      if (!entry.dexId || !entry.name?.trim() || types.length < 1) {
+        continue;
+      }
+      out.push(
+        Pokemon.rehydrate({
+          id: stableUuid(entry.dexId),
+          dexId: DexId.create(entry.dexId),
+          name: entry.name.trim().slice(0, 64),
+          types: types.map((t) => PokemonType.create(t)),
+          baseStats: BaseStats.create({
+            hp: 50,
+            attack: 50,
+            defense: 50,
+            specialAttack: 50,
+            specialDefense: 50,
+            speed: 50,
+          }),
+          status: PokemonStatus.create('active'),
+          lookType: entry.lookType ?? null,
+          portraitId: entry.portraitId ?? null,
+          experience: entry.experience ?? null,
+          otHp: entry.hp ?? null,
+          otSpeed: entry.speed ?? null,
+          hasShiny: Boolean(entry.hasShiny),
+          hasMega: Boolean(entry.hasMega),
+          source: 'ot-catalog',
+          createdAt: new Date('2026-01-01T00:00:00.000Z'),
+        }),
+      );
+    } catch {
+      // skip invalid catalog rows
+    }
+  }
+  return out;
 }

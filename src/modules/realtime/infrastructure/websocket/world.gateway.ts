@@ -27,6 +27,7 @@ import { InterestAreaService } from '../../../world/application/services/interes
 import { SessionManager } from '../../../world/application/services/session-manager.service.js';
 import { StartWildBattleUseCase } from '../../../battle/application/use-cases/start-wild-battle.use-case.js';
 import { ExecuteBattleActionUseCase } from '../../../battle/application/use-cases/execute-battle-action.use-case.js';
+import { MarkPokemonSeenUseCase } from '../../../pokemon/application/use-cases/pokedex-progress.use-cases.js';
 import {
   BattleDomainError,
   BattleNotFoundError,
@@ -82,6 +83,7 @@ export class WorldGateway
     private readonly sessions: SessionManager,
     private readonly startWildBattle: StartWildBattleUseCase,
     private readonly executeBattleAction: ExecuteBattleActionUseCase,
+    private readonly markPokemonSeen: MarkPokemonSeenUseCase,
   ) {}
 
   async handleConnection(client: AuthedSocket): Promise<void> {
@@ -161,6 +163,22 @@ export class WorldGateway
 
       for (const npc of result.npcSpawned ?? []) {
         client.to(room).emit('ENTITY_SPAWNED', npc);
+      }
+
+      const seenDexIds = [
+        ...(result.wildSpawned ?? []),
+        ...result.snapshot.entities.filter(
+          (e) => e.type === 'POKEMON' && typeof e.dexId === 'number',
+        ),
+      ]
+        .map((e) => e.dexId)
+        .filter((id): id is number => typeof id === 'number');
+
+      if (seenDexIds.length > 0) {
+        await this.markPokemonSeen.execute({
+          characterId: body.characterId,
+          dexIds: seenDexIds,
+        });
       }
 
       return { ok: true };

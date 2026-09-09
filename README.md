@@ -122,8 +122,9 @@ pnpm start:dev       # watch
 pnpm test            # unitários
 pnpm test:e2e        # e2e
 pnpm lint
-pnpm assets:sync     # scan pack → registry JSON (+ DB se DATABASE_URL)
+pnpm assets:sync     # visuals JSON → sprite registry (+ DB se DATABASE_URL)
 pnpm assets:validate
+pnpm dex:sync        # species JSON → Postgres
 pnpm maps:convert    # Tiled → chunks + metadata (OTBM scaffold)
 pnpm docker:prod:up  # stack produção
 pnpm docker:prod:down

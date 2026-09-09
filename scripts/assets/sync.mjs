@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import {
   createSeedRegistry,
+  entriesFromVisualsFile,
   REGISTRY_PATH,
   resolvePackRoot,
   scanPack,
@@ -14,9 +15,12 @@ async function main() {
   let packLabel = packRoot;
 
   if (entries.length === 0) {
-    console.warn(
-      `[assets:sync] No pack found at ${packRoot}; writing seed registry.`,
-    );
+    entries = entriesFromVisualsFile();
+    packLabel = '(pokemon-visuals.json)';
+  }
+
+  if (entries.length === 0) {
+    console.warn('[assets:sync] No pack/visuals; writing fallback seed registry.');
     const seed = createSeedRegistry();
     entries = seed.entries;
     packLabel = seed.packRoot;

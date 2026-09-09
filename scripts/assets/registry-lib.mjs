@@ -5,6 +5,7 @@ import pg from 'pg';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '../..');
 export const REGISTRY_PATH = join(ROOT, 'assets', 'registry', 'pokemon-sprites.json');
+export const VISUALS_PATH = join(ROOT, 'assets', 'registry', 'pokemon-visuals.json');
 
 const VISUAL_DIRS = {
   portrait: 'portrait',
@@ -164,8 +165,53 @@ export async function upsertRegistryToDb(registry) {
   }
 }
 
-/** Minimal seed registry used when no pack is present (MVP unlock). */
+/** Build registry entries from pokemon-visuals.json (lookType → FE sprite path). */
+export function entriesFromVisualsFile(path = VISUALS_PATH) {
+  let doc;
+  try {
+    doc = JSON.parse(readFileSync(path, 'utf8'));
+  } catch {
+    return [];
+  }
+  const visuals = Array.isArray(doc.visuals) ? doc.visuals : [];
+  const entries = [];
+  for (const visual of visuals) {
+    const dexId = Number(visual.dexId);
+    if (!Number.isInteger(dexId) || dexId < 1) continue;
+    for (const [field, visualType] of [
+      ['portrait', 'portrait'],
+      ['walk', 'walk'],
+      ['shinyWalk', 'shiny_walk'],
+    ]) {
+      const ref = visual[field];
+      if (!ref || typeof ref.id !== 'number') continue;
+      const lookType = ref.id;
+      const meta = inferGeometry(visualType);
+      entries.push({
+        dexId,
+        visualType,
+        assetKey: `pokemon/${dexId}/${visualType}`,
+        path: `sprites/creature/${lookType}.png`,
+        lookType,
+        ...meta,
+      });
+    }
+  }
+  return entries.sort(
+    (a, b) => a.dexId - b.dexId || a.visualType.localeCompare(b.visualType),
+  );
+}
+
+/** Minimal seed registry used when no pack/visuals are present. */
 export function createSeedRegistry() {
+  const fromVisuals = entriesFromVisualsFile();
+  if (fromVisuals.length > 0) {
+    return {
+      generatedAt: new Date().toISOString(),
+      packRoot: '(pokemon-visuals.json)',
+      entries: fromVisuals,
+    };
+  }
   const entries = [];
   for (const dexId of [1, 4, 7, 16, 19, 25]) {
     entries.push(
@@ -173,7 +219,8 @@ export function createSeedRegistry() {
         dexId,
         visualType: 'portrait',
         assetKey: `pokemon/${dexId}/portrait`,
-        path: `sprites/pokemon/${dexId}/portrait.png`,
+        path: `sprites/creature/${dexId}.png`,
+        lookType: dexId,
         frameWidth: 64,
         frameHeight: 64,
         frameCount: 1,
@@ -182,7 +229,8 @@ export function createSeedRegistry() {
         dexId,
         visualType: 'walk',
         assetKey: `pokemon/${dexId}/walk`,
-        path: `sprites/pokemon/${dexId}/walk.png`,
+        path: `sprites/creature/${dexId}.png`,
+        lookType: dexId,
         frameWidth: 32,
         frameHeight: 32,
         frameCount: 4,

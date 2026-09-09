@@ -8,6 +8,7 @@ import { BattleNotFoundError } from '../../domain/errors/battle.errors.js';
 import { getMoveById } from '../../domain/services/move-catalog.js';
 import { BattleDomainError } from '../../domain/errors/battle.errors.js';
 import { GetCharacterForAccountUseCase } from '../../../character/application/use-cases/get-character-for-account.use-case.js';
+import { MarkPokemonCaughtUseCase } from '../../../pokemon/application/use-cases/pokedex-progress.use-cases.js';
 import { toBattleResult, type BattleResult } from '../dto/battle.dto.js';
 
 export interface ExecuteBattleActionCommand {
@@ -27,6 +28,7 @@ export class ExecuteBattleActionUseCase
     @Inject(BATTLE_REPOSITORY)
     private readonly battles: BattleRepository,
     private readonly getCharacter: GetCharacterForAccountUseCase,
+    private readonly markCaught: MarkPokemonCaughtUseCase,
   ) {}
 
   async execute(command: ExecuteBattleActionCommand): Promise<BattleResult> {
@@ -75,6 +77,12 @@ export class ExecuteBattleActionUseCase
     if (command.action === 'capture') {
       const result = battle.tryCapture(command.ballBonus ?? 1);
       await this.battles.save(battle);
+      if (result.captured) {
+        await this.markCaught.execute({
+          characterId: command.characterId,
+          dexId: battle.wild.dexId,
+        });
+      }
       return toBattleResult(battle, {
         lastAction: {
           kind: 'capture',

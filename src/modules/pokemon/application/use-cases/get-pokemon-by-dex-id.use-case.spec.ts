@@ -6,7 +6,7 @@ import { PokemonNotFoundError } from '../../domain/errors/pokemon.errors.js';
 import { InvalidDexIdError } from '../../domain/errors/pokemon.errors.js';
 
 describe('GetPokemonByDexIdUseCase', () => {
-  it('returns pokemon with visual assets', async () => {
+  it('returns pokemon with visual assets and OT fields', async () => {
     const useCase = new GetPokemonByDexIdUseCase(
       new InMemoryPokemonRepository(),
       new InMemoryAssetRegistry(),
@@ -15,9 +15,10 @@ describe('GetPokemonByDexIdUseCase', () => {
     const result = await useCase.execute({ dexId: 25 });
 
     expect(result.name).toBe('Pikachu');
-    expect(result.types).toEqual(['electric']);
-    expect(result.assets?.portrait?.assetKey).toBe('pokemon/25/portrait');
-    expect(result.assets?.walk?.path).toContain('walk.png');
+    expect(result.types).toContain('electric');
+    expect(result.lookType).toBeTruthy();
+    expect(result.ot.hp).toBeTruthy();
+    expect(result.assets?.portrait?.path).toContain('creature/');
   });
 
   it('throws PokemonNotFoundError for unknown dex', async () => {

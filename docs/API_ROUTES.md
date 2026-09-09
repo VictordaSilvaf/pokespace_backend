@@ -42,8 +42,10 @@ Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
 | `POST` | `/api/v1/characters` | Bearer | Cria personagem + spawn do laboratório (header opcional `Idempotency-Key`) |
 | `GET` | `/api/v1/characters` | Bearer | Lista personagens da conta |
 | `GET` | `/api/v1/characters/:id` | Bearer | Detalhe de personagem |
-| `GET` | `/api/v1/pokemon` | Não | Catálogo Pokémon ativo |
-| `GET` | `/api/v1/pokemon/:dexId` | Não | Detalhe por dexId (+ assets) |
+| `GET` | `/api/v1/pokemon` | Não | Catálogo paginado (`?q=&type=&limit=&offset=`) |
+| `GET` | `/api/v1/pokemon/:dexId` | Não | Detalhe por dexId (+ assets / OT) |
+| `GET` | `/api/v1/characters/:id/pokedex` | Bearer | Progresso seen/caught |
+| `GET` | `/api/v1/characters/:id/pokedex/:dexId` | Bearer | Entrada única |
 | `GET` | `/api/v1/maps/:mapId` | Não | Metadata do mapa + referência de asset |
 | `POST` | `/api/v1/battles/wild` | Bearer | Inicia batalha vs wild |
 | `POST` | `/api/v1/battles/:battleId/actions` | Bearer | move / capture / flee |
@@ -251,47 +253,39 @@ Movimento é **server-authoritative**: o cliente envia intenção, o servidor va
 
 ### `GET /api/v1/pokemon`
 
-Lista entradas ativas do catálogo (seed mínimo: starters + lab).
-
-### `GET /api/v1/pokemon/:dexId`
-
-Detalhe por National Dex id. Inclui `assets` quando o Asset Registry tiver portrait/walk (etc.).
+Lista paginada do catálogo ativo (`limit` default 50, max 100). Query: `q`, `type`, `limit`, `offset`.
 
 ```json
 {
-  "id": "uuid",
-  "dexId": 25,
-  "name": "Pikachu",
-  "types": ["electric"],
-  "baseStats": {
-    "hp": 35,
-    "attack": 55,
-    "defense": 40,
-    "specialAttack": 50,
-    "specialDefense": 50,
-    "speed": 90
-  },
-  "status": "active",
-  "assets": {
-    "portrait": {
-      "assetKey": "pokemon/25/portrait",
-      "path": "sprites/pokemon/25/portrait.png",
-      "frameWidth": 64,
-      "frameHeight": 64,
-      "frameCount": 1
-    },
-    "walk": {
-      "assetKey": "pokemon/25/walk",
-      "path": "sprites/pokemon/25/walk.png",
-      "frameWidth": 32,
-      "frameHeight": 32,
-      "frameCount": 4
+  "items": [
+    {
+      "dexId": 1,
+      "name": "Bulbasaur",
+      "types": ["grass"],
+      "status": "active",
+      "lookType": 376,
+      "assets": { "portrait": { "path": "sprites/creature/376.png", "lookType": 376 } }
     }
-  }
+  ],
+  "total": 331,
+  "limit": 50,
+  "offset": 0
 }
 ```
 
-Pipeline offline: `pnpm assets:sync` / `pnpm assets:validate` (ver `docs/POKEMON_MODULE.md`).
+### `GET /api/v1/pokemon/:dexId`
+
+Detalhe por National Dex id. Inclui `ot` (stats DarkXPoke), `flags`, `baseStats` (placeholder) e `assets`.
+
+### `GET /api/v1/characters/:id/pokedex`
+
+Auth Bearer. Só o dono do personagem. Retorna `{ totalCatalog, seen, caught, entries[] }`.
+
+### `GET /api/v1/characters/:id/pokedex/:dexId`
+
+Entrada `{ dexId, seenAt, caughtAt, discovered }`.
+
+Pipeline offline: `pnpm dex:sync` / `pnpm assets:sync` / `pnpm assets:validate` (ver `docs/POKEMON_MODULE.md`).
 
 ---
 

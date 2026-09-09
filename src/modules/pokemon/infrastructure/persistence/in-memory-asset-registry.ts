@@ -1,3 +1,6 @@
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Injectable } from '@nestjs/common';
 import type { AssetRegistry } from '../../domain/repositories/asset-registry.port.js';
 import type { DexId } from '../../domain/value-objects/dex-id.vo.js';
@@ -14,6 +17,7 @@ interface StoredSprite {
   frameWidth: number;
   frameHeight: number;
   frameCount: number;
+  lookType?: number;
 }
 
 const VISUAL_RESULT_KEY: Record<VisualType, keyof PokemonAssetsResult> = {
@@ -23,37 +27,120 @@ const VISUAL_RESULT_KEY: Record<VisualType, keyof PokemonAssetsResult> = {
   mega_walk: 'megaWalk',
 };
 
+const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
+
+function resolveSpritesRegistryPath(): string {
+  const candidates = [
+    join(process.cwd(), 'assets/registry/pokemon-sprites.json'),
+    join(MODULE_DIR, '../../../../../assets/registry/pokemon-sprites.json'),
+  ];
+  for (const candidate of candidates) {
+    try {
+      readFileSync(candidate, 'utf8');
+      return candidate;
+    } catch {
+      // next
+    }
+  }
+  return candidates[0]!;
+}
+
+function resolveVisualsPath(): string {
+  const candidates = [
+    join(process.cwd(), 'assets/registry/pokemon-visuals.json'),
+    join(MODULE_DIR, '../../../../../assets/registry/pokemon-visuals.json'),
+  ];
+  for (const candidate of candidates) {
+    try {
+      readFileSync(candidate, 'utf8');
+      return candidate;
+    } catch {
+      // next
+    }
+  }
+  return candidates[0]!;
+}
+
 @Injectable()
 export class InMemoryAssetRegistry implements AssetRegistry {
   private readonly sprites = new Map<string, StoredSprite>();
-  /** key: `${dexId}:${visualType}` → assetKey */
   private readonly links = new Map<string, string>();
 
   constructor() {
-    for (const dexId of [1, 4, 7, 16, 19, 25]) {
-      this.seedDex(dexId);
+    this.loadFromDisk();
+  }
+
+  private loadFromDisk(): void {
+    try {
+      const registry = JSON.parse(
+        readFileSync(resolveSpritesRegistryPath(), 'utf8'),
+      ) as {
+        entries?: Array<{
+          dexId: number;
+          visualType: VisualType;
+          assetKey: string;
+          path: string;
+          frameWidth: number;
+          frameHeight: number;
+          frameCount: number;
+          lookType?: number;
+        }>;
+      };
+      if (registry.entries?.length) {
+        for (const entry of registry.entries) {
+          this.sprites.set(entry.assetKey, {
+            assetKey: entry.assetKey,
+            path: entry.path,
+            frameWidth: entry.frameWidth,
+            frameHeight: entry.frameHeight,
+            frameCount: entry.frameCount,
+            lookType: entry.lookType,
+          });
+          this.links.set(`${entry.dexId}:${entry.visualType}`, entry.assetKey);
+        }
+        return;
+      }
+    } catch {
+      // fall through to visuals
+    }
+
+    try {
+      const doc = JSON.parse(readFileSync(resolveVisualsPath(), 'utf8')) as {
+        visuals?: Array<{
+          dexId: number;
+          portrait?: { id: number };
+          walk?: { id: number };
+          shinyWalk?: { id: number } | null;
+        }>;
+      };
+      for (const visual of doc.visuals ?? []) {
+        this.linkFromLook(visual.dexId, 'portrait', visual.portrait?.id);
+        this.linkFromLook(visual.dexId, 'walk', visual.walk?.id);
+        if (visual.shinyWalk?.id) {
+          this.linkFromLook(visual.dexId, 'shiny_walk', visual.shinyWalk.id);
+        }
+      }
+    } catch {
+      // empty registry
     }
   }
 
-  private seedDex(dexId: number): void {
-    const portraitKey = `pokemon/${dexId}/portrait`;
-    const walkKey = `pokemon/${dexId}/walk`;
-    this.sprites.set(portraitKey, {
-      assetKey: portraitKey,
-      path: `sprites/pokemon/${dexId}/portrait.png`,
-      frameWidth: 64,
-      frameHeight: 64,
-      frameCount: 1,
+  private linkFromLook(
+    dexId: number,
+    visualType: VisualType,
+    lookType: number | undefined,
+  ): void {
+    if (lookType == null) return;
+    const assetKey = `pokemon/${dexId}/${visualType}`;
+    this.sprites.set(assetKey, {
+      assetKey,
+      path: `sprites/creature/${lookType}.png`,
+      frameWidth: visualType === 'portrait' ? 64 : 32,
+      frameHeight: visualType === 'portrait' ? 64 : 32,
+      frameCount: visualType === 'portrait' ? 1 : 4,
+      lookType,
     });
-    this.sprites.set(walkKey, {
-      assetKey: walkKey,
-      path: `sprites/pokemon/${dexId}/walk.png`,
-      frameWidth: 32,
-      frameHeight: 32,
-      frameCount: 4,
-    });
-    this.links.set(`${dexId}:portrait`, portraitKey);
-    this.links.set(`${dexId}:walk`, walkKey);
+    this.links.set(`${dexId}:${visualType}`, assetKey);
   }
 
   async findVisualsByDexId(dexId: DexId): Promise<PokemonAssetsResult | null> {
@@ -108,5 +195,6 @@ function toResult(sprite: StoredSprite): SpriteAssetResult {
     frameWidth: sprite.frameWidth,
     frameHeight: sprite.frameHeight,
     frameCount: sprite.frameCount,
+    ...(sprite.lookType != null ? { lookType: sprite.lookType } : {}),
   };
 }
