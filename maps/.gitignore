@@ -1,0 +1,2 @@
+# Keep generated chunk sidecars local; regenerate with `pnpm maps:convert`
+maps/*/chunks/

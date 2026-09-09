@@ -3,6 +3,18 @@ export interface EnterWorldCommand {
   accountId: string;
   characterId: string;
   mapId?: string;
+  direction?: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
+  savedPosition?: {
+    mapId: string;
+    x: number;
+    y: number;
+    z: number;
+  };
+  visual?: {
+    dexId?: number;
+    assetKey?: string;
+    path?: string;
+  };
 }
 
 export interface LeaveWorldCommand {
@@ -19,7 +31,15 @@ export interface WorldEntitySnapshot {
   id: string;
   type: string;
   position: { x: number; y: number; z: number };
+  direction?: string;
   characterId?: string;
+  dexId?: number;
+  level?: number;
+  visual?: {
+    dexId?: number;
+    assetKey?: string;
+    path?: string;
+  };
 }
 
 export interface WorldSnapshot {
@@ -32,12 +52,18 @@ export interface WorldSnapshot {
 export interface EnterWorldResult {
   snapshot: WorldSnapshot;
   spawned: WorldEntitySnapshot;
+  wildSpawned?: WorldEntitySnapshot[];
 }
 
 export interface LeaveWorldResult {
   instanceId: string;
   entityId: string;
   despawned: boolean;
+  characterId?: string;
+  accountId?: string;
+  mapId?: string;
+  position?: { x: number; y: number; z: number };
+  direction?: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
 }
 
 export interface MoveEntityResult {
@@ -45,8 +71,12 @@ export interface MoveEntityResult {
   reason?: string;
   entityId?: string;
   position?: { x: number; y: number; z: number };
+  direction?: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT';
   sequence?: number;
   instanceId?: string;
+  characterId?: string;
+  accountId?: string;
+  mapId?: string;
 }
 
 export interface LaboratorySpawnInfo {

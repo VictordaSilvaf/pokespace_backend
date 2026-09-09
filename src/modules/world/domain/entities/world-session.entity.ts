@@ -1,5 +1,6 @@
 import type { MapId, InstanceId } from '../value-objects/ids.vo.js';
 import type { Position } from '../value-objects/position.vo.js';
+import type { FacingDirection } from '../../../character/domain/value-objects/character-world-state.vo.js';
 
 export interface WorldSessionProps {
   connectionId: string;
@@ -10,6 +11,7 @@ export interface WorldSessionProps {
   entityId: string;
   position: Position;
   lastSequence: number;
+  direction?: FacingDirection;
 }
 
 /**
@@ -18,6 +20,7 @@ export interface WorldSessionProps {
 export class WorldSession {
   lastSequence: number;
   position: Position;
+  direction: FacingDirection;
 
   private constructor(
     readonly connectionId: string,
@@ -28,9 +31,11 @@ export class WorldSession {
     readonly entityId: string,
     position: Position,
     lastSequence: number,
+    direction: FacingDirection,
   ) {
     this.position = position;
     this.lastSequence = lastSequence;
+    this.direction = direction;
   }
 
   static create(props: WorldSessionProps): WorldSession {
@@ -43,6 +48,7 @@ export class WorldSession {
       props.entityId,
       props.position,
       props.lastSequence,
+      props.direction ?? 'DOWN',
     );
   }
 

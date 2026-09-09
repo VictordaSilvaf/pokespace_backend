@@ -1,0 +1,114 @@
+{
+  "generatedAt": "2026-09-09T00:10:21.717Z",
+  "packRoot": "(seed)",
+  "entries": [
+    {
+      "dexId": 1,
+      "visualType": "portrait",
+      "assetKey": "pokemon/1/portrait",
+      "path": "sprites/pokemon/1/portrait.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 1,
+      "visualType": "walk",
+      "assetKey": "pokemon/1/walk",
+      "path": "sprites/pokemon/1/walk.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 4,
+      "visualType": "portrait",
+      "assetKey": "pokemon/4/portrait",
+      "path": "sprites/pokemon/4/portrait.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 4,
+      "visualType": "walk",
+      "assetKey": "pokemon/4/walk",
+      "path": "sprites/pokemon/4/walk.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 7,
+      "visualType": "portrait",
+      "assetKey": "pokemon/7/portrait",
+      "path": "sprites/pokemon/7/portrait.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 7,
+      "visualType": "walk",
+      "assetKey": "pokemon/7/walk",
+      "path": "sprites/pokemon/7/walk.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 16,
+      "visualType": "portrait",
+      "assetKey": "pokemon/16/portrait",
+      "path": "sprites/pokemon/16/portrait.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 16,
+      "visualType": "walk",
+      "assetKey": "pokemon/16/walk",
+      "path": "sprites/pokemon/16/walk.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 19,
+      "visualType": "portrait",
+      "assetKey": "pokemon/19/portrait",
+      "path": "sprites/pokemon/19/portrait.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 19,
+      "visualType": "walk",
+      "assetKey": "pokemon/19/walk",
+      "path": "sprites/pokemon/19/walk.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    },
+    {
+      "dexId": 25,
+      "visualType": "portrait",
+      "assetKey": "pokemon/25/portrait",
+      "path": "sprites/pokemon/25/portrait.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    {
+      "dexId": 25,
+      "visualType": "walk",
+      "assetKey": "pokemon/25/walk",
+      "path": "sprites/pokemon/25/walk.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    }
+  ]
+}

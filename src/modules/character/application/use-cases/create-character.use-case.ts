@@ -17,6 +17,7 @@ import {
   type ServerRepository,
 } from '../../../servers/domain/repositories/server.repository.js';
 import { ResolveLaboratorySpawnUseCase } from '../../../world/application/use-cases/resolve-laboratory-spawn.use-case.js';
+import { CharacterWorldState } from '../../domain/value-objects/character-world-state.vo.js';
 import {
   EVENT_PUBLISHER,
   type EventPublisher,
@@ -83,11 +84,21 @@ export class CreateCharacterUseCase
       command.serverId,
       name,
     );
+
+    const spawn = await this.resolveSpawn.execute({});
+    character.updateWorldState(
+      CharacterWorldState.create({
+        mapId: spawn.mapId,
+        x: spawn.position.x,
+        y: spawn.position.y,
+        z: spawn.position.z,
+        direction: 'DOWN',
+      }),
+    );
+
     await this.characters.save(character);
 
     await this.events.publish(character.pullDomainEvents());
-
-    const spawn = await this.resolveSpawn.execute({});
 
     return {
       character: {

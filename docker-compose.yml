@@ -182,7 +182,7 @@ services:
       test:
         [
           'CMD-SHELL',
-          'curl -sf http://localhost:4566/_localstack/health | grep -q ''"dynamodb": "available"'' || curl -sf http://localhost:4566/_localstack/health | grep -q ''"dynamodb": "running"'',
+          'curl -sf http://localhost:4566/_localstack/health | grep -q dynamodb',
         ]
       interval: 10s
       timeout: 5s

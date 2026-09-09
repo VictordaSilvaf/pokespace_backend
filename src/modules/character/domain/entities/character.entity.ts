@@ -1,6 +1,7 @@
 import { randomUUID } from 'node:crypto';
 import { AggregateRoot } from '../../../../shared/domain/aggregate-root.js';
 import type { CharacterName } from '../value-objects/character-name.vo.js';
+import type { CharacterWorldState } from '../value-objects/character-world-state.vo.js';
 import { CharacterCreatedEvent } from '../events/character-created.event.js';
 
 export interface CharacterProps {
@@ -8,6 +9,7 @@ export interface CharacterProps {
   accountId: string;
   serverId: string;
   name: CharacterName;
+  worldState: CharacterWorldState | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -18,6 +20,7 @@ export class Character extends AggregateRoot<string> {
     private readonly _accountId: string,
     private readonly _serverId: string,
     private readonly _name: CharacterName,
+    private _worldState: CharacterWorldState | null,
     private readonly _createdAt: Date,
     private _updatedAt: Date,
   ) {
@@ -35,6 +38,7 @@ export class Character extends AggregateRoot<string> {
       accountId,
       serverId,
       name,
+      null,
       now,
       now,
     );
@@ -50,6 +54,7 @@ export class Character extends AggregateRoot<string> {
       props.accountId,
       props.serverId,
       props.name,
+      props.worldState,
       props.createdAt,
       props.updatedAt,
     );
@@ -67,11 +72,20 @@ export class Character extends AggregateRoot<string> {
     return this._name;
   }
 
+  get worldState(): CharacterWorldState | null {
+    return this._worldState;
+  }
+
   get createdAt(): Date {
     return this._createdAt;
   }
 
   get updatedAt(): Date {
     return this._updatedAt;
+  }
+
+  updateWorldState(state: CharacterWorldState): void {
+    this._worldState = state;
+    this._updatedAt = new Date();
   }
 }

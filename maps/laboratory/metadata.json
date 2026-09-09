@@ -2,5 +2,54 @@
   "mapId": "laboratory",
   "displayName": "Professor Oak Laboratory",
   "defaultInstanceCapacity": 50,
-  "asset": "laboratory.json"
+  "asset": "laboratory.json",
+  "version": "1",
+  "tileSize": 16,
+  "chunkSize": 16,
+  "tilesets": [
+    {
+      "name": "laboratory",
+      "firstGid": 1,
+      "image": "tilesets/laboratory.png",
+      "tileWidth": 32,
+      "tileHeight": 32
+    }
+  ],
+  "spawnZones": [
+    {
+      "id": "lab-grass-a",
+      "minX": 2,
+      "minY": 2,
+      "maxX": 6,
+      "maxY": 6,
+      "z": 0,
+      "maxActive": 3,
+      "entries": [
+        {
+          "dexId": 16,
+          "weight": 40,
+          "minLevel": 2,
+          "maxLevel": 5
+        },
+        {
+          "dexId": 19,
+          "weight": 40,
+          "minLevel": 2,
+          "maxLevel": 4
+        },
+        {
+          "dexId": 25,
+          "weight": 20,
+          "minLevel": 3,
+          "maxLevel": 6
+        }
+      ]
+    }
+  ],
+  "width": 20,
+  "height": 16,
+  "chunks": {
+    "count": 2,
+    "pathPattern": "chunks/{cx}_{cy}.json"
+  }
 }

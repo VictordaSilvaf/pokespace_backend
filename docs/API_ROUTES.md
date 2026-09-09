@@ -42,6 +42,11 @@ Auth nas rotas protegidas: header `Authorization: Bearer <accessToken>`.
 | `POST` | `/api/v1/characters` | Bearer | Cria personagem + spawn do laboratório (header opcional `Idempotency-Key`) |
 | `GET` | `/api/v1/characters` | Bearer | Lista personagens da conta |
 | `GET` | `/api/v1/characters/:id` | Bearer | Detalhe de personagem |
+| `GET` | `/api/v1/pokemon` | Não | Catálogo Pokémon ativo |
+| `GET` | `/api/v1/pokemon/:dexId` | Não | Detalhe por dexId (+ assets) |
+| `GET` | `/api/v1/maps/:mapId` | Não | Metadata do mapa + referência de asset |
+| `POST` | `/api/v1/battles/wild` | Bearer | Inicia batalha vs wild |
+| `POST` | `/api/v1/battles/:battleId/actions` | Bearer | move / capture / flee |
 
 ---
 
@@ -230,10 +235,103 @@ Auth no handshake: `auth.token` = access JWT (ou `Authorization: Bearer`).
 
 | Evento | Descrição |
 | --- | --- |
-| `WORLD_SNAPSHOT` | Estado da instância ao entrar |
+| `WORLD_SNAPSHOT` | Estado da instância ao entrar (entities com `visual` / `direction`) |
 | `ENTITY_SPAWNED` | Outro jogador entrou |
 | `ENTITY_MOVED` | Movimento validado pelo servidor |
 | `ENTITY_DESPAWNED` | Jogador saiu / desconectou |
+| `pokemon.spawned` | Wild Pokémon spawnou na instância |
+| `pokemon.despawned` | Wild Pokémon despawnou |
 | `WORLD_ERROR` | Erro de auth / movimento / sessão |
 
-Movimento é **server-authoritative**: o cliente envia intenção, o servidor valida colisão/sequência e faz broadcast.
+Movimento é **server-authoritative**: o cliente envia intenção, o servidor valida colisão/sequência e faz broadcast. Posição/direção do Character são persistidas em `character_world_state` e hidratadas no próximo `WORLD_ENTER`.
+
+---
+
+## Pokémon
+
+### `GET /api/v1/pokemon`
+
+Lista entradas ativas do catálogo (seed mínimo: starters + lab).
+
+### `GET /api/v1/pokemon/:dexId`
+
+Detalhe por National Dex id. Inclui `assets` quando o Asset Registry tiver portrait/walk (etc.).
+
+```json
+{
+  "id": "uuid",
+  "dexId": 25,
+  "name": "Pikachu",
+  "types": ["electric"],
+  "baseStats": {
+    "hp": 35,
+    "attack": 55,
+    "defense": 40,
+    "specialAttack": 50,
+    "specialDefense": 50,
+    "speed": 90
+  },
+  "status": "active",
+  "assets": {
+    "portrait": {
+      "assetKey": "pokemon/25/portrait",
+      "path": "sprites/pokemon/25/portrait.png",
+      "frameWidth": 64,
+      "frameHeight": 64,
+      "frameCount": 1
+    },
+    "walk": {
+      "assetKey": "pokemon/25/walk",
+      "path": "sprites/pokemon/25/walk.png",
+      "frameWidth": 32,
+      "frameHeight": 32,
+      "frameCount": 4
+    }
+  }
+}
+```
+
+Pipeline offline: `pnpm assets:sync` / `pnpm assets:validate` (ver `docs/POKEMON_MODULE.md`).
+
+---
+
+## Maps
+
+### `GET /api/v1/maps/:mapId`
+
+Retorna metadata do mapa Tiled (ex.: `laboratory`) e referência do asset JSON.
+
+```json
+{
+  "mapId": "laboratory",
+  "displayName": "Professor Oak Laboratory",
+  "defaultInstanceCapacity": 50,
+  "asset": "laboratory.json",
+  "version": "1",
+  "width": 20,
+  "height": 16,
+  "tileSize": 32,
+  "chunkSize": 16,
+  "tilesets": [],
+  "chunks": { "count": 2, "pathPattern": "chunks/{cx}_{cy}.json" },
+  "spawnZones": []
+}
+```
+
+Pipeline: `pnpm maps:convert laboratory` (Tiled → chunks; OTBM path via `OTBM_PATH` quando o parser existir).
+
+---
+
+## Battle
+
+### `POST /api/v1/battles/wild`
+
+Body: `{ characterId, playerDexId, playerLevel, wildDexId, wildLevel, wildEntityId? }`
+
+Retorna contexto de batalha com moves do seed catalog (`tackle`, `ember`, …) e stats derivados.
+
+### `POST /api/v1/battles/:battleId/actions`
+
+Body: `{ "action": "move"|"capture"|"flee", "moveId?", "ballBonus?" }`
+
+Aplica dano/efeito, tentativa de captura ou fuga. Estado de batalha é in-memory (v1).

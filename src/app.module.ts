@@ -17,6 +17,8 @@ import { ServersModule } from './modules/servers/servers.module.js';
 import { CharacterModule } from './modules/character/character.module.js';
 import { WorldModule } from './modules/world/world.module.js';
 import { RealtimeModule } from './modules/realtime/realtime.module.js';
+import { PokemonModule } from './modules/pokemon/pokemon.module.js';
+import { BattleModule } from './modules/battle/battle.module.js';
 import { IdempotencyModule } from './modules/idempotency/idempotency.module.js';
 import { AppI18nModule } from './shared/infrastructure/i18n/app-i18n.module.js';
 import { LocalizedMessageInterceptor } from './shared/infrastructure/i18n/localized-message.interceptor.js';
@@ -54,6 +56,8 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     ServersModule,
     CharacterModule,
     WorldModule,
+    PokemonModule,
+    BattleModule,
     RealtimeModule,
   ],
   controllers: [HealthController],

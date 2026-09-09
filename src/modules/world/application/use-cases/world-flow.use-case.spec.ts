@@ -4,6 +4,9 @@ import { LeaveWorldUseCase } from './leave-world.use-case.js';
 import { MoveEntityUseCase } from './move-entity.use-case.js';
 import { InstanceManager } from '../services/instance-manager.service.js';
 import { SessionManager } from '../services/session-manager.service.js';
+import { WildSpawnService } from '../services/wild-spawn.service.js';
+import { InterestAreaService } from '../services/interest-area.service.js';
+import { SharedWorldStateService } from '../services/shared-world-state.service.js';
 import { FileWorldMapRepository } from '../../infrastructure/maps/file-world-map.repository.js';
 import { MovementBlockedError, InvalidSequenceError } from '../../domain/errors/world.errors.js';
 
@@ -17,9 +20,12 @@ describe('World movement use cases', () => {
     const maps = new FileWorldMapRepository();
     instances = new InstanceManager();
     const sessions = new SessionManager();
-    enter = new EnterWorldUseCase(maps, instances, sessions);
-    leave = new LeaveWorldUseCase(instances, sessions);
-    move = new MoveEntityUseCase(maps, instances, sessions);
+    const wild = new WildSpawnService();
+    const interest = new InterestAreaService();
+    const shared = new SharedWorldStateService(null);
+    enter = new EnterWorldUseCase(maps, instances, sessions, wild, interest);
+    leave = new LeaveWorldUseCase(instances, sessions, shared);
+    move = new MoveEntityUseCase(maps, instances, sessions, shared);
   });
 
   it('enters laboratory, moves, and leaves', async () => {
@@ -31,7 +37,10 @@ describe('World movement use cases', () => {
 
     expect(result.snapshot.map.id).toBe('laboratory');
     expect(result.snapshot.instance.id).toBe('laboratory-01');
-    expect(result.snapshot.entities).toHaveLength(1);
+    expect(result.snapshot.selfEntityId).toBe(result.spawned.id);
+    expect(
+      result.snapshot.entities.some((e) => e.id === result.spawned.id),
+    ).toBe(true);
 
     const moved = await move.execute({
       connectionId: 'conn-a',
@@ -51,7 +60,9 @@ describe('World movement use cases', () => {
 
     const left = await leave.execute({ connectionId: 'conn-a' });
     expect(left.despawned).toBe(true);
-    expect(instances.getEntities('laboratory-01')).toHaveLength(0);
+    expect(
+      instances.getEntities('laboratory-01').some((e) => e.id === result.spawned.id),
+    ).toBe(false);
   });
 
   it('rejects movement into walls', async () => {
@@ -61,7 +72,6 @@ describe('World movement use cases', () => {
       characterId: 'char-b',
     });
 
-    // Force near border by moving left many times until blocked
     let sequence = 1;
     let blocked = false;
     for (let i = 0; i < 30; i++) {

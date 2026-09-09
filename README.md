@@ -99,14 +99,21 @@ src/
 ├── modules/
 │   ├── identity/     # Auth
 │   ├── servers/      # Catálogo de servidores
-│   ├── character/    # Personagens
-│   ├── world/        # World Engine (mapas, instâncias, movimento)
+│   ├── character/    # Personagens + world state
+│   ├── pokemon/      # Catálogo dex + asset registry
+│   ├── battle/       # Combate wild (moves/damage/capture)
+│   ├── world/        # World Engine (mapas, instâncias, spawns, movimento)
 │   └── realtime/     # WebSocket gateway
 maps/
 └── laboratory/       # Asset Tiled do laboratório
+assets/
+├── registry/         # JSON gerado por assets:sync
+└── packs/pokemon/    # Pack opcional (offline sync)
 ```
 
 **Como criar um novo módulo:** [docs/CREATING_A_MODULE.md](./docs/CREATING_A_MODULE.md)
+
+Pokémon module: [docs/POKEMON_MODULE.md](./docs/POKEMON_MODULE.md)
 
 ## Scripts
 
@@ -115,10 +122,23 @@ pnpm start:dev       # watch
 pnpm test            # unitários
 pnpm test:e2e        # e2e
 pnpm lint
+pnpm assets:sync     # scan pack → registry JSON (+ DB se DATABASE_URL)
+pnpm assets:validate
+pnpm maps:convert    # Tiled → chunks + metadata (OTBM scaffold)
 pnpm docker:prod:up  # stack produção
 pnpm docker:prod:down
 pnpm docker:prod:logs
 ```
+
+### Produção atrás do Caddy (Inspector)
+
+Se a API roda no compose `pokespace-prod` e o reverse proxy é o Caddy do projeto Inspector, reconecte a rede após recreate:
+
+```bash
+docker network connect inspector-prod_inspector_egress pokespace-prod-api
+```
+
+Sem isso o Caddy pode responder **502**. Idealmente isso entra no compose de produção.
 
 ## Variáveis de ambiente
 

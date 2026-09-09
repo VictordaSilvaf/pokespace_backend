@@ -19,6 +19,7 @@ import {
   type TokenDenylist,
 } from '../../../identity/application/ports/token-denylist.port.js';
 import { GetCharacterForAccountUseCase } from '../../../character/application/use-cases/get-character-for-account.use-case.js';
+import { SaveCharacterWorldStateUseCase } from '../../../character/application/use-cases/save-character-world-state.use-case.js';
 import { EnterWorldUseCase } from '../../../world/application/use-cases/enter-world.use-case.js';
 import { LeaveWorldUseCase } from '../../../world/application/use-cases/leave-world.use-case.js';
 import { MoveEntityUseCase } from '../../../world/application/use-cases/move-entity.use-case.js';
@@ -33,6 +34,7 @@ import {
   CharacterDomainError,
   CharacterNotFoundError,
 } from '../../../character/domain/errors/character.errors.js';
+import type { FacingDirection } from '../../../character/domain/value-objects/character-world-state.vo.js';
 
 type AuthedSocket = Socket & {
   data: {
@@ -60,6 +62,7 @@ export class WorldGateway
     @Inject(TOKEN_DENYLIST)
     private readonly denylist: TokenDenylist,
     private readonly getCharacter: GetCharacterForAccountUseCase,
+    private readonly saveWorldState: SaveCharacterWorldStateUseCase,
     private readonly enterWorld: EnterWorldUseCase,
     private readonly leaveWorld: LeaveWorldUseCase,
     private readonly moveEntity: MoveEntityUseCase,
@@ -105,19 +108,26 @@ export class WorldGateway
     }
 
     try {
-      await this.getCharacter.execute({
+      const character = await this.getCharacter.execute({
         characterId: body.characterId,
         accountId: client.data.userId,
       });
 
-      // If reconnecting from another socket, leave previous first for broadcast.
-      // EnterWorldUseCase also cleans prior session for the character.
-
+      const saved = character.worldState;
       const result = await this.enterWorld.execute({
         connectionId: client.id,
         accountId: client.data.userId,
         characterId: body.characterId,
-        mapId: body.mapId ?? 'laboratory',
+        mapId: body.mapId ?? saved?.mapId ?? 'laboratory',
+        direction: (saved?.direction as FacingDirection | undefined) ?? 'DOWN',
+        savedPosition: saved
+          ? {
+              mapId: saved.mapId,
+              x: saved.x,
+              y: saved.y,
+              z: saved.z,
+            }
+          : undefined,
       });
 
       const room = this.room(result.snapshot.instance.id);
@@ -125,6 +135,13 @@ export class WorldGateway
 
       client.emit('WORLD_SNAPSHOT', result.snapshot);
       client.to(room).emit('ENTITY_SPAWNED', result.spawned);
+
+      for (const wild of result.wildSpawned ?? []) {
+        this.server.to(room).emit('pokemon.spawned', {
+          type: 'pokemon.spawned',
+          entity: wild,
+        });
+      }
 
       return { ok: true };
     } catch (error) {
@@ -174,8 +191,27 @@ export class WorldGateway
           type: 'ENTITY_MOVED',
           entityId: result.entityId,
           position: result.position,
+          direction: result.direction,
           sequence: result.sequence,
         });
+
+        if (
+          result.characterId &&
+          result.accountId &&
+          result.mapId &&
+          result.position &&
+          result.direction
+        ) {
+          await this.saveWorldState.execute({
+            characterId: result.characterId,
+            accountId: result.accountId,
+            mapId: result.mapId,
+            x: result.position.x,
+            y: result.position.y,
+            z: result.position.z,
+            direction: result.direction,
+          });
+        }
       }
 
       return result;
@@ -190,17 +226,44 @@ export class WorldGateway
     }
   }
 
-  // mapError handles unknown below
-
   private async leaveAndBroadcast(connectionId: string): Promise<void> {
     const result = await this.leaveWorld.execute({ connectionId });
     if (result.despawned && result.instanceId) {
-      this.server
-        .to(this.room(result.instanceId))
-        .emit('ENTITY_DESPAWNED', {
-          type: 'ENTITY_DESPAWNED',
+      this.server.to(this.room(result.instanceId)).emit('ENTITY_DESPAWNED', {
+        type: 'ENTITY_DESPAWNED',
+        entityId: result.entityId,
+      });
+
+      if (result.entityId.startsWith('pokemon-')) {
+        this.server.to(this.room(result.instanceId)).emit('pokemon.despawned', {
+          type: 'pokemon.despawned',
           entityId: result.entityId,
         });
+      }
+    }
+
+    if (
+      result.characterId &&
+      result.accountId &&
+      result.mapId &&
+      result.position &&
+      result.direction
+    ) {
+      try {
+        await this.saveWorldState.execute({
+          characterId: result.characterId,
+          accountId: result.accountId,
+          mapId: result.mapId,
+          x: result.position.x,
+          y: result.position.y,
+          z: result.position.z,
+          direction: result.direction,
+        });
+      } catch (error) {
+        this.logger.warn(
+          `failed to persist world state: ${(error as Error).message}`,
+        );
+      }
     }
   }
 

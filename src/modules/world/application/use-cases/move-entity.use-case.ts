@@ -11,6 +11,7 @@ import {
 import { GridNavigationService } from '../../domain/services/navigation.service.js';
 import { InstanceManager } from '../services/instance-manager.service.js';
 import { SessionManager } from '../services/session-manager.service.js';
+import { SharedWorldStateService } from '../services/shared-world-state.service.js';
 import type { MoveEntityCommand, MoveEntityResult } from '../dto/world.dto.js';
 import {
   InvalidSequenceError,
@@ -29,6 +30,7 @@ export class MoveEntityUseCase
     private readonly maps: WorldMapRepository,
     private readonly instances: InstanceManager,
     private readonly sessions: SessionManager,
+    private readonly sharedState: SharedWorldStateService,
   ) {}
 
   async execute(command: MoveEntityCommand): Promise<MoveEntityResult> {
@@ -68,15 +70,32 @@ export class MoveEntityUseCase
       throw new MovementBlockedError();
     }
 
-    const entity = instance.moveEntity(session.entityId, target);
+    const entity = instance.moveEntity(
+      session.entityId,
+      target,
+      command.direction,
+    );
     session.position = target;
+    session.direction = command.direction;
+
+    await this.sharedState.publishPresence({
+      instanceId: session.instanceId.value,
+      entityId: entity.id,
+      characterId: session.characterId,
+      position: target.toJSON(),
+      direction: command.direction,
+    });
 
     return {
       accepted: true,
       entityId: entity.id,
       position: target.toJSON(),
+      direction: command.direction,
       sequence: session.lastSequence,
       instanceId: session.instanceId.value,
+      characterId: session.characterId,
+      accountId: session.accountId,
+      mapId: session.mapId.value,
     };
   }
 }

@@ -99,7 +99,11 @@ export class MapInstance {
     return entity;
   }
 
-  moveEntity(entityId: string, next: Position): WorldEntity {
+  moveEntity(
+    entityId: string,
+    next: Position,
+    direction?: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT',
+  ): WorldEntity {
     const entity = this.entities.get(entityId);
     if (!entity) {
       throw new WorldDomainError(`entity not in instance: ${entityId}`);
@@ -109,7 +113,7 @@ export class MapInstance {
       throw new WorldDomainError(`position occupied: ${next.key()}`);
     }
     this.occupied.delete(entity.position.key());
-    entity.moveTo(next);
+    entity.moveTo(next, direction);
     this.occupied.set(next.key(), entityId);
     return entity;
   }

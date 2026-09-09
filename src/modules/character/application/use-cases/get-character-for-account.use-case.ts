@@ -19,6 +19,13 @@ export interface CharacterResult {
   name: string;
   serverId: string;
   accountId: string;
+  worldState: {
+    mapId: string;
+    x: number;
+    y: number;
+    z: number;
+    direction: string;
+  } | null;
 }
 
 @Injectable()
@@ -43,6 +50,7 @@ export class GetCharacterForAccountUseCase
       name: character.name.value,
       serverId: character.serverId,
       accountId: character.accountId,
+      worldState: character.worldState?.toJSON() ?? null,
     };
   }
 }

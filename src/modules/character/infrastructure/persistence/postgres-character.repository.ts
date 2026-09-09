@@ -17,26 +17,64 @@ export class PostgresCharacterRepository implements CharacterRepository {
   ) {}
 
   async save(character: Character): Promise<void> {
-    await this.pool.query(
-      `INSERT INTO characters (id, account_id, server_id, name, created_at, updated_at)
-       VALUES ($1, $2, $3, $4, $5, $6)
-       ON CONFLICT (id) DO UPDATE SET
-         name = EXCLUDED.name,
-         updated_at = EXCLUDED.updated_at`,
-      [
-        character.id,
-        character.accountId,
-        character.serverId,
-        character.name.value,
-        character.createdAt,
-        character.updatedAt,
-      ],
-    );
+    const client = await this.pool.connect();
+    try {
+      await client.query('BEGIN');
+      await client.query(
+        `INSERT INTO characters (id, account_id, server_id, name, created_at, updated_at)
+         VALUES ($1, $2, $3, $4, $5, $6)
+         ON CONFLICT (id) DO UPDATE SET
+           name = EXCLUDED.name,
+           updated_at = EXCLUDED.updated_at`,
+        [
+          character.id,
+          character.accountId,
+          character.serverId,
+          character.name.value,
+          character.createdAt,
+          character.updatedAt,
+        ],
+      );
+
+      if (character.worldState) {
+        const ws = character.worldState;
+        await client.query(
+          `INSERT INTO character_world_state
+             (character_id, map_id, x, y, z, direction, updated_at)
+           VALUES ($1, $2, $3, $4, $5, $6, $7)
+           ON CONFLICT (character_id) DO UPDATE SET
+             map_id = EXCLUDED.map_id,
+             x = EXCLUDED.x,
+             y = EXCLUDED.y,
+             z = EXCLUDED.z,
+             direction = EXCLUDED.direction,
+             updated_at = EXCLUDED.updated_at`,
+          [
+            character.id,
+            ws.mapId,
+            ws.x,
+            ws.y,
+            ws.z,
+            ws.direction,
+            character.updatedAt,
+          ],
+        );
+      }
+      await client.query('COMMIT');
+    } catch (error) {
+      await client.query('ROLLBACK');
+      throw error;
+    } finally {
+      client.release();
+    }
   }
 
   async findById(id: string): Promise<Character | null> {
     const result = await this.pool.query<CharacterRow>(
-      `SELECT ${CHARACTER_SELECTED_COLUMNS} FROM characters WHERE id = $1`,
+      `SELECT ${CHARACTER_SELECTED_COLUMNS}
+       FROM characters c
+       LEFT JOIN character_world_state ws ON ws.character_id = c.id
+       WHERE c.id = $1`,
       [id],
     );
     const row = result.rows[0];
@@ -66,9 +104,11 @@ export class PostgresCharacterRepository implements CharacterRepository {
 
   async listByAccountId(accountId: string): Promise<Character[]> {
     const result = await this.pool.query<CharacterRow>(
-      `SELECT ${CHARACTER_SELECTED_COLUMNS} FROM characters
-       WHERE account_id = $1
-       ORDER BY created_at ASC`,
+      `SELECT ${CHARACTER_SELECTED_COLUMNS}
+       FROM characters c
+       LEFT JOIN character_world_state ws ON ws.character_id = c.id
+       WHERE c.account_id = $1
+       ORDER BY c.created_at ASC`,
       [accountId],
     );
     return result.rows.map(mapRowToCharacter);

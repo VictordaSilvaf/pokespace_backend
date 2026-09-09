@@ -13,6 +13,7 @@ import { InMemoryCharacterRepository } from './infrastructure/persistence/in-mem
 import { PostgresCharacterRepository } from './infrastructure/persistence/postgres-character.repository.js';
 import { CreateCharacterUseCase } from './application/use-cases/create-character.use-case.js';
 import { GetCharacterForAccountUseCase } from './application/use-cases/get-character-for-account.use-case.js';
+import { SaveCharacterWorldStateUseCase } from './application/use-cases/save-character-world-state.use-case.js';
 import { CharacterController } from './infrastructure/http/character.controller.js';
 
 @Module({
@@ -21,6 +22,7 @@ import { CharacterController } from './infrastructure/http/character.controller.
   providers: [
     CreateCharacterUseCase,
     GetCharacterForAccountUseCase,
+    SaveCharacterWorldStateUseCase,
     {
       provide: CHARACTER_REPOSITORY,
       useFactory: (pool: Pool | null) => {
@@ -32,6 +34,10 @@ import { CharacterController } from './infrastructure/http/character.controller.
       inject: [DATABASE_POOL],
     },
   ],
-  exports: [CHARACTER_REPOSITORY, GetCharacterForAccountUseCase],
+  exports: [
+    CHARACTER_REPOSITORY,
+    GetCharacterForAccountUseCase,
+    SaveCharacterWorldStateUseCase,
+  ],
 })
 export class CharacterModule {}
