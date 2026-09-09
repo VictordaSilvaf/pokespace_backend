@@ -53,12 +53,14 @@ docker compose down
 ### Produção (Docker)
 
 Stack isolada (`pokespace-prod`): API + Postgres + Redis + RabbitMQ + Kafka.  
-**Só a porta da API** é publicada; banco/filas/cache ficam na rede interna. Sem Mailpit — use SMTP real.
+**Só a porta da API** é publicada; banco/filas/cache ficam na rede interna. Sem Mailpit — use SMTP real.  
+A API entra na rede externa `inspector-prod_inspector_egress` (Caddy) automaticamente.
 
 ```bash
 cp .env.production.example .env.production
 # edite .env.production (AUTH_TOKEN_SECRET, senhas, SMTP_*)
 
+# bootstrap local (build). Em CI/CD use API_IMAGE=ghcr.io/...:<sha> sem --build.
 docker compose -f docker-compose.prod.yml --env-file .env.production up --build -d
 
 docker compose -f docker-compose.prod.yml --env-file .env.production ps
@@ -66,10 +68,26 @@ docker compose -f docker-compose.prod.yml --env-file .env.production logs -f api
 docker compose -f docker-compose.prod.yml --env-file .env.production down
 ```
 
-Health: `http://localhost:${API_PORT:-3000}/api/v1/health`  
+### Staging (Docker, mesmo VPS)
+
+Projeto `pokespace-staging`, volumes próprios, porta default **3001**, sem rede Caddy.
+
+```bash
+cp .env.staging.example .env.staging
+docker compose -f docker-compose.staging.yml --env-file .env.staging up --build -d
+```
+
+Health: `http://localhost:${API_PORT:-3000}/api/v1/health` (prod) / `:3001` (staging)  
 Swagger: `http://localhost:${API_PORT:-3000}/api/docs`
 
-Arquivos: [`docker-compose.prod.yml`](./docker-compose.prod.yml), [`.env.production.example`](./.env.production.example).
+Arquivos: [`docker-compose.prod.yml`](./docker-compose.prod.yml), [`docker-compose.staging.yml`](./docker-compose.staging.yml), [`.env.production.example`](./.env.production.example), [`.env.staging.example`](./.env.staging.example).
+
+### CI/CD
+
+GitHub Actions → GHCR → deploy SSH (staging automático; produção com approval).  
+Guia completo (secrets, checklist VPS, rollback, catalog sync): **[docs/DEPLOY.md](./docs/DEPLOY.md)**.
+
+`dex:sync` / `assets:sync` **não** entram no deploy automático.
 
 Health da API (dev): `http://localhost:3000/api/v1/health`
 
@@ -126,20 +144,17 @@ pnpm assets:sync     # visuals JSON → sprite registry (+ DB se DATABASE_URL)
 pnpm assets:validate
 pnpm dex:sync        # species JSON → Postgres
 pnpm maps:convert    # Tiled → chunks + metadata (OTBM scaffold)
-pnpm docker:prod:up  # stack produção
+pnpm docker:prod:up      # stack produção
 pnpm docker:prod:down
 pnpm docker:prod:logs
+pnpm docker:staging:up   # stack staging (porta 3001)
+pnpm docker:staging:down
+pnpm docker:staging:logs
 ```
 
 ### Produção atrás do Caddy (Inspector)
 
-Se a API roda no compose `pokespace-prod` e o reverse proxy é o Caddy do projeto Inspector, reconecte a rede após recreate:
-
-```bash
-docker network connect inspector-prod_inspector_egress pokespace-prod-api
-```
-
-Sem isso o Caddy pode responder **502**. Idealmente isso entra no compose de produção.
+O [`docker-compose.prod.yml`](./docker-compose.prod.yml) anexa a API à rede externa `inspector-prod_inspector_egress`. A rede precisa existir no host (stack Inspector). Detalhes: [docs/DEPLOY.md](./docs/DEPLOY.md).
 
 ## Variáveis de ambiente
 

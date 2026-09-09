@@ -1,0 +1,66 @@
+name: Catalog sync
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        required: true
+        type: choice
+        options:
+          - staging
+          - production
+      sync_dex:
+        description: Run dex-sync
+        required: true
+        type: boolean
+        default: true
+      sync_assets:
+        description: Run assets-sync
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: catalog-sync-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: catalog-sync-${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - name: Sync catalog via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_SSH_KEY }}
+          port: ${{ vars.DEPLOY_SSH_PORT || 22 }}
+          script_stop: true
+          envs: APP_DIR,SYNC_DEX,SYNC_ASSETS,TARGET_ENV
+          script: |
+            set -euo pipefail
+            APP_DIR="${APP_DIR:-/var/www/pokespace_backend}"
+            cd "${APP_DIR}"
+            git pull --ff-only
+            if [[ "${TARGET_ENV}" == "production" ]]; then
+              export COMPOSE_FILE=docker-compose.prod.yml
+              export COMPOSE_ENV_FILE=.env.production
+            else
+              export COMPOSE_FILE=docker-compose.staging.yml
+              export COMPOSE_ENV_FILE=.env.staging
+            fi
+            export APP_DIR
+            export SYNC_DEX
+            export SYNC_ASSETS
+            ./scripts/deploy/catalog-sync.sh
+        env:
+          APP_DIR: ${{ vars.APP_DIR }}
+          TARGET_ENV: ${{ inputs.environment }}
+          SYNC_DEX: ${{ inputs.sync_dex && '1' || '0' }}
+          SYNC_ASSETS: ${{ inputs.sync_assets && '1' || '0' }}

@@ -1,30 +1,26 @@
-# Produção self-hosted — só a API é publicada no host.
-# Infra (postgres, redis, rabbitmq, kafka) fica na rede interna.
-# A API também entra na rede externa do Caddy (Inspector) para evitar 502 pós-recreate.
+# Staging self-hosted no mesmo VPS que produção (projeto e volumes isolados).
+# Sem rede do Caddy — acesse via API_PORT no host (default 3001).
 #
-# Uso (local / bootstrap com build):
-#   cp .env.production.example .env.production
-#   docker compose -f docker-compose.prod.yml --env-file .env.production up --build -d
-#
-# Uso (CI/CD — imagem do GHCR):
+# Uso:
+#   cp .env.staging.example .env.staging
 #   API_IMAGE=ghcr.io/victordasilvaf/pokespace-api:<sha> \
-#     docker compose -f docker-compose.prod.yml --env-file .env.production up -d api
+#     docker compose -f docker-compose.staging.yml --env-file .env.staging up -d
 
-name: pokespace-prod
+name: pokespace-staging
 
 services:
   api:
-    image: ${API_IMAGE:-pokespace-api:prod}
+    image: ${API_IMAGE:-pokespace-api:staging}
     build:
       context: .
       dockerfile: Dockerfile
       target: production
-    container_name: pokespace-prod-api
+    container_name: pokespace-staging-api
     restart: unless-stopped
     ports:
-      - '${API_PORT:-3000}:3000'
+      - '${API_PORT:-3001}:3000'
     env_file:
-      - ${COMPOSE_ENV_FILE:-.env.production}
+      - ${COMPOSE_ENV_FILE:-.env.staging}
     environment:
       NODE_ENV: production
       PORT: 3000
@@ -63,8 +59,7 @@ services:
       retries: 5
       start_period: 40s
     networks:
-      - pokespace-prod
-      - caddy_egress
+      - pokespace-staging
     logging:
       driver: json-file
       options:
@@ -73,14 +68,14 @@ services:
 
   postgres:
     image: postgres:17-alpine
-    container_name: pokespace-prod-postgres
+    container_name: pokespace-staging-postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - postgres_prod_data:/var/lib/postgresql/data
+      - postgres_staging_data:/var/lib/postgresql/data
     healthcheck:
       test:
         [
@@ -92,7 +87,7 @@ services:
       retries: 10
       start_period: 20s
     networks:
-      - pokespace-prod
+      - pokespace-staging
     logging:
       driver: json-file
       options:
@@ -101,7 +96,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: pokespace-prod-redis
+    container_name: pokespace-staging-redis
     restart: unless-stopped
     command:
       [
@@ -112,7 +107,7 @@ services:
         '${REDIS_PASSWORD}',
       ]
     volumes:
-      - redis_prod_data:/data
+      - redis_staging_data:/data
     healthcheck:
       test:
         [
@@ -126,7 +121,7 @@ services:
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD}
     networks:
-      - pokespace-prod
+      - pokespace-staging
     logging:
       driver: json-file
       options:
@@ -135,14 +130,14 @@ services:
 
   rabbitmq:
     image: rabbitmq:4-management-alpine
-    container_name: pokespace-prod-rabbitmq
+    container_name: pokespace-staging-rabbitmq
     restart: unless-stopped
     environment:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
       RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST:-/}
     volumes:
-      - rabbitmq_prod_data:/var/lib/rabbitmq
+      - rabbitmq_staging_data:/var/lib/rabbitmq
     healthcheck:
       test: ['CMD', 'rabbitmq-diagnostics', '-q', 'ping']
       interval: 10s
@@ -150,7 +145,7 @@ services:
       retries: 10
       start_period: 40s
     networks:
-      - pokespace-prod
+      - pokespace-staging
     logging:
       driver: json-file
       options:
@@ -160,7 +155,7 @@ services:
   kafka:
     image: apache/kafka:3.9.0
     hostname: kafka
-    container_name: pokespace-prod-kafka
+    container_name: pokespace-staging-kafka
     restart: unless-stopped
     environment:
       CLUSTER_ID: ${KAFKA_CLUSTER_ID}
@@ -180,7 +175,7 @@ services:
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'true'
       KAFKA_LOG_RETENTION_HOURS: ${KAFKA_LOG_RETENTION_HOURS:-168}
     volumes:
-      - kafka_prod_data:/var/lib/kafka/data
+      - kafka_staging_data:/var/lib/kafka/data
     healthcheck:
       test:
         [
@@ -192,7 +187,7 @@ services:
       retries: 12
       start_period: 60s
     networks:
-      - pokespace-prod
+      - pokespace-staging
     logging:
       driver: json-file
       options:
@@ -200,14 +195,11 @@ services:
         max-file: '5'
 
 networks:
-  pokespace-prod:
+  pokespace-staging:
     driver: bridge
-  caddy_egress:
-    name: inspector-prod_inspector_egress
-    external: true
 
 volumes:
-  postgres_prod_data:
-  redis_prod_data:
-  rabbitmq_prod_data:
-  kafka_prod_data:
+  postgres_staging_data:
+  redis_staging_data:
+  rabbitmq_staging_data:
+  kafka_staging_data:
