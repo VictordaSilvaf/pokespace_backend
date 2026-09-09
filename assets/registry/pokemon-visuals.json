@@ -1,16 +1,87 @@
 {
   "version": 1,
-  "note": "dexId is identity; creature id is AssetReference only",
+  "source": "server/data + client lookTypes",
+  "note": "dexId is identity; lookType/portraitId are AssetReferences",
   "visuals": [
+    {
+      "dexId": 1,
+      "portrait": {
+        "category": "creature",
+        "id": 376
+      },
+      "walk": {
+        "category": "creature",
+        "id": 376
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 2,
+      "portrait": {
+        "category": "creature",
+        "id": 375
+      },
+      "walk": {
+        "category": "creature",
+        "id": 375
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
     {
       "dexId": 3,
       "portrait": {
         "category": "creature",
-        "id": 40056
+        "id": 373
       },
       "walk": {
         "category": "creature",
-        "id": 40056
+        "id": 373
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 4,
+      "portrait": {
+        "category": "creature",
+        "id": 380
+      },
+      "walk": {
+        "category": "creature",
+        "id": 380
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 5,
+      "portrait": {
+        "category": "creature",
+        "id": 374
+      },
+      "walk": {
+        "category": "creature",
+        "id": 374
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 6,
+      "portrait": {
+        "category": "creature",
+        "id": 556
+      },
+      "walk": {
+        "category": "creature",
+        "id": 556
       },
       "shinyWalk": null,
       "effects": [],
@@ -20,11 +91,25 @@
       "dexId": 7,
       "portrait": {
         "category": "creature",
-        "id": 40036
+        "id": 353
       },
       "walk": {
         "category": "creature",
-        "id": 40036
+        "id": 353
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 8,
+      "portrait": {
+        "category": "creature",
+        "id": 357
+      },
+      "walk": {
+        "category": "creature",
+        "id": 357
       },
       "shinyWalk": null,
       "effects": [],
@@ -34,11 +119,599 @@
       "dexId": 9,
       "portrait": {
         "category": "creature",
-        "id": 40040
+        "id": 406
       },
       "walk": {
         "category": "creature",
-        "id": 40040
+        "id": 406
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 10,
+      "portrait": {
+        "category": "creature",
+        "id": 383
+      },
+      "walk": {
+        "category": "creature",
+        "id": 383
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 11,
+      "portrait": {
+        "category": "creature",
+        "id": 382
+      },
+      "walk": {
+        "category": "creature",
+        "id": 382
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 12,
+      "portrait": {
+        "category": "creature",
+        "id": 391
+      },
+      "walk": {
+        "category": "creature",
+        "id": 391
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 13,
+      "portrait": {
+        "category": "creature",
+        "id": 372
+      },
+      "walk": {
+        "category": "creature",
+        "id": 372
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 14,
+      "portrait": {
+        "category": "creature",
+        "id": 411
+      },
+      "walk": {
+        "category": "creature",
+        "id": 411
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 15,
+      "portrait": {
+        "category": "creature",
+        "id": 396
+      },
+      "walk": {
+        "category": "creature",
+        "id": 396
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 16,
+      "portrait": {
+        "category": "creature",
+        "id": 381
+      },
+      "walk": {
+        "category": "creature",
+        "id": 381
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 17,
+      "portrait": {
+        "category": "creature",
+        "id": 356
+      },
+      "walk": {
+        "category": "creature",
+        "id": 356
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 18,
+      "portrait": {
+        "category": "creature",
+        "id": 431
+      },
+      "walk": {
+        "category": "creature",
+        "id": 431
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 19,
+      "portrait": {
+        "category": "creature",
+        "id": 387
+      },
+      "walk": {
+        "category": "creature",
+        "id": 387
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 20,
+      "portrait": {
+        "category": "creature",
+        "id": 420
+      },
+      "walk": {
+        "category": "creature",
+        "id": 420
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 21,
+      "portrait": {
+        "category": "creature",
+        "id": 378
+      },
+      "walk": {
+        "category": "creature",
+        "id": 378
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 22,
+      "portrait": {
+        "category": "creature",
+        "id": 368
+      },
+      "walk": {
+        "category": "creature",
+        "id": 368
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 23,
+      "portrait": {
+        "category": "creature",
+        "id": 358
+      },
+      "walk": {
+        "category": "creature",
+        "id": 358
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 24,
+      "portrait": {
+        "category": "creature",
+        "id": 390
+      },
+      "walk": {
+        "category": "creature",
+        "id": 390
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 25,
+      "portrait": {
+        "category": "creature",
+        "id": 410
+      },
+      "walk": {
+        "category": "creature",
+        "id": 410
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 26,
+      "portrait": {
+        "category": "creature",
+        "id": 401
+      },
+      "walk": {
+        "category": "creature",
+        "id": 401
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 27,
+      "portrait": {
+        "category": "creature",
+        "id": 394
+      },
+      "walk": {
+        "category": "creature",
+        "id": 394
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 28,
+      "portrait": {
+        "category": "creature",
+        "id": 466
+      },
+      "walk": {
+        "category": "creature",
+        "id": 466
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 29,
+      "portrait": {
+        "category": "creature",
+        "id": 421
+      },
+      "walk": {
+        "category": "creature",
+        "id": 421
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 30,
+      "portrait": {
+        "category": "creature",
+        "id": 422
+      },
+      "walk": {
+        "category": "creature",
+        "id": 422
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 31,
+      "portrait": {
+        "category": "creature",
+        "id": 430
+      },
+      "walk": {
+        "category": "creature",
+        "id": 430
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 32,
+      "portrait": {
+        "category": "creature",
+        "id": 417
+      },
+      "walk": {
+        "category": "creature",
+        "id": 417
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 33,
+      "portrait": {
+        "category": "creature",
+        "id": 429
+      },
+      "walk": {
+        "category": "creature",
+        "id": 429
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 34,
+      "portrait": {
+        "category": "creature",
+        "id": 386
+      },
+      "walk": {
+        "category": "creature",
+        "id": 386
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 35,
+      "portrait": {
+        "category": "creature",
+        "id": 424
+      },
+      "walk": {
+        "category": "creature",
+        "id": 424
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 36,
+      "portrait": {
+        "category": "creature",
+        "id": 419
+      },
+      "walk": {
+        "category": "creature",
+        "id": 419
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 37,
+      "portrait": {
+        "category": "creature",
+        "id": 413
+      },
+      "walk": {
+        "category": "creature",
+        "id": 413
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 38,
+      "portrait": {
+        "category": "creature",
+        "id": 465
+      },
+      "walk": {
+        "category": "creature",
+        "id": 465
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 39,
+      "portrait": {
+        "category": "creature",
+        "id": 414
+      },
+      "walk": {
+        "category": "creature",
+        "id": 414
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 40,
+      "portrait": {
+        "category": "creature",
+        "id": 415
+      },
+      "walk": {
+        "category": "creature",
+        "id": 415
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 41,
+      "portrait": {
+        "category": "creature",
+        "id": 395
+      },
+      "walk": {
+        "category": "creature",
+        "id": 395
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 42,
+      "portrait": {
+        "category": "creature",
+        "id": 473
+      },
+      "walk": {
+        "category": "creature",
+        "id": 473
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 43,
+      "portrait": {
+        "category": "creature",
+        "id": 407
+      },
+      "walk": {
+        "category": "creature",
+        "id": 407
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 44,
+      "portrait": {
+        "category": "creature",
+        "id": 425
+      },
+      "walk": {
+        "category": "creature",
+        "id": 425
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 45,
+      "portrait": {
+        "category": "creature",
+        "id": 437
+      },
+      "walk": {
+        "category": "creature",
+        "id": 437
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 46,
+      "portrait": {
+        "category": "creature",
+        "id": 432
+      },
+      "walk": {
+        "category": "creature",
+        "id": 432
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 47,
+      "portrait": {
+        "category": "creature",
+        "id": 446
+      },
+      "walk": {
+        "category": "creature",
+        "id": 446
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 48,
+      "portrait": {
+        "category": "creature",
+        "id": 403
+      },
+      "walk": {
+        "category": "creature",
+        "id": 403
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 49,
+      "portrait": {
+        "category": "creature",
+        "id": 400
+      },
+      "walk": {
+        "category": "creature",
+        "id": 400
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 50,
+      "portrait": {
+        "category": "creature",
+        "id": 433
+      },
+      "walk": {
+        "category": "creature",
+        "id": 433
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 51,
+      "portrait": {
+        "category": "creature",
+        "id": 434
+      },
+      "walk": {
+        "category": "creature",
+        "id": 434
       },
       "shinyWalk": null,
       "effects": [],
@@ -48,11 +721,767 @@
       "dexId": 52,
       "portrait": {
         "category": "creature",
-        "id": 40037
+        "id": 456
       },
       "walk": {
         "category": "creature",
-        "id": 40037
+        "id": 456
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 53,
+      "portrait": {
+        "category": "creature",
+        "id": 354
+      },
+      "walk": {
+        "category": "creature",
+        "id": 354
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 54,
+      "portrait": {
+        "category": "creature",
+        "id": 451
+      },
+      "walk": {
+        "category": "creature",
+        "id": 451
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 55,
+      "portrait": {
+        "category": "creature",
+        "id": 450
+      },
+      "walk": {
+        "category": "creature",
+        "id": 450
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 56,
+      "portrait": {
+        "category": "creature",
+        "id": 457
+      },
+      "walk": {
+        "category": "creature",
+        "id": 457
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 57,
+      "portrait": {
+        "category": "creature",
+        "id": 454
+      },
+      "walk": {
+        "category": "creature",
+        "id": 454
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 58,
+      "portrait": {
+        "category": "creature",
+        "id": 460
+      },
+      "walk": {
+        "category": "creature",
+        "id": 460
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 59,
+      "portrait": {
+        "category": "creature",
+        "id": 439
+      },
+      "walk": {
+        "category": "creature",
+        "id": 439
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 60,
+      "portrait": {
+        "category": "creature",
+        "id": 462
+      },
+      "walk": {
+        "category": "creature",
+        "id": 462
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 61,
+      "portrait": {
+        "category": "creature",
+        "id": 563
+      },
+      "walk": {
+        "category": "creature",
+        "id": 563
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 62,
+      "portrait": {
+        "category": "creature",
+        "id": 455
+      },
+      "walk": {
+        "category": "creature",
+        "id": 455
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 63,
+      "portrait": {
+        "category": "creature",
+        "id": 613
+      },
+      "walk": {
+        "category": "creature",
+        "id": 613
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 64,
+      "portrait": {
+        "category": "creature",
+        "id": 570
+      },
+      "walk": {
+        "category": "creature",
+        "id": 570
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 65,
+      "portrait": {
+        "category": "creature",
+        "id": 569
+      },
+      "walk": {
+        "category": "creature",
+        "id": 569
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 66,
+      "portrait": {
+        "category": "creature",
+        "id": 469
+      },
+      "walk": {
+        "category": "creature",
+        "id": 469
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 67,
+      "portrait": {
+        "category": "creature",
+        "id": 464
+      },
+      "walk": {
+        "category": "creature",
+        "id": 464
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 68,
+      "portrait": {
+        "category": "creature",
+        "id": 472
+      },
+      "walk": {
+        "category": "creature",
+        "id": 472
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 69,
+      "portrait": {
+        "category": "creature",
+        "id": 601
+      },
+      "walk": {
+        "category": "creature",
+        "id": 601
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 70,
+      "portrait": {
+        "category": "creature",
+        "id": 388
+      },
+      "walk": {
+        "category": "creature",
+        "id": 388
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 71,
+      "portrait": {
+        "category": "creature",
+        "id": 591
+      },
+      "walk": {
+        "category": "creature",
+        "id": 591
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 72,
+      "portrait": {
+        "category": "creature",
+        "id": 447
+      },
+      "walk": {
+        "category": "creature",
+        "id": 447
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 73,
+      "portrait": {
+        "category": "creature",
+        "id": 459
+      },
+      "walk": {
+        "category": "creature",
+        "id": 459
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 74,
+      "portrait": {
+        "category": "creature",
+        "id": 547
+      },
+      "walk": {
+        "category": "creature",
+        "id": 547
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 75,
+      "portrait": {
+        "category": "creature",
+        "id": 598
+      },
+      "walk": {
+        "category": "creature",
+        "id": 598
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 76,
+      "portrait": {
+        "category": "creature",
+        "id": 467
+      },
+      "walk": {
+        "category": "creature",
+        "id": 467
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 77,
+      "portrait": {
+        "category": "creature",
+        "id": 367
+      },
+      "walk": {
+        "category": "creature",
+        "id": 367
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 78,
+      "portrait": {
+        "category": "creature",
+        "id": 571
+      },
+      "walk": {
+        "category": "creature",
+        "id": 571
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 79,
+      "portrait": {
+        "category": "creature",
+        "id": 426
+      },
+      "walk": {
+        "category": "creature",
+        "id": 426
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 80,
+      "portrait": {
+        "category": "creature",
+        "id": 392
+      },
+      "walk": {
+        "category": "creature",
+        "id": 392
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 81,
+      "portrait": {
+        "category": "creature",
+        "id": 568
+      },
+      "walk": {
+        "category": "creature",
+        "id": 568
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 82,
+      "portrait": {
+        "category": "creature",
+        "id": 574
+      },
+      "walk": {
+        "category": "creature",
+        "id": 574
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 83,
+      "portrait": {
+        "category": "creature",
+        "id": 408
+      },
+      "walk": {
+        "category": "creature",
+        "id": 408
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 84,
+      "portrait": {
+        "category": "creature",
+        "id": 377
+      },
+      "walk": {
+        "category": "creature",
+        "id": 377
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 85,
+      "portrait": {
+        "category": "creature",
+        "id": 471
+      },
+      "walk": {
+        "category": "creature",
+        "id": 471
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 86,
+      "portrait": {
+        "category": "creature",
+        "id": 452
+      },
+      "walk": {
+        "category": "creature",
+        "id": 452
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 87,
+      "portrait": {
+        "category": "creature",
+        "id": 461
+      },
+      "walk": {
+        "category": "creature",
+        "id": 461
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 88,
+      "portrait": {
+        "category": "creature",
+        "id": 565
+      },
+      "walk": {
+        "category": "creature",
+        "id": 565
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 89,
+      "portrait": {
+        "category": "creature",
+        "id": 398
+      },
+      "walk": {
+        "category": "creature",
+        "id": 398
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 90,
+      "portrait": {
+        "category": "creature",
+        "id": 405
+      },
+      "walk": {
+        "category": "creature",
+        "id": 405
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 91,
+      "portrait": {
+        "category": "creature",
+        "id": 423
+      },
+      "walk": {
+        "category": "creature",
+        "id": 423
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 92,
+      "portrait": {
+        "category": "creature",
+        "id": 399
+      },
+      "walk": {
+        "category": "creature",
+        "id": 399
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 93,
+      "portrait": {
+        "category": "creature",
+        "id": 416
+      },
+      "walk": {
+        "category": "creature",
+        "id": 416
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 94,
+      "portrait": {
+        "category": "creature",
+        "id": 595
+      },
+      "walk": {
+        "category": "creature",
+        "id": 595
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 95,
+      "portrait": {
+        "category": "creature",
+        "id": 599
+      },
+      "walk": {
+        "category": "creature",
+        "id": 599
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 96,
+      "portrait": {
+        "category": "creature",
+        "id": 445
+      },
+      "walk": {
+        "category": "creature",
+        "id": 445
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 97,
+      "portrait": {
+        "category": "creature",
+        "id": 470
+      },
+      "walk": {
+        "category": "creature",
+        "id": 470
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 98,
+      "portrait": {
+        "category": "creature",
+        "id": 463
+      },
+      "walk": {
+        "category": "creature",
+        "id": 463
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 99,
+      "portrait": {
+        "category": "creature",
+        "id": 596
+      },
+      "walk": {
+        "category": "creature",
+        "id": 596
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 100,
+      "portrait": {
+        "category": "creature",
+        "id": 474
+      },
+      "walk": {
+        "category": "creature",
+        "id": 474
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 101,
+      "portrait": {
+        "category": "creature",
+        "id": 476
+      },
+      "walk": {
+        "category": "creature",
+        "id": 476
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 102,
+      "portrait": {
+        "category": "creature",
+        "id": 564
+      },
+      "walk": {
+        "category": "creature",
+        "id": 564
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 103,
+      "portrait": {
+        "category": "creature",
+        "id": 397
+      },
+      "walk": {
+        "category": "creature",
+        "id": 397
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 104,
+      "portrait": {
+        "category": "creature",
+        "id": 475
+      },
+      "walk": {
+        "category": "creature",
+        "id": 475
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 105,
+      "portrait": {
+        "category": "creature",
+        "id": 548
+      },
+      "walk": {
+        "category": "creature",
+        "id": 548
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 106,
+      "portrait": {
+        "category": "creature",
+        "id": 371
+      },
+      "walk": {
+        "category": "creature",
+        "id": 371
       },
       "shinyWalk": null,
       "effects": [],
@@ -62,11 +1491,95 @@
       "dexId": 107,
       "portrait": {
         "category": "creature",
-        "id": 40368
+        "id": 389
       },
       "walk": {
         "category": "creature",
-        "id": 40368
+        "id": 389
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 108,
+      "portrait": {
+        "category": "creature",
+        "id": 362
+      },
+      "walk": {
+        "category": "creature",
+        "id": 362
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 109,
+      "portrait": {
+        "category": "creature",
+        "id": 579
+      },
+      "walk": {
+        "category": "creature",
+        "id": 579
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 110,
+      "portrait": {
+        "category": "creature",
+        "id": 582
+      },
+      "walk": {
+        "category": "creature",
+        "id": 582
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 111,
+      "portrait": {
+        "category": "creature",
+        "id": 428
+      },
+      "walk": {
+        "category": "creature",
+        "id": 428
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 112,
+      "portrait": {
+        "category": "creature",
+        "id": 551
+      },
+      "walk": {
+        "category": "creature",
+        "id": 551
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 113,
+      "portrait": {
+        "category": "creature",
+        "id": 355
+      },
+      "walk": {
+        "category": "creature",
+        "id": 355
       },
       "shinyWalk": null,
       "effects": [],
@@ -76,11 +1589,3049 @@
       "dexId": 114,
       "portrait": {
         "category": "creature",
-        "id": 40052
+        "id": 369
       },
       "walk": {
         "category": "creature",
-        "id": 40052
+        "id": 369
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 115,
+      "portrait": {
+        "category": "creature",
+        "id": 549
+      },
+      "walk": {
+        "category": "creature",
+        "id": 549
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 116,
+      "portrait": {
+        "category": "creature",
+        "id": 384
+      },
+      "walk": {
+        "category": "creature",
+        "id": 384
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 117,
+      "portrait": {
+        "category": "creature",
+        "id": 627
+      },
+      "walk": {
+        "category": "creature",
+        "id": 627
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 118,
+      "portrait": {
+        "category": "creature",
+        "id": 625
+      },
+      "walk": {
+        "category": "creature",
+        "id": 625
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 119,
+      "portrait": {
+        "category": "creature",
+        "id": 623
+      },
+      "walk": {
+        "category": "creature",
+        "id": 623
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 120,
+      "portrait": {
+        "category": "creature",
+        "id": 393
+      },
+      "walk": {
+        "category": "creature",
+        "id": 393
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 121,
+      "portrait": {
+        "category": "creature",
+        "id": 600
+      },
+      "walk": {
+        "category": "creature",
+        "id": 600
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 122,
+      "portrait": {
+        "category": "creature",
+        "id": 597
+      },
+      "walk": {
+        "category": "creature",
+        "id": 597
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 123,
+      "portrait": {
+        "category": "creature",
+        "id": 366
+      },
+      "walk": {
+        "category": "creature",
+        "id": 366
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 124,
+      "portrait": {
+        "category": "creature",
+        "id": 633
+      },
+      "walk": {
+        "category": "creature",
+        "id": 633
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 125,
+      "portrait": {
+        "category": "creature",
+        "id": 632
+      },
+      "walk": {
+        "category": "creature",
+        "id": 632
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 126,
+      "portrait": {
+        "category": "creature",
+        "id": 427
+      },
+      "walk": {
+        "category": "creature",
+        "id": 427
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 127,
+      "portrait": {
+        "category": "creature",
+        "id": 404
+      },
+      "walk": {
+        "category": "creature",
+        "id": 404
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 128,
+      "portrait": {
+        "category": "creature",
+        "id": 444
+      },
+      "walk": {
+        "category": "creature",
+        "id": 444
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 129,
+      "portrait": {
+        "category": "creature",
+        "id": 370
+      },
+      "walk": {
+        "category": "creature",
+        "id": 370
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 130,
+      "portrait": {
+        "category": "creature",
+        "id": 468
+      },
+      "walk": {
+        "category": "creature",
+        "id": 468
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 131,
+      "portrait": {
+        "category": "creature",
+        "id": 544
+      },
+      "walk": {
+        "category": "creature",
+        "id": 544
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 132,
+      "portrait": {
+        "category": "creature",
+        "id": 379
+      },
+      "walk": {
+        "category": "creature",
+        "id": 379
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 133,
+      "portrait": {
+        "category": "creature",
+        "id": 453
+      },
+      "walk": {
+        "category": "creature",
+        "id": 453
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 134,
+      "portrait": {
+        "category": "creature",
+        "id": 566
+      },
+      "walk": {
+        "category": "creature",
+        "id": 566
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 135,
+      "portrait": {
+        "category": "creature",
+        "id": 546
+      },
+      "walk": {
+        "category": "creature",
+        "id": 546
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 136,
+      "portrait": {
+        "category": "creature",
+        "id": 365
+      },
+      "walk": {
+        "category": "creature",
+        "id": 365
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 137,
+      "portrait": {
+        "category": "creature",
+        "id": 448
+      },
+      "walk": {
+        "category": "creature",
+        "id": 448
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 138,
+      "portrait": {
+        "category": "creature",
+        "id": 443
+      },
+      "walk": {
+        "category": "creature",
+        "id": 443
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 139,
+      "portrait": {
+        "category": "creature",
+        "id": 543
+      },
+      "walk": {
+        "category": "creature",
+        "id": 543
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 140,
+      "portrait": {
+        "category": "creature",
+        "id": 449
+      },
+      "walk": {
+        "category": "creature",
+        "id": 449
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 141,
+      "portrait": {
+        "category": "creature",
+        "id": 364
+      },
+      "walk": {
+        "category": "creature",
+        "id": 364
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 142,
+      "portrait": {
+        "category": "creature",
+        "id": 361
+      },
+      "walk": {
+        "category": "creature",
+        "id": 361
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 143,
+      "portrait": {
+        "category": "creature",
+        "id": 402
+      },
+      "walk": {
+        "category": "creature",
+        "id": 402
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 144,
+      "portrait": {
+        "category": "creature",
+        "id": 634
+      },
+      "walk": {
+        "category": "creature",
+        "id": 634
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 145,
+      "portrait": {
+        "category": "creature",
+        "id": 550
+      },
+      "walk": {
+        "category": "creature",
+        "id": 550
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 146,
+      "portrait": {
+        "category": "creature",
+        "id": 616
+      },
+      "walk": {
+        "category": "creature",
+        "id": 616
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 147,
+      "portrait": {
+        "category": "creature",
+        "id": 409
+      },
+      "walk": {
+        "category": "creature",
+        "id": 409
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 148,
+      "portrait": {
+        "category": "creature",
+        "id": 412
+      },
+      "walk": {
+        "category": "creature",
+        "id": 412
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 149,
+      "portrait": {
+        "category": "creature",
+        "id": 561
+      },
+      "walk": {
+        "category": "creature",
+        "id": 561
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 150,
+      "portrait": {
+        "category": "creature",
+        "id": 385
+      },
+      "walk": {
+        "category": "creature",
+        "id": 385
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 151,
+      "portrait": {
+        "category": "creature",
+        "id": 360
+      },
+      "walk": {
+        "category": "creature",
+        "id": 360
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 152,
+      "portrait": {
+        "category": "creature",
+        "id": 1510
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1510
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 153,
+      "portrait": {
+        "category": "creature",
+        "id": 670
+      },
+      "walk": {
+        "category": "creature",
+        "id": 670
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 154,
+      "portrait": {
+        "category": "creature",
+        "id": 671
+      },
+      "walk": {
+        "category": "creature",
+        "id": 671
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 155,
+      "portrait": {
+        "category": "creature",
+        "id": 672
+      },
+      "walk": {
+        "category": "creature",
+        "id": 672
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 156,
+      "portrait": {
+        "category": "creature",
+        "id": 673
+      },
+      "walk": {
+        "category": "creature",
+        "id": 673
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 157,
+      "portrait": {
+        "category": "creature",
+        "id": 674
+      },
+      "walk": {
+        "category": "creature",
+        "id": 674
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 158,
+      "portrait": {
+        "category": "creature",
+        "id": 675
+      },
+      "walk": {
+        "category": "creature",
+        "id": 675
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 159,
+      "portrait": {
+        "category": "creature",
+        "id": 679
+      },
+      "walk": {
+        "category": "creature",
+        "id": 679
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 160,
+      "portrait": {
+        "category": "creature",
+        "id": 680
+      },
+      "walk": {
+        "category": "creature",
+        "id": 680
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 161,
+      "portrait": {
+        "category": "creature",
+        "id": 681
+      },
+      "walk": {
+        "category": "creature",
+        "id": 681
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 162,
+      "portrait": {
+        "category": "creature",
+        "id": 950
+      },
+      "walk": {
+        "category": "creature",
+        "id": 950
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 163,
+      "portrait": {
+        "category": "creature",
+        "id": 953
+      },
+      "walk": {
+        "category": "creature",
+        "id": 953
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 164,
+      "portrait": {
+        "category": "creature",
+        "id": 682
+      },
+      "walk": {
+        "category": "creature",
+        "id": 682
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 165,
+      "portrait": {
+        "category": "creature",
+        "id": 683
+      },
+      "walk": {
+        "category": "creature",
+        "id": 683
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 166,
+      "portrait": {
+        "category": "creature",
+        "id": 684
+      },
+      "walk": {
+        "category": "creature",
+        "id": 684
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 167,
+      "portrait": {
+        "category": "creature",
+        "id": 685
+      },
+      "walk": {
+        "category": "creature",
+        "id": 685
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 168,
+      "portrait": {
+        "category": "creature",
+        "id": 686
+      },
+      "walk": {
+        "category": "creature",
+        "id": 686
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 169,
+      "portrait": {
+        "category": "creature",
+        "id": 687
+      },
+      "walk": {
+        "category": "creature",
+        "id": 687
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 170,
+      "portrait": {
+        "category": "creature",
+        "id": 1454
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1454
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 171,
+      "portrait": {
+        "category": "creature",
+        "id": 689
+      },
+      "walk": {
+        "category": "creature",
+        "id": 689
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 172,
+      "portrait": {
+        "category": "creature",
+        "id": 690
+      },
+      "walk": {
+        "category": "creature",
+        "id": 690
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 173,
+      "portrait": {
+        "category": "creature",
+        "id": 692
+      },
+      "walk": {
+        "category": "creature",
+        "id": 692
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 174,
+      "portrait": {
+        "category": "creature",
+        "id": 885
+      },
+      "walk": {
+        "category": "creature",
+        "id": 885
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 175,
+      "portrait": {
+        "category": "creature",
+        "id": 884
+      },
+      "walk": {
+        "category": "creature",
+        "id": 884
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 176,
+      "portrait": {
+        "category": "creature",
+        "id": 886
+      },
+      "walk": {
+        "category": "creature",
+        "id": 886
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 177,
+      "portrait": {
+        "category": "creature",
+        "id": 887
+      },
+      "walk": {
+        "category": "creature",
+        "id": 887
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 178,
+      "portrait": {
+        "category": "creature",
+        "id": 888
+      },
+      "walk": {
+        "category": "creature",
+        "id": 888
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 179,
+      "portrait": {
+        "category": "creature",
+        "id": 889
+      },
+      "walk": {
+        "category": "creature",
+        "id": 889
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 180,
+      "portrait": {
+        "category": "creature",
+        "id": 891
+      },
+      "walk": {
+        "category": "creature",
+        "id": 891
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 181,
+      "portrait": {
+        "category": "creature",
+        "id": 892
+      },
+      "walk": {
+        "category": "creature",
+        "id": 892
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 182,
+      "portrait": {
+        "category": "creature",
+        "id": 903
+      },
+      "walk": {
+        "category": "creature",
+        "id": 903
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 183,
+      "portrait": {
+        "category": "creature",
+        "id": 897
+      },
+      "walk": {
+        "category": "creature",
+        "id": 897
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 184,
+      "portrait": {
+        "category": "creature",
+        "id": 893
+      },
+      "walk": {
+        "category": "creature",
+        "id": 893
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 185,
+      "portrait": {
+        "category": "creature",
+        "id": 894
+      },
+      "walk": {
+        "category": "creature",
+        "id": 894
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 186,
+      "portrait": {
+        "category": "creature",
+        "id": 902
+      },
+      "walk": {
+        "category": "creature",
+        "id": 902
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 187,
+      "portrait": {
+        "category": "creature",
+        "id": 901
+      },
+      "walk": {
+        "category": "creature",
+        "id": 901
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 188,
+      "portrait": {
+        "category": "creature",
+        "id": 898
+      },
+      "walk": {
+        "category": "creature",
+        "id": 898
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 189,
+      "portrait": {
+        "category": "creature",
+        "id": 899
+      },
+      "walk": {
+        "category": "creature",
+        "id": 899
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 190,
+      "portrait": {
+        "category": "creature",
+        "id": 900
+      },
+      "walk": {
+        "category": "creature",
+        "id": 900
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 191,
+      "portrait": {
+        "category": "creature",
+        "id": 890
+      },
+      "walk": {
+        "category": "creature",
+        "id": 890
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 192,
+      "portrait": {
+        "category": "creature",
+        "id": 895
+      },
+      "walk": {
+        "category": "creature",
+        "id": 895
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 193,
+      "portrait": {
+        "category": "creature",
+        "id": 896
+      },
+      "walk": {
+        "category": "creature",
+        "id": 896
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 194,
+      "portrait": {
+        "category": "creature",
+        "id": 921
+      },
+      "walk": {
+        "category": "creature",
+        "id": 921
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 195,
+      "portrait": {
+        "category": "creature",
+        "id": 922
+      },
+      "walk": {
+        "category": "creature",
+        "id": 922
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 196,
+      "portrait": {
+        "category": "creature",
+        "id": 923
+      },
+      "walk": {
+        "category": "creature",
+        "id": 923
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 197,
+      "portrait": {
+        "category": "creature",
+        "id": 919
+      },
+      "walk": {
+        "category": "creature",
+        "id": 919
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 198,
+      "portrait": {
+        "category": "creature",
+        "id": 920
+      },
+      "walk": {
+        "category": "creature",
+        "id": 920
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 199,
+      "portrait": {
+        "category": "creature",
+        "id": 905
+      },
+      "walk": {
+        "category": "creature",
+        "id": 905
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 200,
+      "portrait": {
+        "category": "creature",
+        "id": 916
+      },
+      "walk": {
+        "category": "creature",
+        "id": 916
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 201,
+      "portrait": {
+        "category": "creature",
+        "id": 908
+      },
+      "walk": {
+        "category": "creature",
+        "id": 908
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 202,
+      "portrait": {
+        "category": "creature",
+        "id": 961
+      },
+      "walk": {
+        "category": "creature",
+        "id": 961
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 203,
+      "portrait": {
+        "category": "creature",
+        "id": 924
+      },
+      "walk": {
+        "category": "creature",
+        "id": 924
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 204,
+      "portrait": {
+        "category": "creature",
+        "id": 904
+      },
+      "walk": {
+        "category": "creature",
+        "id": 904
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 205,
+      "portrait": {
+        "category": "creature",
+        "id": 909
+      },
+      "walk": {
+        "category": "creature",
+        "id": 909
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 206,
+      "portrait": {
+        "category": "creature",
+        "id": 910
+      },
+      "walk": {
+        "category": "creature",
+        "id": 910
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 207,
+      "portrait": {
+        "category": "creature",
+        "id": 906
+      },
+      "walk": {
+        "category": "creature",
+        "id": 906
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 208,
+      "portrait": {
+        "category": "creature",
+        "id": 925
+      },
+      "walk": {
+        "category": "creature",
+        "id": 925
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 209,
+      "portrait": {
+        "category": "creature",
+        "id": 911
+      },
+      "walk": {
+        "category": "creature",
+        "id": 911
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 210,
+      "portrait": {
+        "category": "creature",
+        "id": 948
+      },
+      "walk": {
+        "category": "creature",
+        "id": 948
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 211,
+      "portrait": {
+        "category": "creature",
+        "id": 951
+      },
+      "walk": {
+        "category": "creature",
+        "id": 951
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 212,
+      "portrait": {
+        "category": "creature",
+        "id": 1457
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1457
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 213,
+      "portrait": {
+        "category": "creature",
+        "id": 912
+      },
+      "walk": {
+        "category": "creature",
+        "id": 912
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 214,
+      "portrait": {
+        "category": "creature",
+        "id": 949
+      },
+      "walk": {
+        "category": "creature",
+        "id": 949
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 215,
+      "portrait": {
+        "category": "creature",
+        "id": 915
+      },
+      "walk": {
+        "category": "creature",
+        "id": 915
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 216,
+      "portrait": {
+        "category": "creature",
+        "id": 917
+      },
+      "walk": {
+        "category": "creature",
+        "id": 917
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 217,
+      "portrait": {
+        "category": "creature",
+        "id": 913
+      },
+      "walk": {
+        "category": "creature",
+        "id": 913
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 218,
+      "portrait": {
+        "category": "creature",
+        "id": 914
+      },
+      "walk": {
+        "category": "creature",
+        "id": 914
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 219,
+      "portrait": {
+        "category": "creature",
+        "id": 934
+      },
+      "walk": {
+        "category": "creature",
+        "id": 934
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 220,
+      "portrait": {
+        "category": "creature",
+        "id": 935
+      },
+      "walk": {
+        "category": "creature",
+        "id": 935
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 221,
+      "portrait": {
+        "category": "creature",
+        "id": 927
+      },
+      "walk": {
+        "category": "creature",
+        "id": 927
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 222,
+      "portrait": {
+        "category": "creature",
+        "id": 928
+      },
+      "walk": {
+        "category": "creature",
+        "id": 928
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 223,
+      "portrait": {
+        "category": "creature",
+        "id": 926
+      },
+      "walk": {
+        "category": "creature",
+        "id": 926
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 224,
+      "portrait": {
+        "category": "creature",
+        "id": 929
+      },
+      "walk": {
+        "category": "creature",
+        "id": 929
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 225,
+      "portrait": {
+        "category": "creature",
+        "id": 931
+      },
+      "walk": {
+        "category": "creature",
+        "id": 931
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 226,
+      "portrait": {
+        "category": "creature",
+        "id": 937
+      },
+      "walk": {
+        "category": "creature",
+        "id": 937
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 227,
+      "portrait": {
+        "category": "creature",
+        "id": 930
+      },
+      "walk": {
+        "category": "creature",
+        "id": 930
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 228,
+      "portrait": {
+        "category": "creature",
+        "id": 936
+      },
+      "walk": {
+        "category": "creature",
+        "id": 936
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 229,
+      "portrait": {
+        "category": "creature",
+        "id": 932
+      },
+      "walk": {
+        "category": "creature",
+        "id": 932
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 230,
+      "portrait": {
+        "category": "creature",
+        "id": 933
+      },
+      "walk": {
+        "category": "creature",
+        "id": 933
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 231,
+      "portrait": {
+        "category": "creature",
+        "id": 944
+      },
+      "walk": {
+        "category": "creature",
+        "id": 944
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 232,
+      "portrait": {
+        "category": "creature",
+        "id": 1004
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1004
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 233,
+      "portrait": {
+        "category": "creature",
+        "id": 1458
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1458
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 234,
+      "portrait": {
+        "category": "creature",
+        "id": 736
+      },
+      "walk": {
+        "category": "creature",
+        "id": 736
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 235,
+      "portrait": {
+        "category": "creature",
+        "id": 947
+      },
+      "walk": {
+        "category": "creature",
+        "id": 947
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 236,
+      "portrait": {
+        "category": "creature",
+        "id": 942
+      },
+      "walk": {
+        "category": "creature",
+        "id": 942
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 237,
+      "portrait": {
+        "category": "creature",
+        "id": 735
+      },
+      "walk": {
+        "category": "creature",
+        "id": 735
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 238,
+      "portrait": {
+        "category": "creature",
+        "id": 952
+      },
+      "walk": {
+        "category": "creature",
+        "id": 952
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 239,
+      "portrait": {
+        "category": "creature",
+        "id": 940
+      },
+      "walk": {
+        "category": "creature",
+        "id": 940
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 240,
+      "portrait": {
+        "category": "creature",
+        "id": 738
+      },
+      "walk": {
+        "category": "creature",
+        "id": 738
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 241,
+      "portrait": {
+        "category": "creature",
+        "id": 737
+      },
+      "walk": {
+        "category": "creature",
+        "id": 737
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 242,
+      "portrait": {
+        "category": "creature",
+        "id": 946
+      },
+      "walk": {
+        "category": "creature",
+        "id": 946
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 243,
+      "portrait": {
+        "category": "creature",
+        "id": 945
+      },
+      "walk": {
+        "category": "creature",
+        "id": 945
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 244,
+      "portrait": {
+        "category": "creature",
+        "id": 957
+      },
+      "walk": {
+        "category": "creature",
+        "id": 957
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 245,
+      "portrait": {
+        "category": "creature",
+        "id": 956
+      },
+      "walk": {
+        "category": "creature",
+        "id": 956
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 246,
+      "portrait": {
+        "category": "creature",
+        "id": 958
+      },
+      "walk": {
+        "category": "creature",
+        "id": 958
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 247,
+      "portrait": {
+        "category": "creature",
+        "id": 938
+      },
+      "walk": {
+        "category": "creature",
+        "id": 938
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 248,
+      "portrait": {
+        "category": "creature",
+        "id": 939
+      },
+      "walk": {
+        "category": "creature",
+        "id": 939
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 249,
+      "portrait": {
+        "category": "creature",
+        "id": 954
+      },
+      "walk": {
+        "category": "creature",
+        "id": 954
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 250,
+      "portrait": {
+        "category": "creature",
+        "id": 959
+      },
+      "walk": {
+        "category": "creature",
+        "id": 959
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 251,
+      "portrait": {
+        "category": "creature",
+        "id": 955
+      },
+      "walk": {
+        "category": "creature",
+        "id": 955
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 252,
+      "portrait": {
+        "category": "creature",
+        "id": 960
+      },
+      "walk": {
+        "category": "creature",
+        "id": 960
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 253,
+      "portrait": {
+        "category": "creature",
+        "id": 1573
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1573
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 254,
+      "portrait": {
+        "category": "creature",
+        "id": 1738
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1738
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 255,
+      "portrait": {
+        "category": "creature",
+        "id": 1754
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1754
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 256,
+      "portrait": {
+        "category": "creature",
+        "id": 1736
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1736
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 257,
+      "portrait": {
+        "category": "creature",
+        "id": 1740
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1740
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 258,
+      "portrait": {
+        "category": "creature",
+        "id": 1771
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1771
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 259,
+      "portrait": {
+        "category": "creature",
+        "id": 1761
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1761
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 260,
+      "portrait": {
+        "category": "creature",
+        "id": 1734
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1734
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 261,
+      "portrait": {
+        "category": "creature",
+        "id": 1791
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1791
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 262,
+      "portrait": {
+        "category": "creature",
+        "id": 1813
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1813
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 263,
+      "portrait": {
+        "category": "creature",
+        "id": 1733
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1733
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 264,
+      "portrait": {
+        "category": "creature",
+        "id": 1783
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1783
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 265,
+      "portrait": {
+        "category": "creature",
+        "id": 1784
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1784
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 266,
+      "portrait": {
+        "category": "creature",
+        "id": 1768
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1768
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 267,
+      "portrait": {
+        "category": "creature",
+        "id": 1769
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1769
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 268,
+      "portrait": {
+        "category": "creature",
+        "id": 1767
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1767
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 269,
+      "portrait": {
+        "category": "creature",
+        "id": 1743
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1743
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 270,
+      "portrait": {
+        "category": "creature",
+        "id": 1780
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1780
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 271,
+      "portrait": {
+        "category": "creature",
+        "id": 1772
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1772
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 272,
+      "portrait": {
+        "category": "creature",
+        "id": 1760
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1760
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 273,
+      "portrait": {
+        "category": "creature",
+        "id": 1725
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1725
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 274,
+      "portrait": {
+        "category": "creature",
+        "id": 1749
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1749
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 275,
+      "portrait": {
+        "category": "creature",
+        "id": 1794
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1794
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 276,
+      "portrait": {
+        "category": "creature",
+        "id": 1727
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1727
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 277,
+      "portrait": {
+        "category": "creature",
+        "id": 1746
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1746
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 278,
+      "portrait": {
+        "category": "creature",
+        "id": 1723
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1723
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 279,
+      "portrait": {
+        "category": "creature",
+        "id": 1793
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1793
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 280,
+      "portrait": {
+        "category": "creature",
+        "id": 1737
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1737
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 281,
+      "portrait": {
+        "category": "creature",
+        "id": 1752
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1752
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 282,
+      "portrait": {
+        "category": "creature",
+        "id": 1750
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1750
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 283,
+      "portrait": {
+        "category": "creature",
+        "id": 1778
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1778
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 284,
+      "portrait": {
+        "category": "creature",
+        "id": 1797
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1797
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 285,
+      "portrait": {
+        "category": "creature",
+        "id": 1751
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1751
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 286,
+      "portrait": {
+        "category": "creature",
+        "id": 1745
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1745
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 287,
+      "portrait": {
+        "category": "creature",
+        "id": 1744
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1744
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 288,
+      "portrait": {
+        "category": "creature",
+        "id": 1730
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1730
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 289,
+      "portrait": {
+        "category": "creature",
+        "id": 1735
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1735
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 290,
+      "portrait": {
+        "category": "creature",
+        "id": 1756
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1756
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 291,
+      "portrait": {
+        "category": "creature",
+        "id": 1763
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1763
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 292,
+      "portrait": {
+        "category": "creature",
+        "id": 1762
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1762
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 293,
+      "portrait": {
+        "category": "creature",
+        "id": 1773
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1773
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 294,
+      "portrait": {
+        "category": "creature",
+        "id": 1729
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1729
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 295,
+      "portrait": {
+        "category": "creature",
+        "id": 1764
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1764
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 296,
+      "portrait": {
+        "category": "creature",
+        "id": 1765
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1765
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 297,
+      "portrait": {
+        "category": "creature",
+        "id": 1790
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1790
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 298,
+      "portrait": {
+        "category": "creature",
+        "id": 1806
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1806
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 299,
+      "portrait": {
+        "category": "creature",
+        "id": 1724
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1724
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 300,
+      "portrait": {
+        "category": "creature",
+        "id": 1795
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1795
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 301,
+      "portrait": {
+        "category": "creature",
+        "id": 1789
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1789
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 302,
+      "portrait": {
+        "category": "creature",
+        "id": 1810
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1810
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 303,
+      "portrait": {
+        "category": "creature",
+        "id": 1812
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1812
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 304,
+      "portrait": {
+        "category": "creature",
+        "id": 1742
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1742
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 305,
+      "portrait": {
+        "category": "creature",
+        "id": 1728
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1728
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 306,
+      "portrait": {
+        "category": "creature",
+        "id": 1786
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1786
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 307,
+      "portrait": {
+        "category": "creature",
+        "id": 1785
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1785
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 308,
+      "portrait": {
+        "category": "creature",
+        "id": 1792
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1792
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 309,
+      "portrait": {
+        "category": "creature",
+        "id": 1766
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1766
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 310,
+      "portrait": {
+        "category": "creature",
+        "id": 1741
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1741
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 311,
+      "portrait": {
+        "category": "creature",
+        "id": 1807
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1807
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 312,
+      "portrait": {
+        "category": "creature",
+        "id": 1770
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1770
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 313,
+      "portrait": {
+        "category": "creature",
+        "id": 1782
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1782
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 314,
+      "portrait": {
+        "category": "creature",
+        "id": 1781
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1781
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 315,
+      "portrait": {
+        "category": "creature",
+        "id": 1748
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1748
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 316,
+      "portrait": {
+        "category": "creature",
+        "id": 1785
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1785
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 317,
+      "portrait": {
+        "category": "creature",
+        "id": 1753
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1753
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 318,
+      "portrait": {
+        "category": "creature",
+        "id": 1731
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1731
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 319,
+      "portrait": {
+        "category": "creature",
+        "id": 1809
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1809
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 320,
+      "portrait": {
+        "category": "creature",
+        "id": 1774
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1774
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 321,
+      "portrait": {
+        "category": "creature",
+        "id": 1808
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1808
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 322,
+      "portrait": {
+        "category": "creature",
+        "id": 1732
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1732
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 323,
+      "portrait": {
+        "category": "creature",
+        "id": 1788
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1788
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 324,
+      "portrait": {
+        "category": "creature",
+        "id": 1758
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1758
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 325,
+      "portrait": {
+        "category": "creature",
+        "id": 1726
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1726
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 326,
+      "portrait": {
+        "category": "creature",
+        "id": 1755
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1755
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 327,
+      "portrait": {
+        "category": "creature",
+        "id": 1759
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1759
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 328,
+      "portrait": {
+        "category": "creature",
+        "id": 1796
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1796
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 329,
+      "portrait": {
+        "category": "creature",
+        "id": 1787
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1787
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 330,
+      "portrait": {
+        "category": "creature",
+        "id": 1777
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1777
+      },
+      "shinyWalk": null,
+      "effects": [],
+      "missiles": []
+    },
+    {
+      "dexId": 331,
+      "portrait": {
+        "category": "creature",
+        "id": 1811
+      },
+      "walk": {
+        "category": "creature",
+        "id": 1811
       },
       "shinyWalk": null,
       "effects": [],
