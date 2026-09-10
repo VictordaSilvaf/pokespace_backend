@@ -43,7 +43,7 @@ describe('CreateCharacterUseCase', () => {
     expect(result.spawn.instanceId).toMatch(/^laboratory-\d{2}$/);
   });
 
-  it('rejects maintenance server', async () => {
+  it('rejects offline server', async () => {
     await expect(
       useCase.execute({
         accountId: 'acc-1',

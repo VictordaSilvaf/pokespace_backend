@@ -7,6 +7,7 @@ import { createObserveModule } from '@nestjs/observe';
 import { SharedModule } from './shared/shared.module.js';
 import { IdentityModule } from './modules/identity/identity.module.js';
 import { HealthController } from './health/health.controller.js';
+import { CdnController } from './cdn/cdn.controller.js';
 import {
   REDIS_CLIENT,
   useInMemoryRedis,
@@ -60,7 +61,7 @@ export const { ObserveModule, ObserveInstrument } = createObserveModule();
     BattleModule,
     RealtimeModule,
   ],
-  controllers: [HealthController],
+  controllers: [HealthController, CdnController],
   providers: [
     {
       provide: APP_GUARD,

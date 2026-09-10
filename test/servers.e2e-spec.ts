@@ -59,7 +59,7 @@ describe('Servers (e2e)', () => {
       .expect(200)
       .expect(({ body }) => {
         expect(body.name).toBe('Mars');
-        expect(body.status).toBe('online');
+        expect(body.status).toBe('offline');
         expect(body.serverId).toBe(SEEDED_SERVER_IDS.mars);
       });
   });

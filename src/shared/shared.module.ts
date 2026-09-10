@@ -23,6 +23,12 @@ import {
   type DynamoDbClient,
 } from './infrastructure/aws/dynamodb/dynamodb.client.port.js';
 import { createDynamoDbDocumentClient } from './infrastructure/aws/dynamodb/dynamodb.document-client.js';
+import {
+  S3_CLIENT,
+  useInMemoryS3,
+  type S3ClientPort,
+} from './infrastructure/aws/s3/s3.client.port.js';
+import { createS3Client } from './infrastructure/aws/s3/s3.client.js';
 
 const databasePoolProvider: Provider = {
   provide: DATABASE_POOL,
@@ -64,6 +70,16 @@ const dynamoDbClientProvider: Provider = {
   },
 };
 
+const s3ClientProvider: Provider = {
+  provide: S3_CLIENT,
+  useFactory: (): S3ClientPort => {
+    if (useInMemoryS3()) {
+      return null;
+    }
+    return createS3Client();
+  },
+};
+
 @Injectable()
 class DatabaseLifecycle implements OnModuleDestroy {
   constructor(
@@ -73,12 +89,15 @@ class DatabaseLifecycle implements OnModuleDestroy {
     private readonly redis: RedisClient,
     @Inject(DYNAMODB_CLIENT)
     private readonly dynamo: DynamoDbClient,
+    @Inject(S3_CLIENT)
+    private readonly s3: S3ClientPort,
   ) {}
 
   async onModuleDestroy(): Promise<void> {
     await this.pool?.end();
     await this.redis?.quit();
     this.dynamo?.destroy();
+    this.s3?.destroy();
   }
 }
 
@@ -92,6 +111,7 @@ class DatabaseLifecycle implements OnModuleDestroy {
     databasePoolProvider,
     redisClientProvider,
     dynamoDbClientProvider,
+    s3ClientProvider,
     {
       provide: MigrationRunner,
       useFactory: (pool: Pool | null) => (pool ? new MigrationRunner(pool) : null),
@@ -104,6 +124,7 @@ class DatabaseLifecycle implements OnModuleDestroy {
     DATABASE_POOL,
     REDIS_CLIENT,
     DYNAMODB_CLIENT,
+    S3_CLIENT,
     MigrationRunner,
   ],
 })

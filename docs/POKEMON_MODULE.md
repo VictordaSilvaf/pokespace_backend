@@ -18,9 +18,41 @@ Do not mix OT HP and National Dex base HP in the UI without labeling.
 
 ## Sprites
 
-- Nest **does not** serve PNG binaries or parse `.dat`/`.spr`.
-- Registry stores `path` like `sprites/creature/{lookType}.png` for the frontend CDN/static resolver.
-- Detail API also returns `lookType` so the FE can call its local `creatureUrl(lookType)`.
+- Nest **does not** parse `.dat`/`.spr` at runtime.
+- Registry stores relative `path` values like `sprites/creature/{lookType}.png` (Postgres stays relative).
+- HTTP responses apply `resolveS3PublicUrl(path)` when `S3_PUBLIC_BASE_URL` is a **browser CDN** (r2.dev or custom domain). The S3 API host `*.r2.cloudflarestorage.com` is ignored.
+- Detail API also returns `lookType` so the FE can resolve `creatureUrl(lookType)` via `VITE_ASSETS_BASE_URL`.
+
+### R2 CDN pipeline
+
+1. **Upload PNGs** (creature + item only; not catalog/registry JSON):
+
+```bash
+pnpm assets:upload-r2
+# → s3://$S3_BUCKET/sprites/creature/*.png and .../item/*.png
+# Cache-Control: public, max-age=31536000, immutable
+```
+
+2. **Public URL** (pick one):
+
+| Option | How |
+| --- | --- |
+| r2.dev (preferred for quick public) | Cloudflare dashboard → bucket → Public Development URL → Allow, **or** `CLOUDFLARE_API_TOKEN=... pnpm assets:enable-r2-public` |
+| Custom domain | Attach hostname to the bucket in Cloudflare |
+| Nest `/cdn` (interim) | Deploy API with `S3_DRIVER=s3`; set `S3_PUBLIC_BASE_URL=https://<api-host>/cdn` |
+| Local smoke | `pnpm assets:serve-r2` → `http://127.0.0.1:8787` |
+
+3. Set env (same public base on API + FE):
+
+```env
+S3_PUBLIC_BASE_URL=https://pub-xxxx.r2.dev
+# frontend:
+# VITE_ASSETS_BASE_URL=https://pub-xxxx.r2.dev
+```
+
+4. Smoke: `GET $S3_PUBLIC_BASE_URL/sprites/creature/376.png` → `200` + `image/png`.
+
+Do **not** commit `S3_ACCESS_KEY_ID` / `S3_SECRET_ACCESS_KEY`. Rotate R2 tokens if they ever leaked in chat.
 
 ## HTTP
 

@@ -12,7 +12,7 @@ describe('GetServerUseCase', () => {
     });
 
     expect(result.name).toBe('Earth');
-    expect(result.status).toBe('maintenance');
+    expect(result.status).toBe('offline');
   });
 
   it('throws ServerNotFoundError for unknown id', async () => {

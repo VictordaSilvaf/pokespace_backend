@@ -73,18 +73,44 @@ export interface ListPokemonQueryDto {
 }
 
 import type { Pokemon } from '../../domain/entities/pokemon.entity.js';
+import { resolveS3PublicUrl } from '../../../../shared/infrastructure/aws/s3/s3.config.js';
+
+/** Apply CDN/public base to sprite paths for HTTP responses (DB stays relative). */
+export function publicizeSpriteAssets(
+  assets?: PokemonAssetsResult,
+): PokemonAssetsResult | undefined {
+  if (!assets) return undefined;
+  const map = (sprite?: SpriteAssetResult): SpriteAssetResult | undefined => {
+    if (!sprite) return undefined;
+    return {
+      ...sprite,
+      path: resolveS3PublicUrl(sprite.path),
+    };
+  };
+  const next: PokemonAssetsResult = {};
+  const portrait = map(assets.portrait);
+  const walk = map(assets.walk);
+  const shinyWalk = map(assets.shinyWalk);
+  const megaWalk = map(assets.megaWalk);
+  if (portrait) next.portrait = portrait;
+  if (walk) next.walk = walk;
+  if (shinyWalk) next.shinyWalk = shinyWalk;
+  if (megaWalk) next.megaWalk = megaWalk;
+  return Object.keys(next).length > 0 ? next : undefined;
+}
 
 export function toPokemonListItem(
   pokemon: Pokemon,
   assets?: PokemonAssetsResult,
 ): PokemonListItem {
+  const publicAssets = publicizeSpriteAssets(assets);
   return {
     dexId: pokemon.dexId.value,
     name: pokemon.name,
     types: pokemon.types.map((t) => t.value),
     status: pokemon.status.value,
     lookType: pokemon.lookType,
-    ...(assets ? { assets } : {}),
+    ...(publicAssets ? { assets: publicAssets } : {}),
   };
 }
 
@@ -92,6 +118,7 @@ export function toPokemonResult(
   pokemon: Pokemon,
   assets?: PokemonAssetsResult,
 ): PokemonResult {
+  const publicAssets = publicizeSpriteAssets(assets);
   return {
     id: pokemon.id,
     dexId: pokemon.dexId.value,
@@ -111,6 +138,6 @@ export function toPokemonResult(
       experience: pokemon.experience,
     },
     source: pokemon.source,
-    ...(assets ? { assets } : {}),
+    ...(publicAssets ? { assets: publicAssets } : {}),
   };
 }

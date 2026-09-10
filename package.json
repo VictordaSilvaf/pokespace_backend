@@ -29,12 +29,16 @@
     "docker:staging:logs": "docker compose -f docker-compose.staging.yml --env-file .env.staging logs -f",
     "assets:sync": "node ./scripts/assets/sync.mjs",
     "assets:validate": "node ./scripts/assets/validate.mjs",
+    "assets:upload-r2": "node --env-file=.env.production ./scripts/assets/upload-r2.mjs",
+    "assets:serve-r2": "node --env-file=.env.production ./scripts/assets/serve-r2-cdn.mjs",
+    "assets:enable-r2-public": "node --env-file=.env.production ./scripts/assets/enable-r2-public.mjs",
     "dex:sync": "node ./scripts/catalog/dex-sync.mjs",
     "maps:convert": "node ./scripts/maps/convert-otbm.mjs",
     "world:validate": "node ./scripts/maps/validate-world.mjs"
   },
   "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.1127.0",
+    "@aws-sdk/client-s3": "3.1127.0",
     "@aws-sdk/lib-dynamodb": "^3.1127.0",
     "@nestjs/common": "^12.0.1",
     "@nestjs/config": "^12.0.0",

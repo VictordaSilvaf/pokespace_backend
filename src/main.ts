@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common';
+import { RequestMethod, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
@@ -27,7 +27,13 @@ async function bootstrap() {
   );
 
   app.setGlobalPrefix('api/v1', {
-    exclude: ['api/docs', 'api/docs-json', 'api/docs-yaml'],
+    exclude: [
+      'api/docs',
+      'api/docs-json',
+      'api/docs-yaml',
+      { path: 'cdn', method: RequestMethod.ALL },
+      { path: 'cdn/(.*)', method: RequestMethod.ALL },
+    ],
   });
 
   const swaggerConfig = new DocumentBuilder()
